@@ -27,3 +27,5 @@ N
 src/main/java/Types/Piede.java,d\9\d9a776cc774089198197f81bc3dc5307db145219
 N
 src/main/java/Types/Sesso.java,8\2\829af53e1418d96070ee1416b16912610fee530e
+O
+src/main/java/model/Trofeo.java,3\b\3be302f76d7385d1e72b41d6a497783f57f7d1bd

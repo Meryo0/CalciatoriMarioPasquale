@@ -4,6 +4,7 @@ import DAO.CalciatoriDAO;
 import DAO.CalciatoriDAOimpl;
 import DatabaseConnection.ConnessioneDatabase;
 import Types.Piede;
+import Types.Sesso;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,10 +20,7 @@ import java.time.LocalDate;
 public class Main extends Application{
 
     public static void main (String[] args) {
-        CalciatoriDAO dao = new CalciatoriDAOimpl();
-        Calciatore calciatore = new Calciatore("Mario","Ponticiello", Piede.DESTRO,"Maschio", LocalDate.of(2003,6,11),null,"Italia");
-
-        dao.inserisci(calciatore);
+        CalciatoriDAO daoprova = new CalciatoriDAOimpl();
 
         //prova();
         Application.launch(args);
