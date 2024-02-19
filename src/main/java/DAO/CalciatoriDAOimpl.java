@@ -24,12 +24,13 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             pstmt.setString(2, calciatore.getCognome());
             pstmt.setObject(3,calciatore.getPiede(),Types.OTHER);
             pstmt.setDate(4, java.sql.Date.valueOf(calciatore.getDataNascita()));
-            pstmt.setString(5, calciatore.getSesso());
+            pstmt.setObject(5, calciatore.getSesso(),Types.OTHER);
             // Assuming data_ritiro is of type LocalDate, you need to convert it to java.sql.Date
             pstmt.setDate(6, calciatore.getDataRitiro() != null ? java.sql.Date.valueOf(calciatore.getDataRitiro()) : null);
             pstmt.setString(7, calciatore.getNazionalita());
-
             pstmt.executeUpdate();
+
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {

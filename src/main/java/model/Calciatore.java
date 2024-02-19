@@ -1,6 +1,7 @@
 package model;
 
 import Types.Piede;
+import Types.Sesso;
 
 import java.time.LocalDate;
 
@@ -9,11 +10,11 @@ public class Calciatore {
     private String nome;
     private String cognome;
     private Piede piede;
-    private String sesso;
+    private Sesso sesso;
     private LocalDate dataNascita ;
     private LocalDate dataRitiro;
     private String nazionalita;
-    public Calciatore ( String nome, String cognome, Piede piede, String sesso, LocalDate dataNascita, LocalDate dataRitiro, String nazionalita){
+    public Calciatore ( String nome, String cognome, Piede piede, Sesso sesso, LocalDate dataNascita, LocalDate dataRitiro, String nazionalita){
         this.nome=nome;
         this.cognome=cognome;
         this.piede=piede;
@@ -31,7 +32,7 @@ public class Calciatore {
         return cognome;
     }
 
-    public String getSesso() {
+    public Sesso getSesso() {
         return sesso;
     }
 
@@ -75,7 +76,7 @@ public class Calciatore {
         this.piede = piede;
     }
 
-    public void setSesso(String sesso) {
+    public void setSesso(Sesso sesso) {
         this.sesso = sesso;
     }
 

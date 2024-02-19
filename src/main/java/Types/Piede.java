@@ -1,7 +1,7 @@
 package Types;
 
 public enum Piede {
-    SINISTRO,
-    DESTRO,
-    ALTRO
+    Sinistro,
+    Destro,
+    Altro
 }
