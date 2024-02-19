@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="336.0" prefWidth="290.0" style="-fx-background-color: E3F2FD;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane prefHeight="336.0" prefWidth="290.0" style="-fx-background-color: E3F2FD;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutY="-4.0" prefHeight="137.0" prefWidth="290.0" text="LOGIN" textAlignment="CENTER">
          <font>
@@ -16,8 +16,8 @@
       </Label>
       <TextField layoutX="29.0" layoutY="160.0" prefHeight="25.0" prefWidth="233.0" />
       <TextField layoutX="29.0" layoutY="216.0" prefHeight="25.0" prefWidth="233.0" />
-      <Button layoutX="180.0" layoutY="253.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Login" />
-      <Button layoutX="29.0" layoutY="253.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Back" />
+      <Button layoutX="180.0" layoutY="253.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Utente" />
+      <Button layoutX="29.0" layoutY="253.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Login" />
       <Text layoutX="29.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="233.0" />
       <Text layoutX="29.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="233.0" />
    </children>
