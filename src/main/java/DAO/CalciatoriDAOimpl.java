@@ -56,9 +56,34 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
     }
 
     @Override
-    public void elimina(Calciatore calciatore) {
-
+    public void elimina(int idEliminare) {
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+        try {
+            connection = ConnessioneDatabase.getInstance().getConnection();
+            String query = "DELETE FROM calciatore WHERE codicec = " + idEliminare;
+            pstmt = connection.prepareStatement(query);
+        }
+        catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
+
 
     @Override
     public List<Calciatore> displaycalciatori() {

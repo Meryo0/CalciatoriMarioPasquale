@@ -20,9 +20,9 @@ public class Main extends Application{
 
     public static void main (String[] args) {
         CalciatoriDAO dao = new CalciatoriDAOimpl();
-        Calciatore calciatore = new Calciatore("Mario","Ponticiello", Piede.DESTRO,"Maschio", LocalDate.of(2003,6,11),null,"Italia");
+        dao.elimina(97);
 
-        dao.inserisci(calciatore);
+
 
         //prova();
         Application.launch(args);
