@@ -29,3 +29,9 @@ N
 src/main/java/Types/Sesso.java,8\2\829af53e1418d96070ee1416b16912610fee530e
 O
 src/main/java/model/Trofeo.java,3\b\3be302f76d7385d1e72b41d6a497783f57f7d1bd
+l
+<src/main/java/Controllers/LoginAmministratoreController.java,3\0\30b362a06943f89f99ebb35def0cbd3bbf9e479c
+n
+>src/main/java/Controllers/VisionaAmministratoreController.java,9\b\9ba71c1657bc23eed0fbf6ae2c4e190e41fa1020
+f
+6src/main/java/Controllers/VisionaUtenteController.java,1\c\1c08f7e642c77f6bb1c202dca5c9eed0541482cd
