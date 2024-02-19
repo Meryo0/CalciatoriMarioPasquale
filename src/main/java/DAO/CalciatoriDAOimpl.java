@@ -84,7 +84,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             }
         }
     }
-
+/*lot*/
 
     @Override
     public List<Calciatore> displaycalciatori() {
