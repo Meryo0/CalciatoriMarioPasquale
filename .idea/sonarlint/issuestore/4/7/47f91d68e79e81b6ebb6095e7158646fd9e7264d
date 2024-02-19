@@ -1,15 +1,13 @@
 
-g	java:S112+"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ŠûÍÜ1
+g	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ƒÒª“Ü1
 l
-java:S2095""OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(†‡ê±8·ûÍÜ1
-X
-java:S1854"<Remove this useless assignment to local variable "daoprova".(Æ®I8­“é’Ü1
-I
-java:S1481"-Remove this unused "daoprova" local variable.(Æ®I8®“é’Ü1
-]	java:S125"<This block of commented-out lines of code should be removed.(ÁĞ¶˜ıÿÿÿÿ8¾ûÍÜ1
+java:S2095!"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(†‡ê±8¡Òª“Ü1
+Y
+java:S1854"7Remove this useless assignment to local variable "dao".(ĞŠ°ÿÿÿÿÿ8†ˆ­“Ü1
 J
-java:S1128"(Remove this unused import 'Types.Piede'.(õ¨éèúÿÿÿÿ8ĞÄé’Ü1
+java:S1481"(Remove this unused "dao" local variable.(ĞŠ°ÿÿÿÿÿ8ˆˆ­“Ü1
+]	java:S125"<This block of commented-out lines of code should be removed.(ÁĞ¶˜ıÿÿÿÿ8¨Òª“Ü1
 J
-java:S1128"(Remove this unused import 'Types.Sesso'.(Êœ§ûıÿÿÿÿ8ĞÄé’Ü1
+java:S1128"(Remove this unused import 'Types.Piede'.(õ¨éèúÿÿÿÿ8ÔÒª“Ü1
 R
-java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8ĞÄé’Ü1
+java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èıÿÿÿÿ8ÔÒª“Ü1

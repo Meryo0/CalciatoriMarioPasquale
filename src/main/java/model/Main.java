@@ -20,9 +20,6 @@ public class Main extends Application{
 
     public static void main (String[] args) {
         CalciatoriDAO dao = new CalciatoriDAOimpl();
-        dao.elimina(97);
-
-
 
         //prova();
         Application.launch(args);
