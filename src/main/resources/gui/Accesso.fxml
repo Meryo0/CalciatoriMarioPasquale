@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="382.0" prefWidth="478.0" style="-fx-background-color: BBDEFB;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" >
+   <children>
+      <Label alignment="CENTER" layoutY="-3.0" prefHeight="101.0" prefWidth="522.0" style="-fx-background-color: BBDEFB;" text="LOGO" textAlignment="CENTER" />
+      <Text layoutX="8.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chi vuole accedere?" textAlignment="CENTER" wrappingWidth="513.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button layoutX="52.0" layoutY="259.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="Amministratore" />
+      <Button layoutX="307.0" layoutY="259.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="Utente" />
+   </children>
+</AnchorPane>
