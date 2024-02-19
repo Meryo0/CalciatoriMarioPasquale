@@ -1,37 +1,49 @@
 package model;
 
+import DAO.CalciatoriDAO;
+import DAO.CalciatoriDAOimpl;
 import DatabaseConnection.ConnessioneDatabase;
+import Types.Piede;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.sql.SQLException;
 
-import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class Main extends Application{
 
     public static void main (String[] args) {
+        CalciatoriDAO dao = new CalciatoriDAOimpl();
+        Calciatore calciatore = new Calciatore("Mario","Ponticiello", Piede.DESTRO,"Maschio", LocalDate.of(2003,6,11),null,"Italia");
 
-        try {
-            ConnessioneDatabase connessione = ConnessioneDatabase.getInstance();
+        dao.inserisci(calciatore);
 
-            // Check if the connection is valid before using it
-            if (connessione.isConnectionValid()) {
-                System.out.println("Connection is valid. Proceed with database operations.");
-
-                // Perform your database operations here
-
-            } else {
-                System.out.println("Connection is not valid. Unable to proceed with database operations.");
-            }
-
-        } catch (SQLException e) {
-            System.out.println("Error creating or validating database connection: " + e.getMessage());
-            e.printStackTrace();
-        }
+        //prova();
         Application.launch(args);
+
+
+    }
+    public static void prova() {
+        String q1 = "Select nome, cognome from calciatore where codicec = 85";
+        try{
+            Connection con = ConnessioneDatabase.getInstance().getConnection();
+            PreparedStatement stm  = con.prepareStatement(q1);
+            ResultSet res = stm.executeQuery();
+            res.next();
+            String nome ;
+            String cognome ;
+            nome= res.getString("nome");
+            cognome= res.getString("cognome");
+            System.out.println(nome +" "+cognome);
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

@@ -1,23 +1,26 @@
 package model;
 
+import Types.Piede;
+
 import java.time.LocalDate;
 
 public class Calciatore {
     private int idCalciatore;
     private String nome;
     private String cognome;
-    private String piede;
-    private char sesso;
-    private LocalDate dataNascita;
+    private Piede piede;
+    private String sesso;
+    private LocalDate dataNascita ;
     private LocalDate dataRitiro;
-    public Calciatore (int idCalciatore, String nome, String cognome, String piede, char sesso, LocalDate dataNascita, LocalDate dataRitiro){
-        this.idCalciatore=idCalciatore;
+    private String nazionalita;
+    public Calciatore ( String nome, String cognome, Piede piede, String sesso, LocalDate dataNascita, LocalDate dataRitiro, String nazionalita){
         this.nome=nome;
         this.cognome=cognome;
         this.piede=piede;
         this.sesso=sesso;
         this.dataNascita=dataNascita;
         this.dataRitiro=dataRitiro;
+        this.nazionalita=nazionalita;
     }
 
     public int getIdCalciatore() {
@@ -28,7 +31,7 @@ public class Calciatore {
         return cognome;
     }
 
-    public char getSesso() {
+    public String getSesso() {
         return sesso;
     }
 
@@ -44,7 +47,7 @@ public class Calciatore {
         return nome;
     }
 
-    public String getPiede() {
+    public Piede getPiede() {
         return piede;
     }
 
@@ -68,11 +71,19 @@ public class Calciatore {
         this.nome = nome;
     }
 
-    public void setPiede(String piede) {
+    public void setPiede(Piede piede) {
         this.piede = piede;
     }
 
-    public void setSesso(char sesso) {
+    public void setSesso(String sesso) {
         this.sesso = sesso;
+    }
+
+    public String getNazionalita() {
+        return nazionalita;
+    }
+
+    public void setNazionalita(String nazionalita) {
+        this.nazionalita = nazionalita;
     }
 }

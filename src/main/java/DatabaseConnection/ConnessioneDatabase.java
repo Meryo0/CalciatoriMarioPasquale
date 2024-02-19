@@ -42,7 +42,7 @@ public class ConnessioneDatabase {
      * @return the instance
      * @throws SQLException the sql exception
      */
-    public static ConnessioneDatabase getInstance() throws SQLException {
+     public static ConnessioneDatabase getInstance() throws SQLException {
             if (instance == null) {
                 instance = new ConnessioneDatabase();
             } else if (instance.getConnection().isClosed()) {
@@ -50,6 +50,7 @@ public class ConnessioneDatabase {
             }
             return instance;
         }
+
 
     /**
      * Gets connection.

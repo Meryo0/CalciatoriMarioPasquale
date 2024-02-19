@@ -1,8 +1,0 @@
-
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(â®µ²þÿÿÿÿ
-Y
-java:S2583"CChange this condition so that it does not always evaluate to "true"(¡ææú
-h	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…Ö‰Þÿÿÿÿÿ
-H
-java:S4925
-"-Remove this "Class.forName()", it is useless.(õ†¨Äùÿÿÿÿ

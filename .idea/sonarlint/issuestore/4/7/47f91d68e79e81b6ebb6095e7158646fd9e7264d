@@ -1,3 +1,5 @@
 
-K
-java:S1128")Remove this unused import 'java.net.URL'.(ñìÁ„üÿÿÿÿ8‰Û¸‰Ü1
+g	java:S112-"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ŠûÍÜ1
+l
+java:S2095$"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(†‡ê±8·ûÍÜ1
+]	java:S125"<This block of commented-out lines of code should be removed.(ÁĞ¶˜ıÿÿÿÿ8¾ûÍÜ1
