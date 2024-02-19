@@ -57,8 +57,18 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
         PreparedStatement pstmt = null;
         try {
             connection = ConnessioneDatabase.getInstance().getConnection();
-            String query = "";
+            String query = "UPDATE calciatore SET nome = ?, cognome = ?, piede = ?, datan = ?, sesso = ?, data_ritiro = ?, nazionalità = ? WHERE codicec = " + idModificare ;
             pstmt = connection.prepareStatement(query);
+
+            // Set the parameters using the corresponding methods based on the data types
+            pstmt.setString(1, calciatore.getNome());
+            pstmt.setString(2, calciatore.getCognome());
+            pstmt.setObject(3,calciatore.getPiede(),Types.OTHER);
+            pstmt.setDate(4, java.sql.Date.valueOf(calciatore.getDataNascita()));
+            pstmt.setObject(5, calciatore.getSesso(),Types.OTHER);
+            // Assuming data_ritiro is of type LocalDate, you need to convert it to java.sql.Date
+            pstmt.setDate(6, calciatore.getDataRitiro() != null ? java.sql.Date.valueOf(calciatore.getDataRitiro()) : null);
+            pstmt.setString(7, calciatore.getNazionalita());
             pstmt.executeUpdate();
         }
         catch (SQLException e) {
@@ -112,7 +122,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             }
         }
     }
-/*lot*/
+
 
     @Override
     public List<Calciatore> displaycalciatori() {
