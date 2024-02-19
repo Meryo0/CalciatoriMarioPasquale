@@ -11,3 +11,11 @@ i
 -.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
+S
+#src/main/java/model/Calciatore.java,1\4\14a832310231fdb91575a41676b0ec9f7ee03073
+Z
+*src/main/java/model/MilitanzaPortiere.java,7\1\71693978029f5551e352c40d1d4e8775be6b8e89
+\
+,src/main/java/model/MilitanzaCalciatore.java,1\b\1bda132ec2ab52a4ac76b3e9c5a02f16569f6cfd
+U
+%src/main/java/model/Competizione.java,f\d\fde134ffafcb542da886eb3bb2234f0b985c0bdc

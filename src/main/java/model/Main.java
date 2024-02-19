@@ -32,6 +32,7 @@ public class Main extends Application{
             e.printStackTrace();
         }
         Application.launch(args);
+
     }
 
     @Override
