@@ -10,7 +10,7 @@ public class MilitanzaPortiere {
     private int goalsubiti;
     private int codicec;
     private int codices;
-    public void MilitanzaPortiere(LocalDate data_inizio, LocalDate data_fine, int goal_fatti, int partite_giocate, int goal_subiti, int codicec, int codices){
+    public MilitanzaPortiere(LocalDate data_inizio, LocalDate data_fine, int goal_fatti, int partite_giocate, int goal_subiti, int codicec, int codices){
         this.codicec = codicec;
         this.codices = codices;
         this.datafine = data_fine;

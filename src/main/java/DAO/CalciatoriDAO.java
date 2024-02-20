@@ -1,15 +1,14 @@
 package DAO;
 
+import javafx.collections.ObservableList;
 import model.Calciatore;
-
-
-import java.util.List;
+import util.DisplayInfo;
 
 public interface CalciatoriDAO {
     public void inserisci(Calciatore calciatore);
     public void modifica(Calciatore calciatore, int idModificare);
     public void elimina(int idEliminare);
 
-    public List <Calciatore> displaycalciatori();
+    public ObservableList<DisplayInfo> displaycalciatori();
 
 }

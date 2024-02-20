@@ -35,3 +35,11 @@ n
 >src/main/java/Controllers/VisionaAmministratoreController.java,9\b\9ba71c1657bc23eed0fbf6ae2c4e190e41fa1020
 f
 6src/main/java/Controllers/VisionaUtenteController.java,1\c\1c08f7e642c77f6bb1c202dca5c9eed0541482cd
+S
+#src/main/java/util/DisplayInfo.java,6\e\6e45d49526adcccdd63428e8880470ccf7c9f28f
+P
+ src/main/java/model/Squadra.java,a\6\a67e4ee2b04464f98faa0ef0345c81345ee3c8f4
+W
+'src/main/java/model/VinceGiocatore.java,9\1\91d08cfb60c840b2a2d3c9a46cb57d47ee2749c9
+U
+%src/main/java/model/VinceSquadra.java,7\9\799eef26f2b507fea5c4622626ef32ba4a5c88a8

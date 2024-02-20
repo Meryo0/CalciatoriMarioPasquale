@@ -1,11 +1,11 @@
 package DAO;
 
 import DatabaseConnection.ConnessioneDatabase;
+import javafx.collections.ObservableList;
 import model.Calciatore;
-import Types.Piede;
+import util.DisplayInfo;
 
 import java.sql.*;
-import java.util.List;
 
 public class CalciatoriDAOimpl implements CalciatoriDAO {
     @Override
@@ -124,8 +124,43 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
     }
 
 
+
+
     @Override
-    public List<Calciatore> displaycalciatori() {
-        return null;
+    public ObservableList<DisplayInfo> displaycalciatori() {
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            connection = ConnessioneDatabase.getInstance().getConnection();
+            String query = "SELECT nome,cognome,";
+            pstmt = connection.prepareStatement(query);
+
+            // Set the parameters using the corresponding methods based on the data types
+
+            pstmt.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+
     }
+
 }

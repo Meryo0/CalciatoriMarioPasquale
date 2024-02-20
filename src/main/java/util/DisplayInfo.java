@@ -1,0 +1,144 @@
+package util;
+
+import Types.Piede;
+import Types.Sesso;
+
+import java.time.LocalDate;
+
+public class DisplayInfo {
+    private int idCalciatore;
+    private String nome;
+    private String cognome;
+    private Piede piede;
+    private Sesso sesso;
+    private LocalDate dataNascita ;
+    private LocalDate dataRitiro;
+    private String nazionalita;
+    private int idSquadra;
+    private String nomes;
+    private int goalfatti;
+    private int partitegiocate;
+    private int goalsubiti;
+
+    public DisplayInfo(int idCalciatore, String nome, String cognome, Piede piede, Sesso sesso,
+                       LocalDate dataNascita, LocalDate dataRitiro, String nazionalita,
+                       int idSquadra, String nomes, int goalfatti, int partitegiocate, int goalsubiti) {
+        this.idCalciatore = idCalciatore;
+        this.nome = nome;
+        this.cognome = cognome;
+        this.piede = piede;
+        this.sesso = sesso;
+        this.dataNascita = dataNascita;
+        this.dataRitiro = dataRitiro;
+        this.nazionalita = nazionalita;
+        this.idSquadra = idSquadra;
+        this.nomes = nomes;
+        this.goalfatti = goalfatti;
+        this.partitegiocate = partitegiocate;
+        this.goalsubiti = goalsubiti;
+    }
+
+    public String getNomes() {
+        return nomes;
+    }
+
+    public void setNomes(String nomes) {
+        this.nomes = nomes;
+    }
+
+    public int getGoalsubiti() {
+        return goalsubiti;
+    }
+
+    public void setGoalsubiti(int goalsubiti) {
+        this.goalsubiti = goalsubiti;
+    }
+
+    public int getPartitegiocate() {
+        return partitegiocate;
+    }
+
+    public void setPartitegiocate(int partitegiocate) {
+        this.partitegiocate = partitegiocate;
+    }
+
+    public int getGoalfatti() {
+        return goalfatti;
+    }
+
+    public void setGoalfatti(int goalfatti) {
+        this.goalfatti = goalfatti;
+    }
+
+    public int getIdSquadra() {
+        return idSquadra;
+    }
+
+    public void setIdSquadra(int idSquadra) {
+        this.idSquadra = idSquadra;
+    }
+
+    public String getNazionalita() {
+        return nazionalita;
+    }
+
+    public void setNazionalita(String nazionalita) {
+        this.nazionalita = nazionalita;
+    }
+
+    public LocalDate getDataRitiro() {
+        return dataRitiro;
+    }
+
+    public void setDataRitiro(LocalDate dataRitiro) {
+        this.dataRitiro = dataRitiro;
+    }
+
+    public LocalDate getDataNascita() {
+        return dataNascita;
+    }
+
+    public void setDataNascita(LocalDate dataNascita) {
+        this.dataNascita = dataNascita;
+    }
+
+    public Sesso getSesso() {
+        return sesso;
+    }
+
+    public void setSesso(Sesso sesso) {
+        this.sesso = sesso;
+    }
+
+    public Piede getPiede() {
+        return piede;
+    }
+
+    public void setPiede(Piede piede) {
+        this.piede = piede;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getIdCalciatore() {
+        return idCalciatore;
+    }
+
+    public void setIdCalciatore(int idCalciatore) {
+        this.idCalciatore = idCalciatore;
+    }
+}
