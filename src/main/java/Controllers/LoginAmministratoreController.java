@@ -14,6 +14,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import javafx.event.ActionEvent;
+import java.io.IOException;
+
 public class LoginAmministratoreController {
 
     @FXML
@@ -26,6 +35,7 @@ public class LoginAmministratoreController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+
 
     public void switchToVisionaAmministratore(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/gui/VisionaAmministratore.fxml"));
@@ -47,4 +57,11 @@ public class LoginAmministratoreController {
     }
 
 
+    public void switchToSceneloginUtente(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/gui/VisionaUtente.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

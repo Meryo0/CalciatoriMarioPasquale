@@ -16,7 +16,7 @@
       </Label>
       <TextField fx:id="emailfield" layoutX="29.0" layoutY="160.0" prefHeight="25.0" prefWidth="233.0" />
       <TextField fx:id="passwordfield" layoutX="29.0" layoutY="216.0" prefHeight="25.0" prefWidth="233.0" />
-      <Button fx:id="utentebutton" layoutX="180.0" layoutY="253.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="82.0" text="Utente" />
+      <Button layoutX="180.0" layoutY="253.0" mnemonicParsing="false" onAction="#switchToSceneloginUtente" prefHeight="25.0" prefWidth="82.0" text="Utente" />
       <Button fx:id="loginbutton" layoutX="29.0" layoutY="253.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="82.0" text="Login" />
       <Text layoutX="29.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="233.0" />
       <Text layoutX="29.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="233.0" />

@@ -16,8 +16,8 @@ public class ConnessioneDatabase {
      */
     public Connection connection = null;
         private String nome = "postgres";
-        private String password = "7373";
-        private String url = "jdbc:postgresql://localhost:5432/Calciatori";
+        private String password = "Osegruwacas03";
+        private String url = "jdbc:postgresql://localhost:5432/finale";
         private String driver = "org.postgresql.Driver";
 
         // COSTRUTTORE
