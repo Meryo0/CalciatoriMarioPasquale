@@ -13,7 +13,7 @@ import java.awt.*;
 import java.io.IOException;
 
 public class VisionaUtenteController {
-   /* private Stage stage;
+    private Stage stage;
     private Scene scene;
     private Parent root;
     public void switchToSceneloginUtente (ActionEvent event) throws IOException {
@@ -22,6 +22,6 @@ public class VisionaUtenteController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }*/
+    }
 
 }
