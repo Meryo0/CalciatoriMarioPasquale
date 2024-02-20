@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="578.0" prefWidth="408.0" style="-fx-background-color: E3F2FD;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.progettomarioepasquale.GUI.ModificaGiocatore">
+<AnchorPane prefHeight="578.0" prefWidth="408.0" style="-fx-background-color: E3F2FD;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ModificaGiocatoreController">
    <children>
       <Text layoutX="49.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" wrappingWidth="305.0" />
       <TextField layoutX="49.0" layoutY="60.0" prefHeight="25.0" prefWidth="305.0" />
@@ -20,13 +20,13 @@
       <ChoiceBox layoutX="49.0" layoutY="280.0" prefHeight="25.0" prefWidth="305.0" />
       <DatePicker layoutX="49.0" layoutY="334.0" prefHeight="25.0" prefWidth="305.0" />
       <Text layoutX="49.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Ritiro" wrappingWidth="305.0" />
-      <Button layoutX="49.0" layoutY="492.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Annulla" />
+      <Button layoutX="49.0" layoutY="492.0" mnemonicParsing="false" onAction="#switchToSceneVisionaAmministratore" prefHeight="25.0" prefWidth="96.0" text="Annulla" />
       <DatePicker layoutX="49.0" layoutY="224.0" prefHeight="25.0" prefWidth="305.0" />
       <Text layoutX="49.0" layoutY="386.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ruolo" wrappingWidth="305.0" />
       <ChoiceBox layoutX="50.0" layoutY="390.0" prefHeight="25.0" prefWidth="305.0" />
       <Text layoutX="50.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feature" wrappingWidth="305.0" />
       <ChoiceBox layoutX="49.0" layoutY="443.0" prefHeight="25.0" prefWidth="305.0" />
-      <Button layoutX="155.0" layoutY="492.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Militanza" />
+      <Button layoutX="155.0" layoutY="492.0" mnemonicParsing="false" onAction="#switchToSceneModificaMilitanza" prefHeight="25.0" prefWidth="96.0" text="Militanza" />
       <Button layoutX="259.0" layoutY="492.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Modifica" />
    </children>
 </AnchorPane>

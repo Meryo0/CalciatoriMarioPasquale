@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="408.0" style="-fx-background-color: E3F2FD;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="408.0" style="-fx-background-color: E3F2FD;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AggiungiGiocatoreController">
    <children>
       <Text layoutX="49.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" wrappingWidth="305.0" />
       <TextField layoutX="49.0" layoutY="60.0" prefHeight="25.0" prefWidth="305.0" />
@@ -22,7 +21,7 @@
       <ChoiceBox layoutX="49.0" layoutY="281.0" prefHeight="25.0" prefWidth="305.0" />
       <Text layoutX="49.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Ritiro" wrappingWidth="305.0" />
       <DatePicker layoutX="49.0" layoutY="336.0" prefHeight="25.0" prefWidth="305.0" />
-      <Button layoutX="49.0" layoutY="492.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Annulla" />
+      <Button layoutX="49.0" layoutY="492.0" mnemonicParsing="false" onAction="#switchToSceneVisionaAmministratore" prefHeight="25.0" prefWidth="128.0" text="Annulla" />
       <Button layoutX="227.0" layoutY="492.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Aggiungi" />
       <Text layoutX="49.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ruolo" wrappingWidth="305.0" />
       <ChoiceBox layoutX="49.0" layoutY="391.0" prefHeight="25.0" prefWidth="305.0" />
