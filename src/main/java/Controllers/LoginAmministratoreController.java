@@ -57,7 +57,7 @@ public class LoginAmministratoreController {
     }
 
 
-    public void switchToSceneloginUtente(ActionEvent event) throws IOException {
+    public void switchToSceneVisionaUtente(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/gui/VisionaUtente.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

@@ -73,7 +73,7 @@
             </Menu>
         </menus>
       </MenuBar>
-      <Button layoutX="32.0" layoutY="586.0" mnemonicParsing="false" text="Indietro" />
+      <Button fx:id="backtologin" layoutX="32.0" layoutY="586.0" mnemonicParsing="false" onAction="#switchToSceneloginUtente" text="Indietro" />
       <Button layoutX="656.0" layoutY="23.0" mnemonicParsing="false" text="Modifca" />
       <Button layoutX="726.0" layoutY="23.0" mnemonicParsing="false" text="Elimina" />
       <Button layoutX="582.0" layoutY="23.0" mnemonicParsing="false" text="Aggiungi" />
