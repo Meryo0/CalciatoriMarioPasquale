@@ -43,3 +43,5 @@ W
 'src/main/java/model/VinceGiocatore.java,9\1\91d08cfb60c840b2a2d3c9a46cb57d47ee2749c9
 U
 %src/main/java/model/VinceSquadra.java,7\9\799eef26f2b507fea5c4622626ef32ba4a5c88a8
+j
+:src/main/java/Controllers/ModificaGiocatoreController.java,6\d\6d8ddd6c6563608f394c5117a15445eef0cbd1f5

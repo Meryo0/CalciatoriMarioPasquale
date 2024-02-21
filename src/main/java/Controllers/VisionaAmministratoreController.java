@@ -1,15 +1,64 @@
 package Controllers;
 
+
+import DAO.CalciatoriDAO;
+import DAO.CalciatoriDAOimpl;
+import Types.Piede;
+import Types.Sesso;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import util.DisplayInfo;
 
 import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
 
-public class VisionaAmministratoreController {
+public class VisionaAmministratoreController implements Initializable {
+    @FXML
+    private TableColumn<DisplayInfo, String> colcognome;
+
+    @FXML
+    private TableColumn<DisplayInfo, LocalDate> coldn;
+
+    @FXML
+    private TableColumn<DisplayInfo, LocalDate> coldr;
+
+    @FXML
+    private TableColumn<DisplayInfo, Integer> colgf;
+
+    @FXML
+    private TableColumn<DisplayInfo, Integer> colgs;
+
+    @FXML
+    private TableColumn<DisplayInfo, String> colnazionalita;
+
+    @FXML
+    private TableColumn<DisplayInfo, String> colnome;
+
+    @FXML
+    private TableColumn<DisplayInfo, Piede> colpiede;
+
+    @FXML
+    private TableColumn<DisplayInfo, Sesso> colsesso;
+
+    @FXML
+    private TableColumn<DisplayInfo, String> colsquadre;
+    @FXML
+    private TableView<DisplayInfo> tableview;
+    CalciatoriDAO dao = new CalciatoriDAOimpl();
+    ObservableList <DisplayInfo> list = dao.displaycalciatori();
 
 
     private Stage stage;
@@ -35,5 +84,21 @@ public class VisionaAmministratoreController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        colnome.setCellValueFactory(new PropertyValueFactory<DisplayInfo,String>("nome"));
+        colcognome.setCellValueFactory(new PropertyValueFactory<DisplayInfo,String>("cognome"));
+        coldn.setCellValueFactory(new PropertyValueFactory<DisplayInfo,LocalDate>("dataNascita"));
+        coldr.setCellValueFactory(new PropertyValueFactory<DisplayInfo,LocalDate>("dataRitiro"));
+        colgf.setCellValueFactory(new PropertyValueFactory<DisplayInfo,Integer>("goalfatti"));
+        colgs.setCellValueFactory(new PropertyValueFactory<DisplayInfo,Integer>("goalsubiti"));
+        colnazionalita.setCellValueFactory(new PropertyValueFactory<DisplayInfo,String>("nazionalita"));
+        colpiede.setCellValueFactory(new PropertyValueFactory<DisplayInfo,Piede>("piede"));
+        colsesso.setCellValueFactory(new PropertyValueFactory<DisplayInfo,Sesso>("sesso"));
+        colsquadre.setCellValueFactory(new PropertyValueFactory<DisplayInfo,String>("nomes"));
+        tableview.setItems(list);
     }
 }

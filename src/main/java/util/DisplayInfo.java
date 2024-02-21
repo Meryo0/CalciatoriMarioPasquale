@@ -14,15 +14,13 @@ public class DisplayInfo {
     private LocalDate dataNascita ;
     private LocalDate dataRitiro;
     private String nazionalita;
-    private int idSquadra;
     private String nomes;
     private int goalfatti;
     private int partitegiocate;
     private int goalsubiti;
 
     public DisplayInfo(int idCalciatore, String nome, String cognome, Piede piede, Sesso sesso,
-                       LocalDate dataNascita, LocalDate dataRitiro, String nazionalita,
-                       int idSquadra, String nomes, int goalfatti, int partitegiocate, int goalsubiti) {
+                       LocalDate dataNascita, LocalDate dataRitiro, String nazionalita, String nomes, int goalfatti, int partitegiocate, int goalsubiti) {
         this.idCalciatore = idCalciatore;
         this.nome = nome;
         this.cognome = cognome;
@@ -31,7 +29,6 @@ public class DisplayInfo {
         this.dataNascita = dataNascita;
         this.dataRitiro = dataRitiro;
         this.nazionalita = nazionalita;
-        this.idSquadra = idSquadra;
         this.nomes = nomes;
         this.goalfatti = goalfatti;
         this.partitegiocate = partitegiocate;
@@ -68,14 +65,6 @@ public class DisplayInfo {
 
     public void setGoalfatti(int goalfatti) {
         this.goalfatti = goalfatti;
-    }
-
-    public int getIdSquadra() {
-        return idSquadra;
-    }
-
-    public void setIdSquadra(int idSquadra) {
-        this.idSquadra = idSquadra;
     }
 
     public String getNazionalita() {
