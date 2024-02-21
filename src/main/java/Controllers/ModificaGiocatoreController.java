@@ -27,4 +27,5 @@ public class ModificaGiocatoreController {
         stage.setScene(scene);
         stage.show();
     }
+
 }

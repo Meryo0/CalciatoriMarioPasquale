@@ -10,22 +10,22 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="408.0" style="-fx-background-color: E3F2FD;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AggiungiGiocatoreController">
    <children>
       <Text layoutX="49.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" wrappingWidth="305.0" />
-      <TextField layoutX="49.0" layoutY="60.0" prefHeight="25.0" prefWidth="305.0" />
+      <TextField fx:id="textFieldNome" layoutX="49.0" layoutY="60.0" prefHeight="25.0" prefWidth="305.0" />
       <Text layoutX="50.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cognome" wrappingWidth="305.0" />
-      <TextField layoutX="49.0" layoutY="115.0" prefHeight="25.0" prefWidth="305.0" />
+      <TextField fx:id="textFieldCognome" layoutX="49.0" layoutY="115.0" prefHeight="25.0" prefWidth="305.0" />
       <Text layoutX="49.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sesso" wrappingWidth="305.0" />
-      <ChoiceBox layoutX="49.0" layoutY="169.0" prefHeight="25.0" prefWidth="305.0" />
+      <ChoiceBox fx:id="choiceBoxSesso" layoutX="49.0" layoutY="169.0" prefHeight="25.0" prefWidth="305.0" />
       <Text layoutX="49.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Nascita" wrappingWidth="305.0" />
-      <DatePicker layoutX="49.0" layoutY="224.0" prefHeight="25.0" prefWidth="305.0" />
+      <DatePicker fx:id="DataNascita" layoutX="49.0" layoutY="224.0" prefHeight="25.0" prefWidth="305.0" />
       <Text layoutX="50.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Piede" wrappingWidth="305.0" />
-      <ChoiceBox layoutX="49.0" layoutY="281.0" prefHeight="25.0" prefWidth="305.0" />
+      <ChoiceBox fx:id="choiceBoxPiede" layoutX="49.0" layoutY="281.0" prefHeight="25.0" prefWidth="305.0" />
       <Text layoutX="49.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Ritiro" wrappingWidth="305.0" />
-      <DatePicker layoutX="49.0" layoutY="336.0" prefHeight="25.0" prefWidth="305.0" />
+      <DatePicker fx:id="DataRitiro" layoutX="49.0" layoutY="336.0" prefHeight="25.0" prefWidth="305.0" />
       <Button layoutX="49.0" layoutY="492.0" mnemonicParsing="false" onAction="#switchToSceneVisionaAmministratore" prefHeight="25.0" prefWidth="128.0" text="Annulla" />
       <Button layoutX="227.0" layoutY="492.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Aggiungi" />
       <Text layoutX="49.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ruolo" wrappingWidth="305.0" />
-      <ChoiceBox layoutX="49.0" layoutY="391.0" prefHeight="25.0" prefWidth="305.0" />
-      <Text layoutX="50.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Feature" wrappingWidth="305.0" />
-      <ChoiceBox layoutX="49.0" layoutY="443.0" prefHeight="25.0" prefWidth="305.0" />
+      <ChoiceBox fx:id="choiceBoxRuolo" layoutX="49.0" layoutY="391.0" prefHeight="25.0" prefWidth="305.0" />
+      <Text layoutX="50.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazionalità" wrappingWidth="305.0" />
+      <TextField fx:id="textFieldNazionalità" layoutX="49.0" layoutY="444.0" prefHeight="25.0" prefWidth="305.0" />
    </children>
 </AnchorPane>
