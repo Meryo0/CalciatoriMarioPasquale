@@ -21,7 +21,7 @@ public class ModificaGiocatoreController {
         stage.show();
     }
     public void switchToSceneModificaMilitanza(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/gui/Militanza.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/gui/MilitanzaModifica.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

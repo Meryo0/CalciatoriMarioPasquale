@@ -67,9 +67,9 @@ public class AggiungiGiocatoreController implements Initializable {
     String piede;
     LocalDate dataritiro;
     String ruolo;
-    String nazionalità;
+    String nazionalita;
     CalciatoriDAO dao = new CalciatoriDAOimpl();
-    public void Aggiungi(ActionEvent event) {
+    public void switchToMilitanzaAggiungi (ActionEvent event) throws IOException {
         nome = textFieldNome.getText();
         cognome = textFieldCognome.getText();
         sesso = choiceBoxSesso.getValue();
@@ -77,10 +77,18 @@ public class AggiungiGiocatoreController implements Initializable {
         piede = choiceBoxPiede.getValue();
         dataritiro = DataRitiro.getValue();
         ruolo = choiceBoxRuolo.getValue();
-        nazionalità = textFieldNazionalità.getText();
-        Calciatore calciatore = new Calciatore(nome,cognome, Piede.valueOf(piede), Sesso.valueOf(sesso),datanascita,dataritiro,nazionalità);
-        System.out.println(calciatore.getCognome());
-        dao.inserisci(calciatore);
+        nazionalita = textFieldNazionalità.getText();
+        Calciatore calciatore = new Calciatore(nome,cognome, Piede.valueOf(piede), Sesso.valueOf(sesso),datanascita,dataritiro,nazionalita);
+        MilitanzaAggiungiController controller = new MilitanzaAggiungiController();
+        controller.prendicalciatore(calciatore);
+        //dao.inserisci(calciatore);
+        root = FXMLLoader.load(getClass().getResource("/gui/MilitanzaAggiungi.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+
 
     }
 

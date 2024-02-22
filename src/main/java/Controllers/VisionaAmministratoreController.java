@@ -79,6 +79,7 @@ public class VisionaAmministratoreController implements Initializable {
         stage.show();
     }
     public void switchToSceneModificaGiocatore(ActionEvent event) throws IOException {
+
         root = FXMLLoader.load(getClass().getResource("/gui/ModificaGiocatore.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

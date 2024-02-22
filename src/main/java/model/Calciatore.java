@@ -5,7 +5,7 @@ import Types.Sesso;
 
 import java.time.LocalDate;
 
-public class Calciatore {
+public class Calciatore implements Cloneable {
     private int idCalciatore;
     private String nome;
     private String cognome;
@@ -23,7 +23,13 @@ public class Calciatore {
         this.dataRitiro=dataRitiro;
         this.nazionalita=nazionalita;
     }
-
+    public Calciatore clone() {
+        try {
+            return (Calciatore) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(); // Questo non dovrebbe mai accadere
+        }
+    }
     public int getIdCalciatore() {
         return idCalciatore;
     }

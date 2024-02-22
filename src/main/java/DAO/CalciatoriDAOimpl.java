@@ -18,6 +18,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
         PreparedStatement pstmt = null;
 
         try {
+
             connection = ConnessioneDatabase.getInstance().getConnection();
             String query = "INSERT INTO calciatore (nome, cognome, piede, datan, sesso, data_ritiro, nazionalità)" +
                     " VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -54,6 +55,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             }
         }
     }
+    
 
     @Override
     public void modifica(Calciatore calciatore, int idModificare) {

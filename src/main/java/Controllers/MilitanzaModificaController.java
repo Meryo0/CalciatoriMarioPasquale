@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MilitanzaController {
+public class MilitanzaModificaController {
     private Stage stage;
     private Scene scene;
     private Parent root;

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="458.0" prefWidth="408.0" style="-fx-background-color: E3F2FD;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MilitanzaController">
+<AnchorPane prefHeight="458.0" prefWidth="408.0" style="-fx-background-color: E3F2FD;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MilitanzaAggiungiController">
    <children>
       <Text layoutX="49.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Squadra" wrappingWidth="305.0" />
       <DatePicker layoutX="49.0" layoutY="114.0" prefHeight="25.0" prefWidth="305.0" />
@@ -18,7 +18,7 @@
       <TextField layoutX="49.0" layoutY="276.0" prefHeight="25.0" prefWidth="305.0" />
       <Text layoutX="49.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gol Subiti" wrappingWidth="305.0" />
       <TextField layoutX="49.0" layoutY="331.0" prefHeight="25.0" prefWidth="305.0" />
-      <Button layoutX="49.0" layoutY="375.0" mnemonicParsing="false" onAction="#switchToSceneModificaGiocatore" prefHeight="25.0" prefWidth="128.0" text="Annulla" />
+      <Button layoutX="49.0" layoutY="375.0" mnemonicParsing="false" onAction="#switchToSceneAggiungiGiocatore" prefHeight="25.0" prefWidth="128.0" text="Annulla" />
       <Button layoutX="226.0" layoutY="375.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Aggiungi" />
       <Text layoutX="49.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Inizio" wrappingWidth="305.0" />
       <TextField layoutX="49.0" layoutY="60.0" prefHeight="25.0" prefWidth="305.0" />

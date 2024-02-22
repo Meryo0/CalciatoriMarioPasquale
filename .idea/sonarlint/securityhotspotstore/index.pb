@@ -45,3 +45,9 @@ U
 %src/main/java/model/VinceSquadra.java,7\9\799eef26f2b507fea5c4622626ef32ba4a5c88a8
 j
 :src/main/java/Controllers/ModificaGiocatoreController.java,6\d\6d8ddd6c6563608f394c5117a15445eef0cbd1f5
+j
+:src/main/java/Controllers/AggiungiGiocatoreController.java,1\6\169fffac2183483867870f265d8cb14fbe2ed37e
+j
+:src/main/java/Controllers/MilitanzaModificaController.java,2\1\21f06e7449131595032ee09065fa329b5ea71a3f
+j
+:src/main/java/Controllers/MilitanzaAggiungiController.java,6\3\638264c598f9b683aef80dc2af494e28a2b61352
