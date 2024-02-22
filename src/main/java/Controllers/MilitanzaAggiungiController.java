@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.Calciatore;
+import model.Ruolo;
 
 import java.io.IOException;
 
@@ -15,9 +16,12 @@ public class MilitanzaAggiungiController {
     private Scene scene;
     private Parent root;
     Calciatore attuale ;
+    Ruolo ruoloattuale;
 
-    public void prendicalciatore(Calciatore calciatore) {
+
+    public void prendicalciatore(Calciatore calciatore, Ruolo ruolo) {
         attuale = calciatore.clone();
+        ruoloattuale = ruolo.clone();
     }
     public void switchToSceneAggiungiGiocatore(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/gui/AggiungiGiocatore.fxml"));
@@ -26,4 +30,7 @@ public class MilitanzaAggiungiController {
         stage.setScene(scene);
         stage.show();
     }
+
+
+
 }
