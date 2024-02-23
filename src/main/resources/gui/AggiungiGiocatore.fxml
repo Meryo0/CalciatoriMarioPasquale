@@ -3,29 +3,39 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="408.0" style="-fx-background-color: E3F2FD;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AggiungiGiocatoreController">
    <children>
-      <Text layoutX="49.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" wrappingWidth="305.0" />
+      <Text fx:id="aggiunginome" layoutX="49.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" wrappingWidth="305.0" />
       <TextField fx:id="textFieldNome" layoutX="49.0" layoutY="60.0" prefHeight="25.0" prefWidth="305.0" />
-      <Text layoutX="50.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cognome" wrappingWidth="305.0" />
+      <Text fx:id="aggiungicognome" layoutX="50.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cognome" wrappingWidth="305.0" />
       <TextField fx:id="textFieldCognome" layoutX="49.0" layoutY="115.0" prefHeight="25.0" prefWidth="305.0" />
-      <Text layoutX="49.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sesso" wrappingWidth="305.0" />
+      <Text fx:id="aggiungisesso" layoutX="49.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sesso" wrappingWidth="305.0" />
       <ChoiceBox fx:id="choiceBoxSesso" layoutX="49.0" layoutY="169.0" prefHeight="25.0" prefWidth="305.0" />
-      <Text layoutX="49.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Nascita" wrappingWidth="305.0" />
+      <Text fx:id="aggiungidatanascita" layoutX="49.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Nascita" wrappingWidth="305.0" />
       <DatePicker fx:id="DataNascita" layoutX="49.0" layoutY="224.0" prefHeight="25.0" prefWidth="305.0" />
-      <Text layoutX="50.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Piede" wrappingWidth="305.0" />
+      <Text fx:id="aggiungipiede" layoutX="50.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Piede" wrappingWidth="305.0" />
       <ChoiceBox fx:id="choiceBoxPiede" layoutX="49.0" layoutY="281.0" prefHeight="25.0" prefWidth="305.0" />
-      <Text layoutX="49.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Ritiro" wrappingWidth="305.0" />
+      <Text fx:id="aggiungidataritiro" layoutX="49.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Ritiro" wrappingWidth="305.0" />
       <DatePicker fx:id="DataRitiro" layoutX="49.0" layoutY="336.0" prefHeight="25.0" prefWidth="305.0" />
       <Button layoutX="49.0" layoutY="492.0" mnemonicParsing="false" onAction="#switchToSceneVisionaAmministratore" prefHeight="25.0" prefWidth="128.0" text="Annulla" />
       <Button layoutX="227.0" layoutY="492.0" mnemonicParsing="false" onAction="#switchToMilitanzaAggiungi" prefHeight="25.0" prefWidth="128.0" text="Aggiungi" />
-      <Text layoutX="49.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ruolo" wrappingWidth="305.0" />
+      <Text fx:id="aggiungiruolo" layoutX="49.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ruolo" wrappingWidth="305.0" />
       <ChoiceBox fx:id="choiceBoxRuolo" layoutX="49.0" layoutY="391.0" prefHeight="25.0" prefWidth="305.0" />
-      <Text layoutX="50.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazionalità" wrappingWidth="305.0" />
+      <Text fx:id="aggiunginazionalità" layoutX="50.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazionalità" wrappingWidth="305.0" />
       <TextField fx:id="textFieldNazionalità" layoutX="49.0" layoutY="444.0" prefHeight="25.0" prefWidth="305.0" />
+      <Label fx:id="campovuoto" alignment="CENTER" contentDisplay="CENTER" layoutX="3.0" layoutY="531.0" prefHeight="17.0" prefWidth="408.0" textAlignment="CENTER" textFill="RED" />
+      <Label fx:id="nomemanca" layoutX="81.0" layoutY="44.0" prefHeight="17.0" prefWidth="272.0" text="*" textFill="RED" visible="false" />
+      <Label fx:id="cognomemanca" layoutX="103.0" layoutY="98.0" prefHeight="17.0" prefWidth="251.0" text="*" textFill="RED" visible="false" />
+      <Label fx:id="sessomanca" layoutX="81.0" layoutY="152.0" prefHeight="17.0" prefWidth="272.0" text="*" textFill="RED" visible="false" />
+      <Label fx:id="datanascitamanca" layoutX="119.0" layoutY="207.0" prefHeight="17.0" prefWidth="235.0" text="*" textFill="RED" visible="false" />
+      <Label fx:id="piedemanca" layoutX="81.0" layoutY="264.0" prefHeight="17.0" prefWidth="272.0" text="*" textFill="RED" visible="false" />
+      <Label fx:id="dataritiromanca" layoutX="106.0" layoutY="319.0" prefHeight="17.0" prefWidth="245.0" text="*" textFill="RED" visible="false" />
+      <Label fx:id="ruolomanca" layoutX="81.0" layoutY="374.0" prefHeight="17.0" prefWidth="272.0" text="*" textFill="RED" visible="false" />
+      <Label fx:id="nazionalitàmanca" layoutX="110.0" layoutY="427.0" prefHeight="17.0" prefWidth="245.0" text="*" textFill="RED" visible="false" />
    </children>
 </AnchorPane>

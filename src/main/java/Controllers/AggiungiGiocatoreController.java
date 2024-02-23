@@ -3,23 +3,23 @@ package Controllers;
 import DAO.CalciatoriDAO;
 import DAO.CalciatoriDAOimpl;
 import Types.Piede;
+import Types.Posizione;
 import Types.Sesso;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Calciatore;
-import javafx.scene.control.TextField;
-import Types.Posizione;
 import model.Ruolo;
-
+import javafx.scene.control.Label;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
@@ -56,6 +56,31 @@ public class AggiungiGiocatoreController implements Initializable {
     private String[] CBRuolo = {"portiere","difensore","centrocampista","attaccante"};
     @FXML
     private TextField textFieldNazionalità;
+    @FXML
+    private Label campovuoto;
+    @FXML
+    private Label nomemanca;
+    @FXML
+    private Label cognomemanca;
+
+    @FXML
+    private Label datanascitamanca;
+
+    @FXML
+    private Label dataritiromanca;
+
+    @FXML
+    private Label nazionalitàmanca;
+
+    @FXML
+    private Label piedemanca;
+
+    @FXML
+    private Label ruolomanca;
+
+    @FXML
+    private Label sessomanca;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -80,18 +105,69 @@ public class AggiungiGiocatoreController implements Initializable {
         datanascita = DataNascita.getValue();
         piede = choiceBoxPiede.getValue();
         dataritiro = DataRitiro.getValue();
-        ruolo = new Ruolo( Posizione.valueOf(choiceBoxRuolo.getValue()) );
         nazionalita = textFieldNazionalità.getText();
-        Calciatore calciatore = new Calciatore(nome,cognome, Piede.valueOf(piede), Sesso.valueOf(sesso),datanascita,dataritiro,nazionalita);
-        MilitanzaAggiungiController controller = new MilitanzaAggiungiController();
-        controller.prendicalciatore(calciatore, ruolo);
-        //dao.inserisci(calciatore);
-        root = FXMLLoader.load(getClass().getResource("/gui/MilitanzaAggiungi.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+            if (nome.isEmpty() || cognome.isEmpty() || sesso.isEmpty() || datanascita == null || piede.isEmpty() || choiceBoxRuolo.getValue() == null || nazionalita.isEmpty()) {
+                campovuoto.setText("Riempi i campi vuoti indicati con l'asterisco prima di proseguire!");
+                if (nome.isEmpty()) {
+                    nomemanca.setVisible(true);
+                } else {
+                    nomemanca.setVisible(false);
+                }
 
+                if (cognome.isEmpty()) {
+                    cognomemanca.setVisible(true);
+                } else {
+                    cognomemanca.setVisible(false);
+                }
+
+                if (sesso == null || sesso.isEmpty()) {
+                    sessomanca.setVisible(true);
+                } else {
+                    sessomanca.setVisible(false);
+                }
+
+                if (datanascita == null) {
+                    datanascitamanca.setVisible(true);
+                } else {
+                    datanascitamanca.setVisible(false);
+                }
+
+                if (piede == null || piede.isEmpty()) {
+                    piedemanca.setVisible(true);
+                } else {
+                    piedemanca.setVisible(false);
+                }
+
+                if (dataritiro == null) {
+                    dataritiromanca.setVisible(false);
+                } else {
+                    dataritiromanca.setVisible(false);
+                }
+
+                if (choiceBoxRuolo.getValue() == null) {
+                    ruolomanca.setVisible(true);
+                } else {
+                    ruolomanca.setVisible(false);
+                }
+
+                if (nazionalita.isEmpty()) {
+                    nazionalitàmanca.setVisible(true);
+                } else {
+                    nazionalitàmanca.setVisible(false);
+                }
+            } else {
+                ruolo = new Ruolo(Posizione.valueOf(choiceBoxRuolo.getValue()));
+                Calciatore calciatore = new Calciatore(nome, cognome, Piede.valueOf(piede), Sesso.valueOf(sesso), datanascita, dataritiro, nazionalita);
+                MilitanzaAggiungiController controller = new MilitanzaAggiungiController();
+                controller.prendicalciatore(calciatore, ruolo);
+                //dao.inserisci(calciatore);
+                root = FXMLLoader.load(getClass().getResource("/gui/MilitanzaAggiungi.fxml"));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+        }
     }
 
-}
+
