@@ -13,7 +13,7 @@ public class Ruolo implements Cloneable {
         try {
             return (Ruolo) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new AssertionError(); // Questo non dovrebbe mai accadere
+            throw new AssertionError();
         }
     }
 

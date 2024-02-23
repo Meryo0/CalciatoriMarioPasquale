@@ -2,10 +2,11 @@ package util;
 
 import Types.Piede;
 import Types.Sesso;
+import model.Calciatore;
 
 import java.time.LocalDate;
 
-public class DisplayInfo {
+public class DisplayInfo implements Cloneable {
     private int idCalciatore;
     private String nome;
     private String cognome;
@@ -15,12 +16,13 @@ public class DisplayInfo {
     private LocalDate dataRitiro;
     private String nazionalita;
     private String nomes;
+    private String ruolo;
     private int goalfatti;
     private int partitegiocate;
     private int goalsubiti;
 
     public DisplayInfo(int idCalciatore, String nome, String cognome, Piede piede, Sesso sesso,
-                       LocalDate dataNascita, LocalDate dataRitiro, String nazionalita, String nomes, int goalfatti, int partitegiocate, int goalsubiti) {
+                       LocalDate dataNascita, LocalDate dataRitiro, String nazionalita, String nomes, int goalfatti, int partitegiocate, int goalsubiti, String ruolo) {
         this.idCalciatore = idCalciatore;
         this.nome = nome;
         this.cognome = cognome;
@@ -33,6 +35,15 @@ public class DisplayInfo {
         this.goalfatti = goalfatti;
         this.partitegiocate = partitegiocate;
         this.goalsubiti = goalsubiti;
+        this.ruolo = ruolo;
+    }
+
+    public DisplayInfo clone() {
+        try {
+            return (DisplayInfo) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(); // Questo non dovrebbe mai accadere
+        }
     }
 
     public String getNomes() {
@@ -129,5 +140,13 @@ public class DisplayInfo {
 
     public void setIdCalciatore(int idCalciatore) {
         this.idCalciatore = idCalciatore;
+    }
+
+    public String getRuolo() {
+        return ruolo;
+    }
+
+    public void setRuolo(String ruolo) {
+        this.ruolo = ruolo;
     }
 }

@@ -56,6 +56,8 @@ public class VisionaAmministratoreController implements Initializable {
     @FXML
     private TableColumn<DisplayInfo, String> colsquadre;
     @FXML
+    private TableColumn<DisplayInfo, String> colruolo;
+    @FXML
     private TableView<DisplayInfo> tableview;
     CalciatoriDAO dao = new CalciatoriDAOimpl();
     ObservableList <DisplayInfo> list = dao.displaycalciatori();
@@ -79,12 +81,15 @@ public class VisionaAmministratoreController implements Initializable {
         stage.show();
     }
     public void switchToSceneModificaGiocatore(ActionEvent event) throws IOException {
-
-        root = FXMLLoader.load(getClass().getResource("/gui/ModificaGiocatore.fxml"));
+        DisplayInfo selectedinfo = tableview.getSelectionModel().getSelectedItem();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ModificaGiocatore.fxml"));
+        Parent root = loader.load();
+        ModificaGiocatoreController modificaGiocatoreController = loader.getController();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        modificaGiocatoreController.prendicurrentinfo(selectedinfo);
     }
 
 
@@ -100,6 +105,7 @@ public class VisionaAmministratoreController implements Initializable {
         colpiede.setCellValueFactory(new PropertyValueFactory<DisplayInfo,Piede>("piede"));
         colsesso.setCellValueFactory(new PropertyValueFactory<DisplayInfo,Sesso>("sesso"));
         colsquadre.setCellValueFactory(new PropertyValueFactory<DisplayInfo,String>("nomes"));
+        colruolo.setCellValueFactory(new PropertyValueFactory<DisplayInfo,String>("ruolo"));
         tableview.setItems(list);
     }
 }

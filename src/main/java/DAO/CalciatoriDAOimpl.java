@@ -179,11 +179,34 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
 
                 String militanzasquadre = "";
                 while (ressquadre.next()) {
+                    Boolean onlyone = Boolean.TRUE;
                     militanzasquadre = militanzasquadre + ressquadre.getString("nomes");
                     if (!ressquadre.isLast()) {
+                        onlyone = Boolean.FALSE;
                         militanzasquadre = militanzasquadre + ", ";
                     } else {
-                        militanzasquadre = militanzasquadre + ";";
+                        if(!onlyone){
+                            militanzasquadre = militanzasquadre + ";";
+                        }
+
+                    }
+                }
+                String queryruolo = "SELECT ruolo FROM ricopre WHERE codicec = ?";
+                PreparedStatement pstmtruolo = connection.prepareStatement(queryruolo);
+                pstmtruolo.setInt(1, codicec); // Assuming codicec is an integer, adjust accordingly
+                ResultSet resruolo = pstmtruolo.executeQuery(); // Fix the typo here
+
+                String allruoli = "";
+                while (resruolo.next()) {
+                    Boolean onlyone = Boolean.TRUE;
+                    allruoli = allruoli + resruolo.getString("ruolo");
+                    if (!resruolo.isLast()) {
+                        onlyone = Boolean.FALSE;
+                        allruoli = allruoli + ", ";
+                    } else {
+                        if(!onlyone){
+                            allruoli = allruoli + ";";
+                        }
                     }
                 }
                 resgs.next();
@@ -194,7 +217,8 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
                 LocalDate localDataRitiro = (dataRitiro != null) ? dataRitiro.toLocalDate() : null;
                 DisplayInfo rigainfo = new DisplayInfo(codicec, res1.getString("nome"), res1.getString("cognome"), Piede.valueOf(res1.getString("piede")),
                         Sesso.valueOf(res1.getString("sesso")), localDataNascita, localDataRitiro,
-                        res1.getString("nazionalità"), militanzasquadre, resgf.getInt("goal_fatti"), resgf.getInt("partite_giocate"), resgs.getInt("goal_subiti"));
+                        res1.getString("nazionalità"), militanzasquadre, resgf.getInt("goal_fatti"), resgf.getInt("partite_giocate"),
+                        resgs.getInt("goal_subiti"),allruoli);
 
                 list.add(rigainfo);
             }

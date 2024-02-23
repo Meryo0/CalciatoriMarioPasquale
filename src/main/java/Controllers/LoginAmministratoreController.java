@@ -31,7 +31,6 @@ public class LoginAmministratoreController {
     TextField passwordfield;
     @FXML
     private Label wrongcred;
-    private Button button;
     private Stage stage;
     private Scene scene;
     private Parent root;
