@@ -15,12 +15,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Calciatore;
 import model.Ruolo;
 import javafx.scene.control.Label;
-import java.awt.*;
+
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -95,7 +94,7 @@ public class AggiungiGiocatoreController implements Initializable {
     LocalDate datanascita;
     String piede;
     LocalDate dataritiro;
-    Ruolo ruolo;
+    String ruolo;
     String nazionalita;
     CalciatoriDAO dao = new CalciatoriDAOimpl();
     public void switchToMilitanzaAggiungi (ActionEvent event) throws IOException {
@@ -106,7 +105,8 @@ public class AggiungiGiocatoreController implements Initializable {
         piede = choiceBoxPiede.getValue();
         dataritiro = DataRitiro.getValue();
         nazionalita = textFieldNazionalità.getText();
-            if (nome.isEmpty() || cognome.isEmpty() || sesso.isEmpty() || datanascita == null || piede.isEmpty() || choiceBoxRuolo.getValue() == null || nazionalita.isEmpty()) {
+        ruolo = choiceBoxRuolo.getValue();
+            if (nome.isEmpty() || cognome.isEmpty() || sesso.isEmpty() || datanascita == null || piede.isEmpty() || ruolo.isEmpty() || nazionalita.isEmpty()) {
                 campovuoto.setText("Riempi i campi vuoti indicati con l'asterisco prima di proseguire!");
                 if (nome.isEmpty()) {
                     nomemanca.setVisible(true);
@@ -143,29 +143,40 @@ public class AggiungiGiocatoreController implements Initializable {
                 } else {
                     dataritiromanca.setVisible(false);
                 }
-
                 if (choiceBoxRuolo.getValue() == null) {
                     ruolomanca.setVisible(true);
                 } else {
                     ruolomanca.setVisible(false);
                 }
-
                 if (nazionalita.isEmpty()) {
                     nazionalitàmanca.setVisible(true);
                 } else {
                     nazionalitàmanca.setVisible(false);
                 }
             } else {
-                ruolo = new Ruolo(Posizione.valueOf(choiceBoxRuolo.getValue()));
                 Calciatore calciatore = new Calciatore(nome, cognome, Piede.valueOf(piede), Sesso.valueOf(sesso), datanascita, dataritiro, nazionalita);
-                MilitanzaAggiungiController controller = new MilitanzaAggiungiController();
-                controller.prendicalciatore(calciatore, ruolo);
-                //dao.inserisci(calciatore);
-                root = FXMLLoader.load(getClass().getResource("/gui/MilitanzaAggiungi.fxml"));
-                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+                if(ruolo.equals("portiere")){
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/MilitanzaPortiereAggiungi.fxml"));
+                    Parent root = loader.load();
+                    MilitanzaPortiereAggiungiController militanzaPortiereAggiungiController = loader.getController();
+                    Ruolo ruoloinit = new Ruolo(Posizione.valueOf(ruolo));
+                    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                    militanzaPortiereAggiungiController.prendicalciatore(calciatore,ruoloinit);
+                }else {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/MilitanzaCalciatoreAggiungi.fxml"));
+                    Parent root = loader.load();
+                    MilitanzaCalciatoreAggiungiController militanzaCalciatoreAggiungiController = loader.getController();
+                    Ruolo ruoloinit = new Ruolo(Posizione.valueOf(ruolo));
+                    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                    militanzaCalciatoreAggiungiController.prendicalciatore(calciatore,ruoloinit);
+                }
+
             }
         }
     }

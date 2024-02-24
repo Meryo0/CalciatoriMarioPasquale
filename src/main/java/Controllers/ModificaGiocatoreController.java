@@ -105,34 +105,41 @@ public class ModificaGiocatoreController implements Initializable {
         nazionalitatext.setText(displayInfo.getNazionalita());
     }
 
-    public void modificagiocatore(){
+    public void modificagiocatore(ActionEvent event) throws IOException {
         CalciatoriDAO dao = new CalciatoriDAOimpl();
         Calciatore calciatore = new Calciatore(nometext.getText(),cognometext.getText(), Piede.valueOf(piedebox.getValue()),
                 Sesso.valueOf(sessobox.getValue()),datanpicker.getValue(),datarpicker.getValue(),nazionalitatext.getText());
-        dao.modifica(calciatore,selectedinfo.getIdCalciatore());
+        dao.modificacalciatore(calciatore,selectedinfo.getIdCalciatore());
 
         //se fai lo stesso inserimento due volte violi il vincolo di pkey, bisogna prima prendere i ruoli che ricopre il giocatore dal database e poi modificare...
 
-
         if(portierecheck.isSelected()){
             System.out.println("portiere selezionato");
-            //dao.aggiungiruolo(Posizione.valueOf("portiere"),selectedinfo.getIdCalciatore());
+            dao.aggiungiruolo(Posizione.valueOf("portiere"),selectedinfo.getIdCalciatore());
+        }else {
+            dao.eliminaRicopre(selectedinfo.getIdCalciatore(),Posizione.valueOf("portiere"));
         }
         if(difensorecheck.isSelected()){
             System.out.println("difensore selezionato");
-            //dao.aggiungiruolo(Posizione.valueOf("difensore"),selectedinfo.getIdCalciatore());
+            dao.aggiungiruolo(Posizione.valueOf("difensore"),selectedinfo.getIdCalciatore());
+        }else {
+            dao.eliminaRicopre(selectedinfo.getIdCalciatore(),Posizione.valueOf("difensore"));
         }
         if(centrocheck.isSelected()){
             System.out.println("centro selezionato");
-            //dao.aggiungiruolo(Posizione.valueOf("centrocampista"),selectedinfo.getIdCalciatore());
+            dao.aggiungiruolo(Posizione.valueOf("centrocampista"),selectedinfo.getIdCalciatore());
+        }else {
+            dao.eliminaRicopre(selectedinfo.getIdCalciatore(),Posizione.valueOf("centrocampista"));
         }
         if(attaccantechec.isSelected()){
             System.out.println("attaccante selezionato");
-            //dao.aggiungiruolo(Posizione.valueOf("attaccante"),selectedinfo.getIdCalciatore());
+            dao.aggiungiruolo(Posizione.valueOf("attaccante"),selectedinfo.getIdCalciatore());
+        }else {
+            dao.eliminaRicopre(selectedinfo.getIdCalciatore(),Posizione.valueOf("attaccante"));
         }
-
-
+        switchToSceneVisionaAmministratore(event);
     }
+
 
 
 

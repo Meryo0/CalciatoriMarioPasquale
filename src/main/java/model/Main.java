@@ -20,29 +20,9 @@ public class Main extends Application{
 
     public static void main (String[] args) {
         CalciatoriDAO dao = new CalciatoriDAOimpl();
-
-        //prova();
         Application.launch(args);
-
-
     }
-    public static void prova() {
-        String q1 = "Select nome, cognome from calciatore where codicec = 85";
-        try{
-            Connection con = ConnessioneDatabase.getInstance().getConnection();
-            PreparedStatement stm  = con.prepareStatement(q1);
-            ResultSet res = stm.executeQuery();
-            res.next();
-            String nome ;
-            String cognome ;
-            nome= res.getString("nome");
-            cognome= res.getString("cognome");
-            System.out.println(nome +" "+cognome);
-        }catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
 
-    }
 
     @Override
     public void start(Stage stage) throws Exception {

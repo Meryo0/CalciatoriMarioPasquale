@@ -5,7 +5,7 @@ import DAO.CalciatoriDAO;
 import DAO.CalciatoriDAOimpl;
 import Types.Piede;
 import Types.Sesso;
-import javafx.collections.FXCollections;
+import javafx.scene.control.TableColumn;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,10 +14,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Calciatore;
 import util.DisplayInfo;
 
 import java.io.IOException;
@@ -62,10 +62,10 @@ public class VisionaAmministratoreController implements Initializable {
     CalciatoriDAO dao = new CalciatoriDAOimpl();
     ObservableList <DisplayInfo> list = dao.displaycalciatori();
 
-
     private Stage stage;
     private Scene scene;
     private Parent root;
+
     public void switchToSceneloginUtente(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/gui/LoginAmministratore.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -91,7 +91,37 @@ public class VisionaAmministratoreController implements Initializable {
         stage.show();
         modificaGiocatoreController.prendicurrentinfo(selectedinfo);
     }
+    public void modificacalciaore(ActionEvent event) throws IOException{
+        if (tableview.getSelectionModel().getSelectedItem()!= null){
+           switchToSceneModificaGiocatore(event);
+        }else {
+            System.out.println("Seleziona un giocatore");
+        }
+    }
 
+    public void eliminacalciatore(ActionEvent event) throws IOException {
+        if (tableview.getSelectionModel().getSelectedItem()!= null){
+            DisplayInfo selectedinfo = tableview.getSelectionModel().getSelectedItem();
+            Calciatore calciatoreeliminare = new Calciatore(selectedinfo.getNome(),selectedinfo.getCognome(),selectedinfo.getPiede(),
+                    selectedinfo.getSesso(),selectedinfo.getDataNascita(),selectedinfo.getDataRitiro(),selectedinfo.getNazionalita());
+            int codiceceliminare = dao.ottienicodicecalciatore(calciatoreeliminare);
+            dao.eliminafeature(codiceceliminare);
+            dao.eliminamilitanzacalciatore(codiceceliminare);
+            dao.eliminamilitanzaportiere(codiceceliminare);
+            dao.eliminavincetrofeo(codiceceliminare);
+            dao.eliminaruolo(codiceceliminare);
+            dao.eliminacalciatore(codiceceliminare);
+            refreshitems();
+        }else {
+            System.out.println("Seleziona un giocatore");
+        }
+    }
+
+
+    public void refreshitems(){
+        list = dao.displaycalciatori();
+        tableview.setItems(list);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -108,4 +138,6 @@ public class VisionaAmministratoreController implements Initializable {
         colruolo.setCellValueFactory(new PropertyValueFactory<DisplayInfo,String>("ruolo"));
         tableview.setItems(list);
     }
+
+
 }

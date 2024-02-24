@@ -1,14 +1,16 @@
 package model;
 
+import Types.Genere;
+
 public class Squadra {
 
     private int idSquadra;
     private String nomes;
-    private String genere;
+    private Genere genere;
     private String tipo_squadra;
     private Nazionalita nazionalita;
 
-    public Squadra(int idSquadra, String nomes, String genere, String tipo_squadra, Nazionalita nazionalita){
+    public Squadra(int idSquadra, String nomes, Genere genere, String tipo_squadra, Nazionalita nazionalita){
         this.genere=genere;
         this.idSquadra=idSquadra;
         this.nazionalita=nazionalita;
@@ -17,11 +19,11 @@ public class Squadra {
     }
 
 
-    public String getGenere() {
+    public Genere getGenere() {
         return genere;
     }
 
-    public void setGenere(String genere) {
+    public void setGenere(Genere genere) {
         this.genere = genere;
     }
 

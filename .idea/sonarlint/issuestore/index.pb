@@ -49,9 +49,13 @@ j
 :src/main/java/Controllers/AggiungiGiocatoreController.java,1\6\169fffac2183483867870f265d8cb14fbe2ed37e
 j
 :src/main/java/Controllers/MilitanzaModificaController.java,2\1\21f06e7449131595032ee09065fa329b5ea71a3f
-j
-:src/main/java/Controllers/MilitanzaAggiungiController.java,6\3\638264c598f9b683aef80dc2af494e28a2b61352
 N
 src/main/java/model/Ruolo.java,d\e\de26e996e243a34cf7574a8bbb63f73207e2bd20
 R
 "src/main/java/Types/Posizione.java,2\0\20759fccd9b82237c0e1dbf72e0611e90a5ae081
+r
+Bsrc/main/java/Controllers/MilitanzaPortiereAggiungiController.java,3\d\3d1c7d95d36b627331cf75c1cadd87cd1d8ceb66
+t
+Dsrc/main/java/Controllers/MilitanzaCalciatoreAggiungiController.java,b\b\bb3afb49d5eb542cf00dfdea91d377e9239f96d0
+O
+src/main/java/Types/Genere.java,d\a\dafe0e95aa65fa3269d8e01d7af6409d390b2b4a
