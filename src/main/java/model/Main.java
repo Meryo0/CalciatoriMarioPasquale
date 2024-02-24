@@ -29,6 +29,7 @@ public class Main extends Application{
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/LoginAmministratore.fxml"));
             Parent root = loader.load();
+            stage.setResizable(false);
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
