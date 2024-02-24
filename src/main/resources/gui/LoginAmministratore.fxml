@@ -16,10 +16,10 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <TextField fx:id="emailfield" layoutX="248.0" layoutY="138.0" prefHeight="25.0" prefWidth="144.0" />
-      <TextField fx:id="passwordfield" layoutX="248.0" layoutY="194.0" prefHeight="25.0" prefWidth="144.0" />
-      <Button layoutX="337.0" layoutY="230.0" mnemonicParsing="false" onAction="#switchToSceneVisionaUtente" prefHeight="25.0" prefWidth="56.0" text="Utente" />
-      <Button fx:id="loginbutton" layoutX="248.0" layoutY="230.0" mnemonicParsing="false" onAction="#login" prefHeight="16.0" prefWidth="56.0" text="Login" />
+      <TextField fx:id="emailfield" layoutX="248.0" layoutY="138.0" prefHeight="25.0" prefWidth="144.0" style="-fx-background-color: #E3F2FD;" />
+      <TextField fx:id="passwordfield" layoutX="248.0" layoutY="194.0" prefHeight="25.0" prefWidth="144.0" style="-fx-background-color: #E3F2FD;" />
+      <Button layoutX="337.0" layoutY="230.0" mnemonicParsing="false" onAction="#switchToSceneVisionaUtente" prefHeight="25.0" prefWidth="56.0" style="-fx-background-color: E3F2FD;" text="Utente" />
+      <Button fx:id="loginbutton" layoutX="248.0" layoutY="230.0" mnemonicParsing="false" onAction="#login" prefHeight="16.0" prefWidth="56.0" style="-fx-background-color: E3F2FD;" text="Login" />
       <Text layoutX="248.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="144.0" />
       <Text layoutX="248.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="144.0" />
       <Label fx:id="wrongcred" layoutX="30.0" layoutY="296.0" prefHeight="17.0" prefWidth="220.0" />
