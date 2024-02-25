@@ -8,6 +8,7 @@ import model.MilitanzaCalciatore;
 import model.MilitanzaPortiere;
 import util.DisplayInfo;
 import util.DisplayMilitanza;
+import util.UserSession;
 
 public interface CalciatoriDAO {
     public void inseriscicalciatore(Calciatore calciatore);
@@ -25,7 +26,7 @@ public interface CalciatoriDAO {
     public void eliminaruolo(int idEliminare);
     public void eliminaRicopre(int codicec, Posizione posizione);
 
-    public ObservableList<DisplayInfo> displaycalciatori();
+    public ObservableList<DisplayInfo> displayCalciatori(UserSession userSession);
     public ObservableList<DisplayMilitanza> displaymilitanze(int codicec);
 
 }

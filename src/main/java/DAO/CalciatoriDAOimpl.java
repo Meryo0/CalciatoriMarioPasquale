@@ -1,19 +1,27 @@
 package DAO;
 
 import DatabaseConnection.ConnessioneDatabase;
+import Types.Genere;
+import Types.Piede;
+import Types.Posizione;
+import Types.Sesso;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Calciatore;
 import model.MilitanzaCalciatore;
 import model.MilitanzaPortiere;
+import org.apache.commons.lang3.StringUtils;
+import util.Constant;
 import util.DisplayInfo;
-import Types.*;
 import util.DisplayMilitanza;
+import util.UserSession;
 
 import java.sql.*;
 import java.time.LocalDate;
 
 public class CalciatoriDAOimpl implements CalciatoriDAO {
+
+
     @Override
     public void inseriscicalciatore(Calciatore calciatore) {
         Connection connection = null;
@@ -28,13 +36,13 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
 
             pstmt.setString(1, calciatore.getNome());
             pstmt.setString(2, calciatore.getCognome());
-            pstmt.setObject(3,calciatore.getPiede(),Types.OTHER);
+            pstmt.setObject(3, calciatore.getPiede(), Types.OTHER);
             pstmt.setDate(4, Date.valueOf(calciatore.getDataNascita()));
-            pstmt.setObject(5, calciatore.getSesso(),Types.OTHER);
+            pstmt.setObject(5, calciatore.getSesso(), Types.OTHER);
 
-            if (calciatore.getDataRitiro() == null){
-                pstmt.setDate(6,null);
-            }else {
+            if (calciatore.getDataRitiro() == null) {
+                pstmt.setDate(6, null);
+            } else {
                 pstmt.setDate(6, Date.valueOf(calciatore.getDataRitiro()));
             }
             pstmt.setString(7, calciatore.getNazionalita());
@@ -59,6 +67,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             }
         }
     }
+
     public void aggiungiMilitanzaCalciatore(MilitanzaCalciatore militanzaCalciatore) {
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -70,16 +79,15 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
                     "values (?,?,?,?,?,?)";
             pstmt = connection.prepareStatement(query);
             pstmt.setDate(1, Date.valueOf(militanzaCalciatore.getDatainizio()));
-            if (militanzaCalciatore.getDatafine()== null)
-            {
+            if (militanzaCalciatore.getDatafine() == null) {
                 pstmt.setDate(2, null);
-            }else {
+            } else {
                 pstmt.setDate(2, Date.valueOf(militanzaCalciatore.getDatafine()));
             }
-            pstmt.setInt(3,militanzaCalciatore.getGoalfatti());
-            pstmt.setInt(4,militanzaCalciatore.getPartitegiocate());
-            pstmt.setInt(5,militanzaCalciatore.getCodicec());
-            pstmt.setInt(6,militanzaCalciatore.getCodices());
+            pstmt.setInt(3, militanzaCalciatore.getGoalfatti());
+            pstmt.setInt(4, militanzaCalciatore.getPartitegiocate());
+            pstmt.setInt(5, militanzaCalciatore.getCodicec());
+            pstmt.setInt(6, militanzaCalciatore.getCodices());
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -101,6 +109,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             }
         }
     }
+
     public void aggiungiMilitanzaPortiere(MilitanzaPortiere militanzaPortiere) {
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -111,17 +120,16 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
                     "values (?,?,?,?,?,?,?)";
             pstmt = connection.prepareStatement(query);
             pstmt.setDate(1, Date.valueOf(militanzaPortiere.getDatainizio()));
-            if (militanzaPortiere.getDatafine()== null)
-            {
+            if (militanzaPortiere.getDatafine() == null) {
                 pstmt.setDate(2, null);
-            }else {
+            } else {
                 pstmt.setDate(2, Date.valueOf(militanzaPortiere.getDatafine()));
             }
-            pstmt.setInt(3,militanzaPortiere.getGoalfatti());
-            pstmt.setInt(4,militanzaPortiere.getPartitegiocate());
-            pstmt.setInt(5,militanzaPortiere.getGoalsubiti());
-            pstmt.setInt(6,militanzaPortiere.getCodicec());
-            pstmt.setInt(7,militanzaPortiere.getCodices());
+            pstmt.setInt(3, militanzaPortiere.getGoalfatti());
+            pstmt.setInt(4, militanzaPortiere.getPartitegiocate());
+            pstmt.setInt(5, militanzaPortiere.getGoalsubiti());
+            pstmt.setInt(6, militanzaPortiere.getCodicec());
+            pstmt.setInt(7, militanzaPortiere.getCodices());
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -143,7 +151,8 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             }
         }
     }
-    public int ottienicodicesquadra(String nomes, Genere genere ) {
+
+    public int ottienicodicesquadra(String nomes, Genere genere) {
         Connection connection = null;
         PreparedStatement pstmt = null;
         System.out.println(String.valueOf(genere));
@@ -152,8 +161,8 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             connection = ConnessioneDatabase.getInstance().getConnection();
             String query = "SELECT codices FROM SQUADRA WHERE nomes = ? and genere = ?";
             pstmt = connection.prepareStatement(query);
-            pstmt.setString(1,nomes);
-            pstmt.setObject(2,genere,Types.OTHER);
+            pstmt.setString(1, nomes);
+            pstmt.setObject(2, genere, Types.OTHER);
             ResultSet res = pstmt.executeQuery();
             if (res.next()) {
                 codices = res.getInt("codices");
@@ -181,6 +190,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
         }
         return codices;
     }
+
     public int ottienicodicecalciatore(Calciatore calciatore) {
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -191,7 +201,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             String query = "SELECT codicec FROM calciatore WHERE nome = ? and cognome = ?";
             pstmt = connection.prepareStatement(query);
             pstmt.setString(1, calciatore.getNome());
-            pstmt.setString(2,calciatore.getCognome());
+            pstmt.setString(2, calciatore.getCognome());
             ResultSet res = pstmt.executeQuery();
             if (res.next()) {
                 codicec = res.getInt("codicec");
@@ -220,7 +230,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
         }
         return codicec;
     }
-    
+
 
     @Override
     public void modificacalciatore(Calciatore calciatore, int idModificare) {
@@ -228,19 +238,18 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
         PreparedStatement pstmt = null;
         try {
             connection = ConnessioneDatabase.getInstance().getConnection();
-            String query = "UPDATE calciatore SET nome = ?, cognome = ?, piede = ?, datan = ?, sesso = ?, data_ritiro = ?, nazionalità = ? WHERE codicec = " + idModificare ;
+            String query = "UPDATE calciatore SET nome = ?, cognome = ?, piede = ?, datan = ?, sesso = ?, data_ritiro = ?, nazionalità = ? WHERE codicec = " + idModificare;
             pstmt = connection.prepareStatement(query);
 
             pstmt.setString(1, calciatore.getNome());
             pstmt.setString(2, calciatore.getCognome());
-            pstmt.setObject(3,calciatore.getPiede(),Types.OTHER);
+            pstmt.setObject(3, calciatore.getPiede(), Types.OTHER);
             pstmt.setDate(4, Date.valueOf(calciatore.getDataNascita()));
-            pstmt.setObject(5, calciatore.getSesso(),Types.OTHER);
+            pstmt.setObject(5, calciatore.getSesso(), Types.OTHER);
             pstmt.setDate(6, calciatore.getDataRitiro() != null ? Date.valueOf(calciatore.getDataRitiro()) : null);
             pstmt.setString(7, calciatore.getNazionalita());
             pstmt.executeUpdate();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             try {
@@ -271,8 +280,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             String query = "DELETE FROM calciatore WHERE codicec = " + idEliminare;
             pstmt = connection.prepareStatement(query);
             pstmt.executeUpdate();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             try {
@@ -291,6 +299,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             }
         }
     }
+
     public void eliminaruolo(int idEliminare) {
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -299,8 +308,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             String query = "DELETE FROM ricopre WHERE codicec = " + idEliminare;
             pstmt = connection.prepareStatement(query);
             pstmt.executeUpdate();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             try {
@@ -319,6 +327,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             }
         }
     }
+
     public void eliminafeature(int idEliminare) {
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -327,8 +336,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             String query = "DELETE FROM possiedef WHERE codicec = " + idEliminare;
             pstmt = connection.prepareStatement(query);
             pstmt.executeUpdate();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             try {
@@ -347,6 +355,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             }
         }
     }
+
     public void eliminavincetrofeo(int idEliminare) {
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -355,8 +364,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             String query = "DELETE FROM vince_giocatore WHERE codicec = " + idEliminare;
             pstmt = connection.prepareStatement(query);
             pstmt.executeUpdate();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             try {
@@ -375,6 +383,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             }
         }
     }
+
     public void eliminamilitanzaportiere(int idEliminare) {
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -383,8 +392,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             String query = "DELETE FROM militanza_portiere WHERE codicec = " + idEliminare;
             pstmt = connection.prepareStatement(query);
             pstmt.executeUpdate();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             try {
@@ -403,6 +411,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             }
         }
     }
+
     public void eliminamilitanzacalciatore(int idEliminare) {
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -411,8 +420,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             String query = "DELETE FROM militanza_calciatore WHERE codicec = " + idEliminare;
             pstmt = connection.prepareStatement(query);
             pstmt.executeUpdate();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             try {
@@ -445,7 +453,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             pstmtcontr.setInt(1, codicec);
             pstmtcontr.setObject(2, posizione, Types.OTHER);
             ResultSet resultSet = pstmtcontr.executeQuery();
-            if(!resultSet.next()) {
+            if (!resultSet.next()) {
                 String query = "INSERT INTO ricopre VALUES (?, ?)";
                 pstmt = connection.prepareStatement(query);
                 pstmt.setInt(1, codicec);
@@ -470,6 +478,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             }
         }
     }
+
     public void eliminaRuolo(int codicec) {
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -498,6 +507,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             }
         }
     }
+
     public void eliminaRicopre(int codicec, Posizione posizione) {
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -508,7 +518,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
 
             pstmt = connection.prepareStatement(query);
             pstmt.setInt(1, codicec);
-            pstmt.setObject(2,posizione,Types.OTHER); // Assuming Posizione is an enum
+            pstmt.setObject(2, posizione, Types.OTHER); // Assuming Posizione is an enum
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -530,10 +540,8 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
     }
 
 
-
-
     @Override
-    public ObservableList<DisplayInfo> displaycalciatori() {
+    public ObservableList<DisplayInfo> displayCalciatori(UserSession user) {
         Connection connection = null;
         PreparedStatement pstmt = null;
         PreparedStatement pstmtgf = null;
@@ -544,7 +552,8 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
         try {
             connection = ConnessioneDatabase.getInstance().getConnection();
             String query1 = "SELECT codicec, nome, cognome, piede, datan, sesso, data_ritiro, nazionalità FROM calciatore";
-            pstmt = connection.prepareStatement(query1);
+            String queryCalciatore = addDynamicWhereCondition(query1, user);
+            pstmt = connection.prepareStatement(queryCalciatore);
             ResultSet res1 = pstmt.executeQuery();
 
             while (res1.next()) {
@@ -585,7 +594,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
                         onlyone = Boolean.FALSE;
                         militanzasquadre = militanzasquadre + ", ";
                     } else {
-                        if(!onlyone){
+                        if (!onlyone) {
                             militanzasquadre = militanzasquadre + ";";
                         }
 
@@ -604,7 +613,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
                         onlyone = Boolean.FALSE;
                         allruoli = allruoli + ", ";
                     } else {
-                        if(!onlyone){
+                        if (!onlyone) {
                             allruoli = allruoli + ";";
                         }
                     }
@@ -618,7 +627,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
                 DisplayInfo rigainfo = new DisplayInfo(codicec, res1.getString("nome"), res1.getString("cognome"), Piede.valueOf(res1.getString("piede")),
                         Sesso.valueOf(res1.getString("sesso")), localDataNascita, localDataRitiro,
                         res1.getString("nazionalità"), militanzasquadre, resgf.getInt("goal_fatti"), resgf.getInt("partite_giocate"),
-                        resgs.getInt("goal_subiti"),allruoli);
+                        resgs.getInt("goal_subiti"), allruoli);
 
                 list.add(rigainfo);
             }
@@ -649,6 +658,33 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
 
         return list;
     }
+
+    /**
+     * Metodo che crea una where clause dinamicamente
+     * Per poter ampliare le funzionalità tenere presente che la entry.getKey() rappresente la
+     * colonna su cui si vuole filtrare mentre la entry.getValue() rappresenta il valore del filtro
+     *
+     * @param query La query originaria
+     * @param user  L'utente che tiene in canna i filtri dinamici
+     * @return Resituisce la quuery complessiva
+     */
+    private String addDynamicWhereCondition(String query, UserSession user) {
+        String whereClause = " WHERE 1 = 1";
+        StringBuilder sb = new StringBuilder(query).append(whereClause);
+        user.getFilters().entrySet().stream().forEach(
+                entry -> {
+                    if (StringUtils.containsIgnoreCase(query, entry.getKey())) {
+                        if (StringUtils.equalsIgnoreCase(entry.getKey(), "nome")) {  // anche con il nome del filtro "Cognome" entra perchè contiene la parola nome visto che abbiamo un Contains
+                            sb.append(" AND " + "(" + "UPPER(" + StringUtils.lowerCase(entry.getKey()) + ")" + " LIKE " + "UPPER('%" + entry.getValue() + "%')" +
+                                    " OR " + "UPPER(" + StringUtils.lowerCase(Constant.FILTER_KEY_COGNOME) + ")" + " LIKE " + "UPPER('%" + entry.getValue() + "%')" + ")");
+                        } else {
+                            sb.append(" AND " + StringUtils.lowerCase(entry.getKey()) + " = " + "'" + entry.getValue() + "'");
+                        }
+                    }
+                });
+        return sb.toString();
+    }
+
     public ObservableList<DisplayMilitanza> displaymilitanze(int codicec) {
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -663,20 +699,20 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             pstmt = connection.prepareStatement(query1);
             pstmt.setInt(1, codicec);
             ResultSet res1 = pstmt.executeQuery();
-            while (res1.next()){
+            while (res1.next()) {
                 String query2 = "SELECT nomes FROM squadra where codices = " + res1.getString("codices");
                 pstmt2 = connection.prepareStatement(query2);
                 ResultSet res2 = pstmt2.executeQuery();
                 res2.next();
-                if (res1.getDate("data_fine")!= null){
-                    DisplayMilitanza displayMilitanza = new DisplayMilitanza(res1.getDate("data_inizio").toLocalDate(),res1.getDate("data_fine").toLocalDate(),
-                            res1.getInt("goal_fatti"),res1.getInt("partite_giocate"),res1.getInt("goal_subiti"),
-                            codicec,res1.getInt("codices"),res2.getString("nomes"));
+                if (res1.getDate("data_fine") != null) {
+                    DisplayMilitanza displayMilitanza = new DisplayMilitanza(res1.getDate("data_inizio").toLocalDate(), res1.getDate("data_fine").toLocalDate(),
+                            res1.getInt("goal_fatti"), res1.getInt("partite_giocate"), res1.getInt("goal_subiti"),
+                            codicec, res1.getInt("codices"), res2.getString("nomes"));
                     list.add(displayMilitanza);
-                }else {
-                    DisplayMilitanza displayMilitanza = new DisplayMilitanza(res1.getDate("data_inizio").toLocalDate(),null,
-                            res1.getInt("goal_fatti"),res1.getInt("partite_giocate"),res1.getInt("goal_subiti"),
-                            codicec,res1.getInt("codices"),res2.getString("nomes"));
+                } else {
+                    DisplayMilitanza displayMilitanza = new DisplayMilitanza(res1.getDate("data_inizio").toLocalDate(), null,
+                            res1.getInt("goal_fatti"), res1.getInt("partite_giocate"), res1.getInt("goal_subiti"),
+                            codicec, res1.getInt("codices"), res2.getString("nomes"));
                     list.add(displayMilitanza);
                 }
             }
@@ -684,39 +720,39 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             pstmt3 = connection.prepareStatement(query3);
             pstmt3.setInt(1, codicec);
             ResultSet res3 = pstmt3.executeQuery();
-            while (res3.next()){
+            while (res3.next()) {
                 String query2 = "SELECT nomes FROM squadra where codices = " + res3.getString("codices");
                 pstmt4 = connection.prepareStatement(query2);
                 ResultSet res4 = pstmt4.executeQuery();
                 res4.next();
-                if (res3.getDate("data_fine") != null){
-                    DisplayMilitanza displayMilitanza = new DisplayMilitanza(res3.getDate("data_inizio").toLocalDate(),res3.getDate("data_fine").toLocalDate(),
-                            res3.getInt("goal_fatti"),res3.getInt("partite_giocate"),null,
-                            codicec,res3.getInt("codices"), res4.getString("nomes"));
+                if (res3.getDate("data_fine") != null) {
+                    DisplayMilitanza displayMilitanza = new DisplayMilitanza(res3.getDate("data_inizio").toLocalDate(), res3.getDate("data_fine").toLocalDate(),
+                            res3.getInt("goal_fatti"), res3.getInt("partite_giocate"), null,
+                            codicec, res3.getInt("codices"), res4.getString("nomes"));
                     list.add(displayMilitanza);
-                }else {
-                    DisplayMilitanza displayMilitanza = new DisplayMilitanza(res3.getDate("data_inizio").toLocalDate(),null,
-                            res3.getInt("goal_fatti"),res3.getInt("partite_giocate"),null,
-                            codicec,res3.getInt("codices"), res4.getString("nomes"));
+                } else {
+                    DisplayMilitanza displayMilitanza = new DisplayMilitanza(res3.getDate("data_inizio").toLocalDate(), null,
+                            res3.getInt("goal_fatti"), res3.getInt("partite_giocate"), null,
+                            codicec, res3.getInt("codices"), res4.getString("nomes"));
                     list.add(displayMilitanza);
                 }
 
             }
-            } catch (SQLException e) {
-                    e.printStackTrace();
-                } finally {
-                    try {
-                        if (pstmt != null) {
-                            pstmt.close();
-                        }
-                        if (connection != null) {
-                            connection.close();
-                        }
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
                 }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
         return list;
     }
 

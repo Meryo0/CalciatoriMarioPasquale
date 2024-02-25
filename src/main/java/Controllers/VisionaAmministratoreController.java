@@ -18,12 +18,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Calciatore;
+import util.Constant;
 import util.DisplayInfo;
+import util.UserSession;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class VisionaAmministratoreController implements Initializable {
@@ -61,50 +62,76 @@ public class VisionaAmministratoreController implements Initializable {
     @FXML
     private TableView<DisplayInfo> tableview;
     CalciatoriDAO dao = new CalciatoriDAOimpl();
-    ObservableList <DisplayInfo> list = dao.displaycalciatori();
+    UserSession userSession = null;
+    ObservableList<DisplayInfo> list = null;
+    @FXML
+    private TextField namefield;
+
 
     private Stage stage;
     private Scene scene;
     private Parent root;
 
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        userSession = UserSession.getInstance("admin", "admin");
+        list = dao.displayCalciatori(userSession);
+        colnome.setCellValueFactory(new PropertyValueFactory<DisplayInfo, String>("nome"));
+        colcognome.setCellValueFactory(new PropertyValueFactory<DisplayInfo, String>("cognome"));
+        coldn.setCellValueFactory(new PropertyValueFactory<DisplayInfo, LocalDate>("dataNascita"));
+        coldr.setCellValueFactory(new PropertyValueFactory<DisplayInfo, LocalDate>("dataRitiro"));
+        colgf.setCellValueFactory(new PropertyValueFactory<DisplayInfo, Integer>("goalfatti"));
+        colgs.setCellValueFactory(new PropertyValueFactory<DisplayInfo, Integer>("goalsubiti"));
+        colnazionalita.setCellValueFactory(new PropertyValueFactory<DisplayInfo, String>("nazionalita"));
+        colpiede.setCellValueFactory(new PropertyValueFactory<DisplayInfo, Piede>("piede"));
+        colsesso.setCellValueFactory(new PropertyValueFactory<DisplayInfo, Sesso>("sesso"));
+        colsquadre.setCellValueFactory(new PropertyValueFactory<DisplayInfo, String>("nomes"));
+        colruolo.setCellValueFactory(new PropertyValueFactory<DisplayInfo, String>("ruolo"));
+        tableview.setItems(list);
+    }
+
     public void switchToSceneloginUtente(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/gui/LoginAmministratore.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
+
     public void switchToSceneAggiungiGiocatore(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/gui/AggiungiGiocatore.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
+
     public void switchToSceneModificaGiocatore(ActionEvent event) throws IOException {
         DisplayInfo selectedinfo = tableview.getSelectionModel().getSelectedItem();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ModificaGiocatore.fxml"));
         Parent root = loader.load();
         ModificaGiocatoreController modificaGiocatoreController = loader.getController();
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         modificaGiocatoreController.prendicurrentinfo(selectedinfo);
     }
-    public void modificacalciaore(ActionEvent event) throws IOException{
-        if (tableview.getSelectionModel().getSelectedItem()!= null){
-           switchToSceneModificaGiocatore(event);
-        }else {
+
+    public void modificacalciaore(ActionEvent event) throws IOException {
+        if (tableview.getSelectionModel().getSelectedItem() != null) {
+            switchToSceneModificaGiocatore(event);
+        } else {
             System.out.println("Seleziona un giocatore");
         }
     }
 
     public void eliminacalciatore(ActionEvent event) throws IOException {
-        if (tableview.getSelectionModel().getSelectedItem()!= null){
+        if (tableview.getSelectionModel().getSelectedItem() != null) {
             DisplayInfo selectedinfo = tableview.getSelectionModel().getSelectedItem();
-            Calciatore calciatoreeliminare = new Calciatore(selectedinfo.getNome(),selectedinfo.getCognome(),selectedinfo.getPiede(),
-                    selectedinfo.getSesso(),selectedinfo.getDataNascita(),selectedinfo.getDataRitiro(),selectedinfo.getNazionalita());
+            Calciatore calciatoreeliminare = new Calciatore(selectedinfo.getNome(), selectedinfo.getCognome(), selectedinfo.getPiede(),
+                    selectedinfo.getSesso(), selectedinfo.getDataNascita(), selectedinfo.getDataRitiro(), selectedinfo.getNazionalita());
             int codiceceliminare = dao.ottienicodicecalciatore(calciatoreeliminare);
             dao.eliminafeature(codiceceliminare);
             dao.eliminamilitanzacalciatore(codiceceliminare);
@@ -112,33 +139,49 @@ public class VisionaAmministratoreController implements Initializable {
             dao.eliminavincetrofeo(codiceceliminare);
             dao.eliminaruolo(codiceceliminare);
             dao.eliminacalciatore(codiceceliminare);
-            refreshitems();
-        }else {
+            updateView();
+        } else {
             System.out.println("Seleziona un giocatore");
         }
     }
 
 
-    public void refreshitems(){
-        list = dao.displaycalciatori();
+    public void updateView(boolean clearFilters) {
+        if (clearFilters)
+            userSession.getFilters().clear();
+        list = dao.displayCalciatori(userSession);
         tableview.setItems(list);
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        colnome.setCellValueFactory(new PropertyValueFactory<DisplayInfo,String>("nome"));
-        colcognome.setCellValueFactory(new PropertyValueFactory<DisplayInfo,String>("cognome"));
-        coldn.setCellValueFactory(new PropertyValueFactory<DisplayInfo,LocalDate>("dataNascita"));
-        coldr.setCellValueFactory(new PropertyValueFactory<DisplayInfo,LocalDate>("dataRitiro"));
-        colgf.setCellValueFactory(new PropertyValueFactory<DisplayInfo,Integer>("goalfatti"));
-        colgs.setCellValueFactory(new PropertyValueFactory<DisplayInfo,Integer>("goalsubiti"));
-        colnazionalita.setCellValueFactory(new PropertyValueFactory<DisplayInfo,String>("nazionalita"));
-        colpiede.setCellValueFactory(new PropertyValueFactory<DisplayInfo,Piede>("piede"));
-        colsesso.setCellValueFactory(new PropertyValueFactory<DisplayInfo,Sesso>("sesso"));
-        colsquadre.setCellValueFactory(new PropertyValueFactory<DisplayInfo,String>("nomes"));
-        colruolo.setCellValueFactory(new PropertyValueFactory<DisplayInfo,String>("ruolo"));
+    public void updateView() {
+        userSession.getFilters().clear();
+        list = dao.displayCalciatori(userSession);
         tableview.setItems(list);
     }
 
+    @FXML
+    public void handleSessoMenuAction(ActionEvent event) {
+        if (event.getSource() instanceof MenuItem menuItem) {
+            String filterKey = Constant.FILTER_KEY_SESSO;
+            String filterValue = menuItem.getText();
+            userSession.getFilters().put(filterKey, filterValue);
+            this.updateView(false);
+        }
+    }
+
+    public void handleNazioneMenuAction(ActionEvent event) {
+        if (event.getSource() instanceof MenuItem menuItem) {
+            String filterKey = Constant.FILTER_KEY_NAZIONE;
+            String filterValue = menuItem.getText();
+            userSession.getFilters().put(filterKey, filterValue);
+            this.updateView(false);
+        }
+    }
+
+    public void handleFullNameInput(ActionEvent event) {
+        String filterValue = namefield.getText();
+        userSession.getFilters().put(Constant.FILTER_KEY_FULL_NOME, filterValue);
+        this.updateView(false);
+    }
 
 }

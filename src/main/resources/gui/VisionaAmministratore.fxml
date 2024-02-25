@@ -13,13 +13,13 @@
             prefWidth="1196.0" style="-fx-background-color: E3F2FD;" xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.VisionaAmministratoreController">
     <children>
-        <TextField layoutX="69.0" layoutY="23.0"/>
+        <TextField fx:id="namefield" layoutX="69.0" layoutY="23.0"/>
         <MenuBar layoutX="258.0" layoutY="23.0" prefHeight="25.0" prefWidth="281.0">
             <menus>
                 <Menu mnemonicParsing="false" text="Sesso">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Maschio"/>
-                        <MenuItem mnemonicParsing="false" text="Femmina"/>
+                        <MenuItem mnemonicParsing="false" text="Maschio" onAction="#handleSessoMenuAction"/>
+                        <MenuItem mnemonicParsing="false" text="Femmina" onAction="#handleSessoMenuAction"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Ruolo">
@@ -32,22 +32,22 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Nazione">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Argentina"/>
-                        <MenuItem mnemonicParsing="false" text="Australia"/>
-                        <MenuItem mnemonicParsing="false" text="Belgio"/>
-                        <MenuItem mnemonicParsing="false" text="Brasile"/>
-                        <MenuItem mnemonicParsing="false" text="Francia"/>
-                        <MenuItem mnemonicParsing="false" text="Georgia"/>
-                        <MenuItem mnemonicParsing="false" text="Germania"/>
-                        <MenuItem mnemonicParsing="false" text="Inghilterra"/>
-                        <MenuItem mnemonicParsing="false" text="Italia"/>
-                        <MenuItem mnemonicParsing="false" text="Messico"/>
-                        <MenuItem mnemonicParsing="false" text="Nigeria"/>
-                        <MenuItem mnemonicParsing="false" text="Norvegia"/>
-                        <MenuItem mnemonicParsing="false" text="Olanda"/>
-                        <MenuItem mnemonicParsing="false" text="Portogallo"/>
-                        <MenuItem mnemonicParsing="false" text="Senegal"/>
-                        <MenuItem mnemonicParsing="false" text="Spagna"/>
+                        <MenuItem mnemonicParsing="false" text="Argentina" onAction="#handleNazioneMenuAction"/>
+                        <MenuItem mnemonicParsing="false" text="Australia" onAction="#handleNazioneMenuAction"/>
+                        <MenuItem mnemonicParsing="false" text="Belgio" onAction="#handleNazioneMenuAction"/>
+                        <MenuItem mnemonicParsing="false" text="Brasile" onAction="#handleNazioneMenuAction"/>
+                        <MenuItem mnemonicParsing="false" text="Francia" onAction="#handleNazioneMenuAction"/>
+                        <MenuItem mnemonicParsing="false" text="Georgia" onAction="#handleNazioneMenuAction"/>
+                        <MenuItem mnemonicParsing="false" text="Germania" onAction="#handleNazioneMenuAction"/>
+                        <MenuItem mnemonicParsing="false" text="Inghilterra" onAction="#handleNazioneMenuAction"/>
+                        <MenuItem mnemonicParsing="false" text="Italia" onAction="#handleNazioneMenuAction"/>
+                        <MenuItem mnemonicParsing="false" text="Messico" onAction="#handleNazioneMenuAction"/>
+                        <MenuItem mnemonicParsing="false" text="Nigeria" onAction="#handleNazioneMenuAction"/>
+                        <MenuItem mnemonicParsing="false" text="Norvegia" onAction="#handleNazioneMenuAction"/>
+                        <MenuItem mnemonicParsing="false" text="Olanda" onAction="#handleNazioneMenuAction"/>
+                        <MenuItem mnemonicParsing="false" text="Portogallo" onAction="#handleNazioneMenuAction"/>
+                        <MenuItem mnemonicParsing="false" text="Senegal" onAction="#handleNazioneMenuAction"/>
+                        <MenuItem mnemonicParsing="false" text="Spagna" onAction="#handleNazioneMenuAction"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Lega">
@@ -101,8 +101,8 @@
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
             </columnResizePolicy>
         </TableView>
-        <Button graphicTextGap="10.0" layoutX="32.0" layoutY="23.0" mnemonicParsing="false" onAction="#refreshitems"
+        <Button graphicTextGap="10.0" layoutX="32.0" layoutY="23.0" mnemonicParsing="false" onAction="#updateView"
                 prefHeight="25.0" prefWidth="28.0" text="🔄" textAlignment="CENTER"/>
-        <Button layoutX="224.0" layoutY="23.0" mnemonicParsing="false" text="🔍"/>
+        <Button layoutX="224.0" layoutY="23.0" mnemonicParsing="false" text="🔍" onAction="#handleFullNameInput"/>
     </children>
 </AnchorPane>
