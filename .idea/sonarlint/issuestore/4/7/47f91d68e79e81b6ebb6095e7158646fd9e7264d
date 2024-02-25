@@ -1,13 +1,19 @@
 
-g	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ƒÒª“Ü1
-l
-java:S2095!"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(†‡ê±8¡Òª“Ü1
 Y
 java:S1854"7Remove this useless assignment to local variable "dao".(ÐŠ°žÿÿÿÿÿ8†ˆ­“Ü1
 J
 java:S1481"(Remove this unused "dao" local variable.(ÐŠ°žÿÿÿÿÿ8ˆˆ­“Ü1
-]	java:S125"<This block of commented-out lines of code should be removed.(ÁÐ¶˜ýÿÿÿÿ8¨Òª“Ü1
+_
+java:S1128"CRemove this unused import 'DatabaseConnection.ConnessioneDatabase'.(ÑËÐ8®ã€àÝ1
 J
-java:S1128"(Remove this unused import 'Types.Piede'.(õ¨éèúÿÿÿÿ8ÔÒª“Ü1
+java:S1128"(Remove this unused import 'Types.Piede'.(õ¨éèúÿÿÿÿ8®ã€àÝ1
+M
+java:S1128"0Remove this unused import 'java.sql.Connection'.(¥ËôÖ8®ã€àÝ1
+Y
+java:S1128"7Remove this unused import 'java.sql.PreparedStatement'.(òÄ™ƒÿÿÿÿÿ8®ã€àÝ1
+K
+java:S1128"/Remove this unused import 'java.sql.ResultSet'.(ˆóÚw8®ã€àÝ1
+O
+java:S1128"2Remove this unused import 'java.sql.SQLException'.(ÛïÆŸ8®ã€àÝ1
 R
-java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èýÿÿÿÿ8ÔÒª“Ü1
+java:S1128"0Remove this unused import 'java.time.LocalDate'.(›‘¬èýÿÿÿÿ8¯ã€àÝ1

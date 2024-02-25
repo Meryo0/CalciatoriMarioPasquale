@@ -8,6 +8,7 @@ import model.MilitanzaCalciatore;
 import model.MilitanzaPortiere;
 import util.DisplayInfo;
 import Types.*;
+import util.DisplayMilitanza;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -431,6 +432,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
         }
     }
 
+
     public void aggiungiruolo(Posizione posizione, int codicec) {
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -645,6 +647,76 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             }
         }
 
+        return list;
+    }
+    public ObservableList<DisplayMilitanza> displaymilitanze(int codicec) {
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+        PreparedStatement pstmt2 = null;
+        PreparedStatement pstmt3 = null;
+        PreparedStatement pstmt4 = null;
+        ObservableList<DisplayMilitanza> list = FXCollections.observableArrayList();
+
+        try {
+            connection = ConnessioneDatabase.getInstance().getConnection();
+            String query1 = "SELECT * FROM militanza_portiere where codicec = ? ";
+            pstmt = connection.prepareStatement(query1);
+            pstmt.setInt(1, codicec);
+            ResultSet res1 = pstmt.executeQuery();
+            while (res1.next()){
+                String query2 = "SELECT nomes FROM squadra where codices = " + res1.getString("codices");
+                pstmt2 = connection.prepareStatement(query2);
+                ResultSet res2 = pstmt2.executeQuery();
+                res2.next();
+                if (res1.getDate("data_fine")!= null){
+                    DisplayMilitanza displayMilitanza = new DisplayMilitanza(res1.getDate("data_inizio").toLocalDate(),res1.getDate("data_fine").toLocalDate(),
+                            res1.getInt("goal_fatti"),res1.getInt("partite_giocate"),res1.getInt("goal_subiti"),
+                            codicec,res1.getInt("codices"),res2.getString("nomes"));
+                    list.add(displayMilitanza);
+                }else {
+                    DisplayMilitanza displayMilitanza = new DisplayMilitanza(res1.getDate("data_inizio").toLocalDate(),null,
+                            res1.getInt("goal_fatti"),res1.getInt("partite_giocate"),res1.getInt("goal_subiti"),
+                            codicec,res1.getInt("codices"),res2.getString("nomes"));
+                    list.add(displayMilitanza);
+                }
+            }
+            String query3 = "SELECT * FROM militanza_calciatore where codicec = ? ";
+            pstmt3 = connection.prepareStatement(query3);
+            pstmt3.setInt(1, codicec);
+            ResultSet res3 = pstmt3.executeQuery();
+            while (res3.next()){
+                String query2 = "SELECT nomes FROM squadra where codices = " + res3.getString("codices");
+                pstmt4 = connection.prepareStatement(query2);
+                ResultSet res4 = pstmt4.executeQuery();
+                res4.next();
+                if (res3.getDate("data_fine") != null){
+                    DisplayMilitanza displayMilitanza = new DisplayMilitanza(res3.getDate("data_inizio").toLocalDate(),res3.getDate("data_fine").toLocalDate(),
+                            res3.getInt("goal_fatti"),res3.getInt("partite_giocate"),null,
+                            codicec,res3.getInt("codices"), res4.getString("nomes"));
+                    list.add(displayMilitanza);
+                }else {
+                    DisplayMilitanza displayMilitanza = new DisplayMilitanza(res3.getDate("data_inizio").toLocalDate(),null,
+                            res3.getInt("goal_fatti"),res3.getInt("partite_giocate"),null,
+                            codicec,res3.getInt("codices"), res4.getString("nomes"));
+                    list.add(displayMilitanza);
+                }
+
+            }
+            } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        if (pstmt != null) {
+                            pstmt.close();
+                        }
+                        if (connection != null) {
+                            connection.close();
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
+                }
         return list;
     }
 

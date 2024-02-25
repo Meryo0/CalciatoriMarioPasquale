@@ -59,3 +59,9 @@ t
 Dsrc/main/java/Controllers/MilitanzaCalciatoreAggiungiController.java,b\b\bb3afb49d5eb542cf00dfdea91d377e9239f96d0
 O
 src/main/java/Types/Genere.java,d\a\dafe0e95aa65fa3269d8e01d7af6409d390b2b4a
+X
+(src/main/java/util/DisplayMilitanza.java,6\f\6f3ce45b2e001c3df170359995ea3946252618b1
+W
+'src/main/java/model/Amministratore.java,4\d\4d4def15977e246fd5908b2be0881b5dccb9201f
+S
+#src/main/java/util/UserSession.java,7\8\78a408b8a46e27b371f72b078aabaa829d59e13b

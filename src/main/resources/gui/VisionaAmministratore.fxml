@@ -9,92 +9,100 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1196.0" style="-fx-background-color: E3F2FD;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.VisionaAmministratoreController">
-   <children>
-      <TextField layoutX="69.0" layoutY="23.0" />
-      <MenuBar layoutX="225.0" layoutY="23.0" prefHeight="25.0" prefWidth="281.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="Sesso">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Maschio" />
-                  <MenuItem mnemonicParsing="false" text="Femmina" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Ruolo">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Portiere" />
-                  <MenuItem mnemonicParsing="false" text="Difensore" />
-                  <MenuItem mnemonicParsing="false" text="Centrocampista" />
-                  <MenuItem mnemonicParsing="false" text="Attaccante" />
-            </items>
-          </Menu>
-            <Menu mnemonicParsing="false" text="Nazione">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Argentina" />
-                  <MenuItem mnemonicParsing="false" text="Australia" />
-                  <MenuItem mnemonicParsing="false" text="Belgio" />
-                  <MenuItem mnemonicParsing="false" text="Brasile" />
-                  <MenuItem mnemonicParsing="false" text="Francia" />
-                  <MenuItem mnemonicParsing="false" text="Georgia" />
-                  <MenuItem mnemonicParsing="false" text="Germania" />
-                  <MenuItem mnemonicParsing="false" text="Inghilterra" />
-                  <MenuItem mnemonicParsing="false" text="Italia" />
-                  <MenuItem mnemonicParsing="false" text="Messico" />
-                  <MenuItem mnemonicParsing="false" text="Nigeria" />
-                  <MenuItem mnemonicParsing="false" text="Norvegia" />
-                  <MenuItem mnemonicParsing="false" text="Olanda" />
-                  <MenuItem mnemonicParsing="false" text="Portogallo" />
-                  <MenuItem mnemonicParsing="false" text="Senegal" />
-                  <MenuItem mnemonicParsing="false" text="Spagna" />
-              </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Lega">
-               <items>
-                  <Menu mnemonicParsing="false" text="Maschili">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0"
+            prefWidth="1196.0" style="-fx-background-color: E3F2FD;" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.VisionaAmministratoreController">
+    <children>
+        <TextField layoutX="69.0" layoutY="23.0"/>
+        <MenuBar layoutX="258.0" layoutY="23.0" prefHeight="25.0" prefWidth="281.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="Sesso">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Premier League" />
-                        <MenuItem mnemonicParsing="false" text="Serie A TIm" />
-                        <MenuItem mnemonicParsing="false" text="Bundesliga" />
-                        <MenuItem mnemonicParsing="false" text="La Liga" />
+                        <MenuItem mnemonicParsing="false" text="Maschio"/>
+                        <MenuItem mnemonicParsing="false" text="Femmina"/>
                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Femminili">
+                </Menu>
+                <Menu mnemonicParsing="false" text="Ruolo">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Serie A Ebay" />
-                        <MenuItem mnemonicParsing="false" text="La Liga F" />
+                        <MenuItem mnemonicParsing="false" text="Portiere"/>
+                        <MenuItem mnemonicParsing="false" text="Difensore"/>
+                        <MenuItem mnemonicParsing="false" text="Centrocampista"/>
+                        <MenuItem mnemonicParsing="false" text="Attaccante"/>
                     </items>
-                  </Menu>
-               </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="Squadre">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Da Gestire" />
-              </items>
-            </Menu>
-        </menus>
-      </MenuBar>
-      <Button fx:id="backtologin" layoutX="32.0" layoutY="661.0" mnemonicParsing="false" onAction="#switchToSceneloginUtente" text="Indietro" />
-      <Button layoutX="1043.0" layoutY="23.0" mnemonicParsing="false" onAction="#modificacalciaore" text="Modifca" />
-      <Button layoutX="1113.0" layoutY="23.0" mnemonicParsing="false" onAction="#eliminacalciatore" text="Elimina" />
-      <Button layoutX="969.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToSceneAggiungiGiocatore" text="Aggiungi" />
-      <TableView fx:id="tableview" layoutX="30.0" layoutY="59.0" prefHeight="589.0" prefWidth="1138.0" AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="59.0">
-        <columns>
-          <TableColumn fx:id="colnome" prefWidth="110.0" text="Nome" />
-          <TableColumn fx:id="colcognome" prefWidth="132.0" text="Cognome" />
-            <TableColumn fx:id="colruolo" prefWidth="128.0" text="Ruolo" />
-            <TableColumn fx:id="colsesso" prefWidth="78.0" text="Sesso" />
-            <TableColumn fx:id="coldn" prefWidth="113.0" text="Data di nascita" />
-            <TableColumn fx:id="colpiede" prefWidth="83.0" text="Piede" />
-            <TableColumn fx:id="colnazionalita" prefWidth="108.0" text="Nazionalità" />
-            <TableColumn fx:id="colgf" prefWidth="70.0" text="Gol Fatti" />
-            <TableColumn fx:id="colgs" prefWidth="77.0" text="Gol Subiti" />
-            <TableColumn fx:id="colsquadre" prefWidth="98.0" text="Squadre" />
-            <TableColumn fx:id="coldr" prefWidth="81.0" text="Data ritiro" />
-        </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
-      <Button graphicTextGap="10.0" layoutX="32.0" layoutY="23.0" mnemonicParsing="false" onAction="#refreshitems" prefHeight="25.0" prefWidth="28.0" text="🔄" textAlignment="CENTER" />
-   </children>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Nazione">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Argentina"/>
+                        <MenuItem mnemonicParsing="false" text="Australia"/>
+                        <MenuItem mnemonicParsing="false" text="Belgio"/>
+                        <MenuItem mnemonicParsing="false" text="Brasile"/>
+                        <MenuItem mnemonicParsing="false" text="Francia"/>
+                        <MenuItem mnemonicParsing="false" text="Georgia"/>
+                        <MenuItem mnemonicParsing="false" text="Germania"/>
+                        <MenuItem mnemonicParsing="false" text="Inghilterra"/>
+                        <MenuItem mnemonicParsing="false" text="Italia"/>
+                        <MenuItem mnemonicParsing="false" text="Messico"/>
+                        <MenuItem mnemonicParsing="false" text="Nigeria"/>
+                        <MenuItem mnemonicParsing="false" text="Norvegia"/>
+                        <MenuItem mnemonicParsing="false" text="Olanda"/>
+                        <MenuItem mnemonicParsing="false" text="Portogallo"/>
+                        <MenuItem mnemonicParsing="false" text="Senegal"/>
+                        <MenuItem mnemonicParsing="false" text="Spagna"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Lega">
+                    <items>
+                        <Menu mnemonicParsing="false" text="Maschili">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Premier League"/>
+                                <MenuItem mnemonicParsing="false" text="Serie A TIm"/>
+                                <MenuItem mnemonicParsing="false" text="Bundesliga"/>
+                                <MenuItem mnemonicParsing="false" text="La Liga"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Femminili">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Serie A Ebay"/>
+                                <MenuItem mnemonicParsing="false" text="La Liga F"/>
+                            </items>
+                        </Menu>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Squadre">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Da Gestire"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Button fx:id="backtologin" layoutX="32.0" layoutY="661.0" mnemonicParsing="false"
+                onAction="#switchToSceneloginUtente" text="Indietro"/>
+        <Button layoutX="1043.0" layoutY="23.0" mnemonicParsing="false" onAction="#modificacalciaore" text="Modifca"/>
+        <Button layoutX="1113.0" layoutY="23.0" mnemonicParsing="false" onAction="#eliminacalciatore" text="Elimina"/>
+        <Button layoutX="969.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToSceneAggiungiGiocatore"
+                text="Aggiungi"/>
+        <TableView fx:id="tableview" layoutX="30.0" layoutY="59.0" prefHeight="589.0" prefWidth="1138.0"
+                   AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="28.0"
+                   AnchorPane.topAnchor="59.0">
+            <columns>
+                <TableColumn fx:id="colnome" prefWidth="110.0" text="Nome"/>
+                <TableColumn fx:id="colcognome" prefWidth="132.0" text="Cognome"/>
+                <TableColumn fx:id="colruolo" prefWidth="128.0" text="Ruolo"/>
+                <TableColumn fx:id="colsesso" prefWidth="78.0" text="Sesso"/>
+                <TableColumn fx:id="coldn" prefWidth="113.0" text="Data di nascita"/>
+                <TableColumn fx:id="colpiede" prefWidth="83.0" text="Piede"/>
+                <TableColumn fx:id="colnazionalita" prefWidth="108.0" text="Nazionalità"/>
+                <TableColumn fx:id="colgf" prefWidth="70.0" text="Gol Fatti"/>
+                <TableColumn fx:id="colgs" prefWidth="77.0" text="Gol Subiti"/>
+                <TableColumn fx:id="colsquadre" prefWidth="98.0" text="Squadre"/>
+                <TableColumn fx:id="coldr" prefWidth="81.0" text="Data ritiro"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+        <Button graphicTextGap="10.0" layoutX="32.0" layoutY="23.0" mnemonicParsing="false" onAction="#refreshitems"
+                prefHeight="25.0" prefWidth="28.0" text="🔄" textAlignment="CENTER"/>
+        <Button layoutX="224.0" layoutY="23.0" mnemonicParsing="false" text="🔍"/>
+    </children>
 </AnchorPane>
