@@ -4,22 +4,45 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1196.0" style="-fx-background-color: #90CAF9;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.VisionaAmministratoreController">
     <children>
         <TextField fx:id="namefield" layoutX="69.0" layoutY="23.0" />
-        <MenuBar layoutX="258.0" layoutY="23.0" prefHeight="25.0" prefWidth="281.0">
+        <MenuBar layoutX="258.0" layoutY="23.0" prefHeight="25.0" prefWidth="475.0">
             <menus>
+            <Menu mnemonicParsing="false" text="Età">
+              <items>
+                <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Spinner fx:id="spinnereta" editable="true" prefHeight="23.0" prefWidth="55.0" />
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Invio" textAlignment="CENTER" />
+                     </graphic>
+                  </MenuItem>
+              </items>
+            </Menu>
                 <Menu mnemonicParsing="false" text="Sesso">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#handleSessoMenuAction" text="Maschio" />
                         <MenuItem mnemonicParsing="false" onAction="#handleSessoMenuAction" text="Femmina" />
                     </items>
                 </Menu>
+            <Menu mnemonicParsing="false" text="Piede">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#handleSessoMenuAction" text="Sinistro" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSessoMenuAction" text="Destro" />
+                  <MenuItem mnemonicParsing="false" onAction="#handleSessoMenuAction" text="Ambidestro" />
+               </items>
+            </Menu>
                 <Menu mnemonicParsing="false" text="Ruolo">
                     <items>
                         <MenuItem mnemonicParsing="false" text="Portiere" />
@@ -48,35 +71,45 @@
                         <MenuItem mnemonicParsing="false" onAction="#handleNazioneMenuAction" text="Spagna" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Lega">
-                    <items>
-                        <Menu mnemonicParsing="false" text="Maschili">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="Premier League" />
-                                <MenuItem mnemonicParsing="false" text="Serie A TIm" />
-                                <MenuItem mnemonicParsing="false" text="Bundesliga" />
-                                <MenuItem mnemonicParsing="false" text="La Liga" />
-                            </items>
-                        </Menu>
-                        <Menu mnemonicParsing="false" text="Femminili">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="Serie A Ebay" />
-                                <MenuItem mnemonicParsing="false" text="La Liga F" />
-                            </items>
-                        </Menu>
-                    </items>
-                </Menu>
                 <Menu mnemonicParsing="false" text="Squadre">
                     <items>
                         <MenuItem mnemonicParsing="false" text="Da Gestire" />
                     </items>
                 </Menu>
+            <Menu mnemonicParsing="false" text="Gol fatti">
+              <items>
+                <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Spinner fx:id="spinnergf" editable="true" prefHeight="23.0" prefWidth="78.0" />
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#handleGolFattiMenuAction">
+                     <graphic>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Invio" textAlignment="CENTER" />
+                     </graphic>
+                  </MenuItem>
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Gol Subiti">
+              <items>
+                <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Spinner fx:id="spinnergs" editable="true" prefHeight="23.0" prefWidth="76.0" />
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Invio" textAlignment="CENTER" />
+                     </graphic>
+                  </MenuItem>
+              </items>
+            </Menu>
             </menus>
         </MenuBar>
         <Button fx:id="backtologin" layoutX="32.0" layoutY="661.0" mnemonicParsing="false" onAction="#switchToSceneloginUtente" text="Indietro" />
-        <Button layoutX="1043.0" layoutY="23.0" mnemonicParsing="false" onAction="#modificacalciaore" text="Modifca" />
-        <Button layoutX="1113.0" layoutY="23.0" mnemonicParsing="false" onAction="#eliminacalciatore" text="Elimina" />
-        <Button layoutX="969.0" layoutY="23.0" mnemonicParsing="false" onAction="#switchToSceneAggiungiGiocatore" text="Aggiungi" />
+        <Button layoutX="1041.0" layoutY="24.0" mnemonicParsing="false" onAction="#modificacalciaore" text="Modifca" />
+        <Button layoutX="1111.0" layoutY="24.0" mnemonicParsing="false" onAction="#eliminacalciatore" text="Elimina" />
+        <Button layoutX="967.0" layoutY="24.0" mnemonicParsing="false" onAction="#switchToSceneAggiungiGiocatore" text="Aggiungi" />
         <TableView fx:id="tableview" layoutX="30.0" layoutY="59.0" prefHeight="589.0" prefWidth="1138.0" stylesheets="@style.css" AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="59.0">
             <columns>
                 <TableColumn fx:id="colnome" prefWidth="110.0" text="Nome" />

@@ -27,6 +27,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
+import static util.UserSession.userSession;
+
 public class VisionaAmministratoreController implements Initializable {
     @FXML
     private TableColumn<DisplayInfo, String> colcognome;
@@ -66,6 +68,12 @@ public class VisionaAmministratoreController implements Initializable {
     ObservableList<DisplayInfo> list = null;
     @FXML
     private TextField namefield;
+    @FXML
+    Spinner<Integer> spinnergf;
+    @FXML
+    Spinner<Integer> spinnergs;
+    @FXML
+    Spinner<Integer> spinnereta;
 
 
     private Stage stage;
@@ -75,6 +83,9 @@ public class VisionaAmministratoreController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        SpinnerValueFactory<Integer> vfgf = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10000);
+        vfgf.setValue(-1);
+        spinnergf.setValueFactory(vfgf);
         userSession = UserSession.getInstance("admin", "admin");
         list = dao.displayCalciatori(userSession);
         colnome.setCellValueFactory(new PropertyValueFactory<DisplayInfo, String>("nome"));
@@ -183,5 +194,21 @@ public class VisionaAmministratoreController implements Initializable {
         userSession.getFilters().put(Constant.FILTER_KEY_FULL_NOME, filterValue);
         this.updateView(false);
     }
+    public void handleGolFattiMenuAction(ActionEvent event) {
+        String filterKey = Constant.FILTER_KEY_GOAL_FATTI;
+        String filterValue = spinnergf.getValue().toString();
+        userSession.getFilters().put(filterKey, filterValue);
+        this.updateView(false);
+        }
+    }
+    public void handleGolFattiMenuAction(ActionEvent event) {
+        String filterKey = Constant.FILTER_KEY_GOAL_SUBITI;
+        String filterValue = spinn;
+        userSession.getFilters().put(filterKey, filterValue);
+        this.updateView(false);
+    }
 
-}
+
+
+
+

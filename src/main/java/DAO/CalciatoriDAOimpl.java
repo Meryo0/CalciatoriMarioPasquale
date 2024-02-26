@@ -19,6 +19,9 @@ import util.UserSession;
 import java.sql.*;
 import java.time.LocalDate;
 
+import static util.Constant.FILTER_KEY_GOAL_FATTI;
+import static util.Constant.FILTER_KEY_GOAL_SUBITI;
+
 public class CalciatoriDAOimpl implements CalciatoriDAO {
 
 
@@ -552,23 +555,27 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
         try {
             connection = ConnessioneDatabase.getInstance().getConnection();
             String query1 = "SELECT codicec, nome, cognome, piede, datan, sesso, data_ritiro, nazionalità FROM calciatore";
+
             String queryCalciatore = addDynamicWhereCondition(query1, user);
             pstmt = connection.prepareStatement(queryCalciatore);
             ResultSet res1 = pstmt.executeQuery();
 
             while (res1.next()) {
                 int codicec = res1.getInt("codicec");
-                String querygf = "SELECT SUM(goal_fatti) as goal_fatti, SUM(partite_giocate) as partite_giocate " +
+                String querygf = "SELECT SUM(goal_fatti) as goal_fatti, SUM(partite_giocate) as partite_giocate, codicec " +
                         "FROM (" +
-                        "    SELECT SUM(mc.goal_fatti) as goal_fatti, SUM(mc.partite_giocate) as partite_giocate " +
+                        "    SELECT SUM(mc.goal_fatti) as goal_fatti, SUM(mc.partite_giocate) as partite_giocate, codicec " +
                         "    FROM calciatore c JOIN militanza_calciatore mc ON c.codicec = mc.codicec " +
-                        "    WHERE c.codicec = " + codicec +
+                        "    WHERE c.codicec = ? " +
                         "    UNION " +
-                        "    SELECT SUM(mp.goal_fatti) as goal_fatti, SUM(mp.partite_giocate) as partite_giocate " +
+                        "    SELECT SUM(mp.goal_fatti) as goal_fatti, SUM(mp.partite_giocate) as partite_giocate , codicec " +
                         "    FROM calciatore c JOIN militanza_portiere mp ON c.codicec = mp.codicec " +
-                        "    WHERE c.codicec = " + codicec +
+                        "    WHERE c.codicec = ? " +
                         ")";
-                pstmtgf = connection.prepareStatement(querygf);
+                String queryGoalFatti = addDynamicWhereCondition(querygf, user);
+                pstmtgf = connection.prepareStatement(queryGoalFatti);
+                pstmtgf.setInt(1,codicec);
+                pstmtgf.setInt(2,codicec);
                 ResultSet resgf = pstmtgf.executeQuery();
 
                 String querygs = "SELECT SUM(goal_subiti) as goal_subiti FROM calciatore c JOIN militanza_portiere mp ON c.codicec = mp.codicec WHERE c.codicec = " + codicec;
@@ -624,12 +631,30 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
                 LocalDate localDataNascita = (dataNascita != null) ? dataNascita.toLocalDate() : null;
                 Date dataRitiro = res1.getDate("data_ritiro");
                 LocalDate localDataRitiro = (dataRitiro != null) ? dataRitiro.toLocalDate() : null;
-                DisplayInfo rigainfo = new DisplayInfo(codicec, res1.getString("nome"), res1.getString("cognome"), Piede.valueOf(res1.getString("piede")),
-                        Sesso.valueOf(res1.getString("sesso")), localDataNascita, localDataRitiro,
-                        res1.getString("nazionalità"), militanzasquadre, resgf.getInt("goal_fatti"), resgf.getInt("partite_giocate"),
-                        resgs.getInt("goal_subiti"), allruoli);
+                DisplayInfo rigainfo = null;
+                if(user.getFilters().containsKey(FILTER_KEY_GOAL_FATTI)){
+                    if ( user.getFilters().get(FILTER_KEY_GOAL_FATTI).equals(Integer.toString(resgf.getInt("goal_fatti")))){
+                        rigainfo = new DisplayInfo(codicec, res1.getString("nome"), res1.getString("cognome"), Piede.valueOf(res1.getString("piede")),
+                                Sesso.valueOf(res1.getString("sesso")), localDataNascita, localDataRitiro,
+                                res1.getString("nazionalità"), militanzasquadre, resgf.getInt("goal_fatti"), resgf.getInt("partite_giocate"),
+                                resgs.getInt("goal_subiti"), allruoli);
+                    }
 
-                list.add(rigainfo);
+                } else if (user.getFilters().containsKey(FILTER_KEY_GOAL_SUBITI)) {
+                    if ( user.getFilters().get(FILTER_KEY_GOAL_SUBITI).equals(Integer.toString(resgs.getInt("goal_subiti")))){
+                        rigainfo = new DisplayInfo(codicec, res1.getString("nome"), res1.getString("cognome"), Piede.valueOf(res1.getString("piede")),
+                                Sesso.valueOf(res1.getString("sesso")), localDataNascita, localDataRitiro,
+                                res1.getString("nazionalità"), militanzasquadre, resgf.getInt("goal_fatti"), resgf.getInt("partite_giocate"),
+                                resgs.getInt("goal_subiti"), allruoli);
+                    }
+                } else {
+                    rigainfo = new DisplayInfo(codicec, res1.getString("nome"), res1.getString("cognome"), Piede.valueOf(res1.getString("piede")),
+                            Sesso.valueOf(res1.getString("sesso")), localDataNascita, localDataRitiro,
+                            res1.getString("nazionalità"), militanzasquadre, resgf.getInt("goal_fatti"), resgf.getInt("partite_giocate"),
+                            resgs.getInt("goal_subiti"), allruoli);
+                }
+                if (rigainfo != null)
+                    list.add(rigainfo);
             }
 
         } catch (SQLException e) {
