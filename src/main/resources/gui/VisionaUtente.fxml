@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="VisionaUtente" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="812.0" style="-fx-background-color: E3F2FD;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.VisionaUtenteController">
+<AnchorPane fx:id="VisionaUtente" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="812.0" style="-fx-background-color: #90CAF9;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.VisionaUtenteController">
    <children>
       <TextField layoutX="32.0" layoutY="23.0" />
       <ListView layoutX="32.0" layoutY="67.0" prefHeight="508.0" prefWidth="749.0" style="-fx-background-color: BBDEFB;" />

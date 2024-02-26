@@ -1,0 +1,85 @@
+.date-picker .arrow-button {
+    -fx-background-color: #E3F2FD;
+    -fx-font-family: "Century Gothic";
+
+}
+
+.date-picker .arrow-button .arrow {
+    -fx-font-family: "Century Gothic";
+
+}
+
+.date-picker .arrow-button .arrow:hover {
+    -fx-font-family: "Century Gothic";
+    -fx-background-image: url("gui/calendar.png");
+
+}
+
+.choice-box .label {
+    -fx-font-family: "Century Gothic";
+}
+
+.choice-box .menu-item .text {
+    -fx-font-family: "Century Gothic";
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #B3E5FC; /* Colore di sfondo per le righe selezionate */
+}
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: red; /* Colore del testo nelle righe selezionate */
+}
+.table-row-cell {
+    -fx-border-color: #90CAF9; /* Colore della griglia */
+    -fx-border-width: 0.5px; /* Spessore della griglia */
+}
+.table-view {
+    -fx-table-cell-border-color: #90CAF9; /* Colore della griglia tra le celle */
+    -fx-font-family: "Century Gothic";
+}
+
+.menu-bar {
+    -fx-font-family: "Century Gothic";
+}
+.spinner {
+    -fx-background-color: #E3F2FD; /* Colore di sfondo */
+    -fx-font-family: "Century Gothic"; /* Font */
+}
+
+/* Stile per i pulsanti dello Spinner */
+.spinner .increment-arrow,
+.spinner .decrement-arrow {
+    -fx-font-family: "Century Gothic"; /* Font */
+}
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-background-color: #E3F2FD; /* Colore di sfondo dei rettangoli */
+}
+
+/* Stile per il campo di testo dello Spinner */
+.spinner .text-field {
+    -fx-background-color: #E3F2FD; /* Colore di sfondo */
+    -fx-font-family: "Century Gothic"; /* Font */
+}
+.text {
+    -fx-font-family: "Century Gothic";
+
+}
+
+.label {
+    -fx-font-family: "Century Gothic";
+
+}
+
+.text-field {
+    -fx-font-family: "Century Gothic";
+    -fx-background-color: #E3F2FD;
+}
+
+.button {
+    -fx-font-family: "Century Gothic";
+    -fx-background-color: #E3F2FD;
+}
+.anchor-pane {
+    -fx-background-color: #90CAF9;
+}
