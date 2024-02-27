@@ -2,7 +2,7 @@ package util;
 
 import java.time.LocalDate;
 
-public class DisplayMilitanza {
+public class DisplayMilitanza implements Cloneable {
     private LocalDate datainizio;
     private LocalDate datafine;
     private int goalfatti;
@@ -20,6 +20,13 @@ public class DisplayMilitanza {
         this.goalsubiti = goal_subiti;
         this.partitegiocate = partite_giocate;
         this.nomes = nomes;
+    }
+    public DisplayMilitanza clone() {
+        try {
+            return (DisplayMilitanza) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(); // Questo non dovrebbe mai accadere
+        }
     }
 
     public int getCodicec() {

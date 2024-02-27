@@ -72,7 +72,7 @@ public class ModificaGiocatoreController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    public void switchToSceneModificaMilitanza(ActionEvent event) throws IOException {
+    public void switchToSceneVIsualizzaMilitanza(ActionEvent event) throws IOException {
         selectedinfo.setCognome(cognometext.getText());
         selectedinfo.setNome(nometext.getText());
         portiere = portierecheck.isSelected();
@@ -84,9 +84,9 @@ public class ModificaGiocatoreController implements Initializable {
         selectedinfo.setSesso(Sesso.valueOf(sessobox.getValue()));
         selectedinfo.setNazionalita(nazionalitatext.getText());
         selectedinfo.setPiede(Piede.valueOf(piedebox.getValue()));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/MilitanzaModifica.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/MilitanzaVisiona.fxml"));
         Parent root = loader.load();
-        MilitanzaModificaController militanzaModificaController = loader.getController();
+        MilitanzaVisionaController militanzaModificaController = loader.getController();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -107,7 +107,6 @@ public class ModificaGiocatoreController implements Initializable {
         }
         allruoli[allruoli.length - 1] = allruoli[allruoli.length - 1].replaceAll(";\\s*$", "").trim();
         for (String parola : allruoli) {
-            System.out.println(parola);
             if(parola.equals("portiere")){
                 portierecheck.setSelected(true);
             }

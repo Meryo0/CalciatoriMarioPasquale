@@ -29,6 +29,13 @@ import java.util.ResourceBundle;
 
 public class VisionaAmministratoreController implements Initializable {
     @FXML
+    private Button aggiungibutton;
+    @FXML
+    private Button eliminabutton;
+
+    @FXML
+    private Button modificabutton;
+    @FXML
     private TableColumn<DisplayInfo, String> colcognome;
 
     @FXML
@@ -109,12 +116,19 @@ public class VisionaAmministratoreController implements Initializable {
         tableview.setItems(list);
     }
 
+    public void SetInvisibleButton(ActionEvent event){
+        aggiungibutton.setVisible(false);
+        eliminabutton.setVisible(false);
+        modificabutton.setVisible(false);
+    }
+
     public void switchToSceneloginUtente(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/gui/LoginAmministratore.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        userSession.getFilters().clear();
     }
 
     public void switchToSceneAggiungiGiocatore(ActionEvent event) throws IOException {
@@ -198,6 +212,7 @@ public class VisionaAmministratoreController implements Initializable {
 
     public void handleFullNameInput(ActionEvent event) {
         String filterValue = namefield.getText();
+        //userSession.getFilters().clear();
         userSession.getFilters().put(Constant.FILTER_KEY_FULL_NOME, filterValue);
         this.updateView(false);
     }

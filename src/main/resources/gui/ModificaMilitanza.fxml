@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="340.0" prefWidth="247.0" style="-fx-background-color: #90CAF9;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ModificaMilitanzaController">
+    <children>
+        <DatePicker fx:id="DataInizio" layoutX="45.0" layoutY="30.0" prefHeight="25.0" prefWidth="153.0" />
+        <Text fx:id="textdatafine" layoutX="45.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Fine" wrappingWidth="153.0" />
+        <DatePicker fx:id="DataFine" layoutX="45.0" layoutY="85.0" prefHeight="25.0" prefWidth="153.0" />
+        <Text fx:id="textPartiteGiocate" layoutX="45.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Partite Giocate" wrappingWidth="153.0" />
+        <Text fx:id="textgolfatti" layoutX="45.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gol Fatti" wrappingWidth="153.0" />
+        <Text fx:id="textgolsubiti" fill="#070707" layoutX="45.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gol Subiti" wrappingWidth="153.0" />
+        <Text fx:id="textdatainizio" layoutX="45.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Inizio" wrappingWidth="153.0" />
+        <Label fx:id="campovuoto1" alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="306.0" prefHeight="17.0" prefWidth="211.0" textAlignment="CENTER" textFill="RED" />
+        <Spinner fx:id="pgspinner" layoutX="45.0" layoutY="139.0" />
+        <Spinner fx:id="gfspinner" layoutX="45.0" layoutY="193.0" />
+        <Spinner fx:id="gsspinner" layoutX="45.0" layoutY="247.0" />
+      <Button layoutX="45.0" layoutY="281.0" mnemonicParsing="false" onAction="#switchToSceneVisionaAmministratore" text="Annulla" />
+      <Button layoutX="130.0" layoutY="281.0" mnemonicParsing="false" onAction="#modificaMilitanza" text="Modifica" />
+    </children>
+</AnchorPane>

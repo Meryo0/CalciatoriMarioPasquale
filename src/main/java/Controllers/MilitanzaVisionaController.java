@@ -2,8 +2,6 @@ package Controllers;
 
 import DAO.CalciatoriDAO;
 import DAO.CalciatoriDAOimpl;
-import Types.Piede;
-import Types.Sesso;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,20 +13,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.Calciatore;
-import model.MilitanzaPortiere;
 import util.DisplayInfo;
 import util.DisplayMilitanza;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class MilitanzaModificaController implements Initializable {
+public class MilitanzaVisionaController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -52,6 +47,8 @@ public class MilitanzaModificaController implements Initializable {
 
     @FXML
     private TableView<DisplayMilitanza> tableview;
+    @FXML
+    private Text notselectedtext;
     boolean portiere;
     boolean difensore;
     boolean centrocampista;
@@ -70,7 +67,6 @@ public class MilitanzaModificaController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        System.out.println(attaccante);
         modificaGiocatoreController.mantieniInfo(displayInfo,portiere,difensore,centrocampista,attaccante,displayInfo);
     }
     public void prendicodice(DisplayInfo displayInfo,boolean portiere, boolean difensore, boolean centrocampista, boolean attaccante){
@@ -82,7 +78,9 @@ public class MilitanzaModificaController implements Initializable {
         this.difensore = difensore;
         this.centrocampista = centrocampista;
         this.attaccante = attaccante;
-        System.out.println(attaccante);
+    }
+    public void setListView (ObservableList<DisplayMilitanza> list){
+        tableview.setItems(list);
     }
 
     @Override
@@ -94,5 +92,24 @@ public class MilitanzaModificaController implements Initializable {
         coldf.setCellValueFactory(new PropertyValueFactory<DisplayMilitanza,LocalDate>("datafine"));
         coldi.setCellValueFactory(new PropertyValueFactory<DisplayMilitanza,LocalDate>("datainizio"));
         tableview.setItems(list);
+    }
+    public void switchToSceneModificaMilitanza(ActionEvent event) throws IOException {
+        if (tableview.getSelectionModel().getSelectedItem() != null){
+            notselectedtext.setVisible(false);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ModificaMilitanza.fxml"));
+            Parent root = loader.load();
+            ModificaMilitanzaController modificaMilitanzaController = loader.getController();
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            if(tableview.getSelectionModel().getSelectedItem().getGoalsubiti()==null){
+                modificaMilitanzaController.SetInfoMilitanza(tableview.getSelectionModel().getSelectedItem(),false);
+            }else {
+                modificaMilitanzaController.SetInfoMilitanza(tableview.getSelectionModel().getSelectedItem(),true);
+            }
+        }else {
+            notselectedtext.setVisible(true);
+        }
     }
 }

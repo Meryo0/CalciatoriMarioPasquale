@@ -19,9 +19,6 @@ import util.UserSession;
 import java.sql.*;
 import java.time.LocalDate;
 
-import static util.Constant.FILTER_KEY_GOAL_FATTI;
-import static util.Constant.FILTER_KEY_GOAL_SUBITI;
-
 public class CalciatoriDAOimpl implements CalciatoriDAO {
 
 
@@ -702,6 +699,68 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
 
         }
         return list;
+    }
+
+    public void modificaMilitanza(DisplayMilitanza displayMilitanza, LocalDate di) {
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+        PreparedStatement pstmt2 = null;
+        String temp = "'";
+        try {
+            connection = ConnessioneDatabase.getInstance().getConnection();
+
+
+            String s1 = "data_inizio = '" + di + "'";
+
+            String query = "UPDATE militanza_portiere" +
+                        " SET data_inizio = ?, data_fine = ?, goal_fatti = ?, partite_giocate = ?, goal_subiti = ?" +
+                        " WHERE codicec  = ? AND codices = ? AND "+s1;
+                pstmt = connection.prepareStatement(query);
+                pstmt.setDate(1, Date.valueOf(displayMilitanza.getDatainizio()));
+                if(displayMilitanza.getDatafine()==null)
+                    pstmt.setDate(2, null);
+                else
+                    pstmt.setDate(2, Date.valueOf(displayMilitanza.getDatafine()));
+                pstmt.setInt(3, displayMilitanza.getGoalfatti());
+                pstmt.setInt(4, displayMilitanza.getPartitegiocate());
+                pstmt.setInt(5, displayMilitanza.getGoalsubiti());
+                pstmt.setInt(6, displayMilitanza.getCodicec());
+                pstmt.setInt(7, displayMilitanza.getCodices());
+                pstmt.executeUpdate();
+
+                String query2 = "UPDATE militanza_calciatore" +
+                        " SET data_inizio = ?, data_fine = ?, goal_fatti = ?, partite_giocate = ?" +
+                        " WHERE codicec  = ? AND codices = ? AND "+s1;
+                pstmt2 = connection.prepareStatement(query2);
+                pstmt2.setDate(1, Date.valueOf(displayMilitanza.getDatainizio()));
+                if(displayMilitanza.getDatafine()==null)
+                    pstmt2.setDate(2, null);
+                else
+                    pstmt2.setDate(2, Date.valueOf(displayMilitanza.getDatafine()));
+                pstmt2.setInt(3, displayMilitanza.getGoalfatti());
+                pstmt2.setInt(4, displayMilitanza.getPartitegiocate());
+                pstmt2.setInt(5, displayMilitanza.getCodicec());
+                pstmt2.setInt(6, displayMilitanza.getCodices());
+                pstmt2.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (pstmt2 != null) {
+                    pstmt2.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
 }

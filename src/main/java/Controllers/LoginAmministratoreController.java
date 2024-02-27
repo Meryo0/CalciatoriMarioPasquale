@@ -57,7 +57,10 @@ public class LoginAmministratoreController {
 
 
     public void switchToSceneVisionaUtente(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/gui/VisionaUtente.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/VisionaAmministratore.fxml"));
+        Parent root = loader.load();
+        VisionaAmministratoreController visionaAmministratoreController = loader.getController();
+        visionaAmministratoreController.SetInvisibleButton(event);
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

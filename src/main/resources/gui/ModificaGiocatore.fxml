@@ -25,7 +25,7 @@
       <DatePicker fx:id="datanpicker" layoutX="50.0" layoutY="213.0" prefHeight="25.0" prefWidth="305.0" />
       <Text layoutX="50.0" layoutY="371.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ruolo" wrappingWidth="305.0" />
       <Text layoutX="50.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazionalità" wrappingWidth="305.0" />
-      <Button layoutX="158.0" layoutY="520.0" mnemonicParsing="false" onAction="#switchToSceneModificaMilitanza" prefHeight="25.0" prefWidth="96.0" text="Militanza" />
+      <Button layoutX="158.0" layoutY="520.0" mnemonicParsing="false" onAction="#switchToSceneVIsualizzaMilitanza" prefHeight="25.0" prefWidth="96.0" text="Militanza" />
       <Button layoutX="262.0" layoutY="520.0" mnemonicParsing="false" onAction="#modificagiocatore" prefHeight="25.0" prefWidth="96.0" text="Modifica" />
       <TextField fx:id="nazionalitatext" layoutX="50.0" layoutY="479.0" prefHeight="25.0" prefWidth="305.0" />
       <CheckBox fx:id="portierecheck" layoutX="50.0" layoutY="375.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="275.0" text="Portiere" />

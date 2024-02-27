@@ -10,6 +10,8 @@ import util.DisplayInfo;
 import util.DisplayMilitanza;
 import util.UserSession;
 
+import java.time.LocalDate;
+
 public interface CalciatoriDAO {
     public void inseriscicalciatore(Calciatore calciatore);
     public void modificacalciatore(Calciatore calciatore, int idModificare);
@@ -28,5 +30,6 @@ public interface CalciatoriDAO {
 
     public ObservableList<DisplayInfo> displayCalciatori(UserSession userSession);
     public ObservableList<DisplayMilitanza> displaymilitanze(int codicec);
+    public void modificaMilitanza(DisplayMilitanza displayMilitanza, LocalDate di);
 
 }
