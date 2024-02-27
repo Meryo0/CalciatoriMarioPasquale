@@ -27,8 +27,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-import static util.UserSession.userSession;
-
 public class VisionaAmministratoreController implements Initializable {
     @FXML
     private TableColumn<DisplayInfo, String> colcognome;
@@ -66,14 +64,17 @@ public class VisionaAmministratoreController implements Initializable {
     CalciatoriDAO dao = new CalciatoriDAOimpl();
     UserSession userSession = null;
     ObservableList<DisplayInfo> list = null;
+
+    @FXML
+    private TextField squadrefield;
     @FXML
     private TextField namefield;
     @FXML
-    Spinner<Integer> spinnergf;
+    Spinner <Integer> spinnergf;
     @FXML
-    Spinner<Integer> spinnergs;
+    Spinner <Integer> spinnergs;
     @FXML
-    Spinner<Integer> spinnereta;
+    Spinner <Integer> spinnereta;
 
 
     private Stage stage;
@@ -84,8 +85,14 @@ public class VisionaAmministratoreController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SpinnerValueFactory<Integer> vfgf = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10000);
-        vfgf.setValue(-1);
+        vfgf.setValue(0);
+        SpinnerValueFactory<Integer> vfgs = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10000);
+        vfgs.setValue(0);
+        SpinnerValueFactory<Integer> vfeta = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10000);
+        vfeta.setValue(0);
         spinnergf.setValueFactory(vfgf);
+        spinnergs.setValueFactory(vfgs);
+        spinnereta.setValueFactory(vfeta);
         userSession = UserSession.getInstance("admin", "admin");
         list = dao.displayCalciatori(userSession);
         colnome.setCellValueFactory(new PropertyValueFactory<DisplayInfo, String>("nome"));
@@ -200,13 +207,42 @@ public class VisionaAmministratoreController implements Initializable {
         userSession.getFilters().put(filterKey, filterValue);
         this.updateView(false);
         }
-    }
-    public void handleGolFattiMenuAction(ActionEvent event) {
+    public void handleGolSubitiMenuAction(ActionEvent event) {
         String filterKey = Constant.FILTER_KEY_GOAL_SUBITI;
-        String filterValue = spinn;
+        String filterValue = spinnergs.getValue().toString();
         userSession.getFilters().put(filterKey, filterValue);
         this.updateView(false);
     }
+    public void handleSquadreMenuAction(ActionEvent event) {
+        String filterKey = Constant.FILTER_KEY_SQUADRE;
+        String filterValue = squadrefield.getText();
+        userSession.getFilters().put(filterKey, filterValue);
+        this.updateView(false);
+    }
+    public void handleRuoliMenuAction(ActionEvent event) {
+        if (event.getSource() instanceof MenuItem menuItem) {
+            String filterKey = Constant.FILTER_KEY_RUOLO;
+            String filterValue = menuItem.getText();
+            userSession.getFilters().put(filterKey, filterValue);
+            this.updateView(false);
+        }
+    }
+    public void handleEtaMenuAction(ActionEvent event) {
+        String filterKey = Constant.FILTER_KEY_ETA;
+        String filterValue = spinnereta.getValue().toString();
+        userSession.getFilters().put(filterKey, filterValue);
+        this.updateView(false);
+    }
+    public void handlePiedeMenuAction(ActionEvent event) {
+        if (event.getSource() instanceof MenuItem menuItem) {
+            String filterKey = Constant.FILTER_KEY_PIEDE;
+            String filterValue = menuItem.getText();
+            userSession.getFilters().put(filterKey, filterValue);
+            this.updateView(false);
+        }
+    }
+
+}
 
 
 

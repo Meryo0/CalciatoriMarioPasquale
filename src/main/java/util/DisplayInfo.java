@@ -19,7 +19,7 @@ public class DisplayInfo implements Cloneable {
     private String ruolo;
     private int goalfatti;
     private int partitegiocate;
-    private int goalsubiti;
+    private Integer goalsubiti;
 
     public DisplayInfo(int idCalciatore, String nome, String cognome, Piede piede, Sesso sesso,
                        LocalDate dataNascita, LocalDate dataRitiro, String nazionalita, String nomes, int goalfatti, int partitegiocate, int goalsubiti, String ruolo) {

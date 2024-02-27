@@ -554,105 +554,24 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
 
         try {
             connection = ConnessioneDatabase.getInstance().getConnection();
-            String query1 = "SELECT codicec, nome, cognome, piede, datan, sesso, data_ritiro, nazionalità FROM calciatore";
+            String query1 = "SELECT codicec, nome, cognome, piede, datan, sesso, data_ritiro, nazionalita, goal_fatti, partite_giocate, goal_subiti, squadre, ruoli FROM v_result_calciatore";
 
             String queryCalciatore = addDynamicWhereCondition(query1, user);
             pstmt = connection.prepareStatement(queryCalciatore);
             ResultSet res1 = pstmt.executeQuery();
 
             while (res1.next()) {
-                int codicec = res1.getInt("codicec");
-                String querygf = "SELECT SUM(goal_fatti) as goal_fatti, SUM(partite_giocate) as partite_giocate, codicec " +
-                        "FROM (" +
-                        "    SELECT SUM(mc.goal_fatti) as goal_fatti, SUM(mc.partite_giocate) as partite_giocate, codicec " +
-                        "    FROM calciatore c JOIN militanza_calciatore mc ON c.codicec = mc.codicec " +
-                        "    WHERE c.codicec = ? " +
-                        "    UNION " +
-                        "    SELECT SUM(mp.goal_fatti) as goal_fatti, SUM(mp.partite_giocate) as partite_giocate , codicec " +
-                        "    FROM calciatore c JOIN militanza_portiere mp ON c.codicec = mp.codicec " +
-                        "    WHERE c.codicec = ? " +
-                        ")";
-                String queryGoalFatti = addDynamicWhereCondition(querygf, user);
-                pstmtgf = connection.prepareStatement(queryGoalFatti);
-                pstmtgf.setInt(1,codicec);
-                pstmtgf.setInt(2,codicec);
-                ResultSet resgf = pstmtgf.executeQuery();
 
-                String querygs = "SELECT SUM(goal_subiti) as goal_subiti FROM calciatore c JOIN militanza_portiere mp ON c.codicec = mp.codicec WHERE c.codicec = " + codicec;
-                pstmtgs = connection.prepareStatement(querygs);
-                ResultSet resgs = pstmtgs.executeQuery();
-
-                String querysquadre = "SELECT codices, nomes " +
-                        "FROM (" +
-                        "    SELECT s.codices, s.nomes FROM squadra s JOIN militanza_calciatore mc ON s.codices = mc.codices " +
-                        "    WHERE mc.codicec = " + codicec +
-                        "    UNION " +
-                        "    SELECT s.codices, s.nomes FROM squadra s JOIN militanza_portiere mp ON s.codices = mp.codices " +
-                        "    WHERE mp.codicec = " + codicec +
-                        ")";
-                pstmtsquadre = connection.prepareStatement(querysquadre);
-                ResultSet ressquadre = pstmtsquadre.executeQuery();
-
-                String militanzasquadre = "";
-                while (ressquadre.next()) {
-                    Boolean onlyone = Boolean.TRUE;
-                    militanzasquadre = militanzasquadre + ressquadre.getString("nomes");
-                    if (!ressquadre.isLast()) {
-                        onlyone = Boolean.FALSE;
-                        militanzasquadre = militanzasquadre + ", ";
-                    } else {
-                        if (!onlyone) {
-                            militanzasquadre = militanzasquadre + ";";
-                        }
-
-                    }
-                }
-                String queryruolo = "SELECT ruolo FROM ricopre WHERE codicec = ?";
-                PreparedStatement pstmtruolo = connection.prepareStatement(queryruolo);
-                pstmtruolo.setInt(1, codicec); // Assuming codicec is an integer, adjust accordingly
-                ResultSet resruolo = pstmtruolo.executeQuery(); // Fix the typo here
-
-                String allruoli = "";
-                while (resruolo.next()) {
-                    Boolean onlyone = Boolean.TRUE;
-                    allruoli = allruoli + resruolo.getString("ruolo");
-                    if (!resruolo.isLast()) {
-                        onlyone = Boolean.FALSE;
-                        allruoli = allruoli + ", ";
-                    } else {
-                        if (!onlyone) {
-                            allruoli = allruoli + ";";
-                        }
-                    }
-                }
-                resgs.next();
-                resgf.next();
                 Date dataNascita = res1.getDate("datan");
                 LocalDate localDataNascita = (dataNascita != null) ? dataNascita.toLocalDate() : null;
                 Date dataRitiro = res1.getDate("data_ritiro");
                 LocalDate localDataRitiro = (dataRitiro != null) ? dataRitiro.toLocalDate() : null;
                 DisplayInfo rigainfo = null;
-                if(user.getFilters().containsKey(FILTER_KEY_GOAL_FATTI)){
-                    if ( user.getFilters().get(FILTER_KEY_GOAL_FATTI).equals(Integer.toString(resgf.getInt("goal_fatti")))){
-                        rigainfo = new DisplayInfo(codicec, res1.getString("nome"), res1.getString("cognome"), Piede.valueOf(res1.getString("piede")),
-                                Sesso.valueOf(res1.getString("sesso")), localDataNascita, localDataRitiro,
-                                res1.getString("nazionalità"), militanzasquadre, resgf.getInt("goal_fatti"), resgf.getInt("partite_giocate"),
-                                resgs.getInt("goal_subiti"), allruoli);
-                    }
+                rigainfo = new DisplayInfo(res1.getInt("codicec"), res1.getString("nome"), res1.getString("cognome"), Piede.valueOf(res1.getString("piede")),
+                        Sesso.valueOf(res1.getString("sesso")), localDataNascita, localDataRitiro,
+                        res1.getString("nazionalita"), res1.getString("squadre"), res1.getInt("goal_fatti"), res1.getInt("partite_giocate"),
+                        res1.getInt("goal_subiti"), res1.getString("ruoli"));
 
-                } else if (user.getFilters().containsKey(FILTER_KEY_GOAL_SUBITI)) {
-                    if ( user.getFilters().get(FILTER_KEY_GOAL_SUBITI).equals(Integer.toString(resgs.getInt("goal_subiti")))){
-                        rigainfo = new DisplayInfo(codicec, res1.getString("nome"), res1.getString("cognome"), Piede.valueOf(res1.getString("piede")),
-                                Sesso.valueOf(res1.getString("sesso")), localDataNascita, localDataRitiro,
-                                res1.getString("nazionalità"), militanzasquadre, resgf.getInt("goal_fatti"), resgf.getInt("partite_giocate"),
-                                resgs.getInt("goal_subiti"), allruoli);
-                    }
-                } else {
-                    rigainfo = new DisplayInfo(codicec, res1.getString("nome"), res1.getString("cognome"), Piede.valueOf(res1.getString("piede")),
-                            Sesso.valueOf(res1.getString("sesso")), localDataNascita, localDataRitiro,
-                            res1.getString("nazionalità"), militanzasquadre, resgf.getInt("goal_fatti"), resgf.getInt("partite_giocate"),
-                            resgs.getInt("goal_subiti"), allruoli);
-                }
                 if (rigainfo != null)
                     list.add(rigainfo);
             }
@@ -698,10 +617,14 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
         StringBuilder sb = new StringBuilder(query).append(whereClause);
         user.getFilters().entrySet().stream().forEach(
                 entry -> {
-                    if (StringUtils.containsIgnoreCase(query, entry.getKey())) {
+                    if (StringUtils.containsIgnoreCase(query, entry.getKey())) { // inutile perchè c'è sempre la parola nella query, almeno al momento
                         if (StringUtils.equalsIgnoreCase(entry.getKey(), "nome")) {  // anche con il nome del filtro "Cognome" entra perchè contiene la parola nome visto che abbiamo un Contains
                             sb.append(" AND " + "(" + "UPPER(" + StringUtils.lowerCase(entry.getKey()) + ")" + " LIKE " + "UPPER('%" + entry.getValue() + "%')" +
                                     " OR " + "UPPER(" + StringUtils.lowerCase(Constant.FILTER_KEY_COGNOME) + ")" + " LIKE " + "UPPER('%" + entry.getValue() + "%')" + ")");
+                        } else if (StringUtils.equalsIgnoreCase(entry.getKey(), "squadre") || StringUtils.equalsIgnoreCase(entry.getKey(), "ruoli")){
+                            sb.append(" AND " + "(" + "UPPER(" + StringUtils.lowerCase(entry.getKey()) + ")" + " LIKE " + "UPPER('%" + entry.getValue() + "%'))");
+                        } else if (StringUtils.equalsIgnoreCase(entry.getKey(), "datan")) {
+                            sb.append(" AND EXTRACT(YEAR FROM AGE(CURRENT_DATE, datan)) = "+entry.getValue());
                         } else {
                             sb.append(" AND " + StringUtils.lowerCase(entry.getKey()) + " = " + "'" + entry.getValue() + "'");
                         }

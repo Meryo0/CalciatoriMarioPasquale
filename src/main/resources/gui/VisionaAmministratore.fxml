@@ -23,7 +23,7 @@
                         <Spinner fx:id="spinnereta" editable="true" prefHeight="23.0" prefWidth="55.0" />
                      </graphic>
                   </MenuItem>
-                  <MenuItem mnemonicParsing="false">
+                  <MenuItem mnemonicParsing="false" onAction="#handleEtaMenuAction">
                      <graphic>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Invio" textAlignment="CENTER" />
                      </graphic>
@@ -38,17 +38,17 @@
                 </Menu>
             <Menu mnemonicParsing="false" text="Piede">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#handleSessoMenuAction" text="Sinistro" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleSessoMenuAction" text="Destro" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleSessoMenuAction" text="Ambidestro" />
+                  <MenuItem mnemonicParsing="false" onAction="#handlePiedeMenuAction" text="Sinistro" />
+                  <MenuItem mnemonicParsing="false" onAction="#handlePiedeMenuAction" text="Destro" />
+                  <MenuItem mnemonicParsing="false" onAction="#handlePiedeMenuAction" text="Ambidestro" />
                </items>
             </Menu>
                 <Menu mnemonicParsing="false" text="Ruolo">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Portiere" />
-                        <MenuItem mnemonicParsing="false" text="Difensore" />
-                        <MenuItem mnemonicParsing="false" text="Centrocampista" />
-                        <MenuItem mnemonicParsing="false" text="Attaccante" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleRuoliMenuAction" text="Portiere" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleRuoliMenuAction" text="Difensore" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleRuoliMenuAction" text="Centrocampista" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleRuoliMenuAction" text="Attaccante" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Nazione">
@@ -72,9 +72,18 @@
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Squadre">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Da Gestire" />
-                    </items>
+               <items>
+                  <MenuItem mnemonicParsing="false">
+                     <graphic>
+                        <TextField fx:id="squadrefield" />
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" onAction="#handleSquadreMenuAction">
+                     <graphic>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Invio" />
+                     </graphic>
+                  </MenuItem>
+               </items>
                 </Menu>
             <Menu mnemonicParsing="false" text="Gol fatti">
               <items>
@@ -97,7 +106,7 @@
                         <Spinner fx:id="spinnergs" editable="true" prefHeight="23.0" prefWidth="76.0" />
                      </graphic>
                   </MenuItem>
-                  <MenuItem mnemonicParsing="false">
+                  <MenuItem mnemonicParsing="false" onAction="#handleGolSubitiMenuAction">
                      <graphic>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Invio" textAlignment="CENTER" />
                      </graphic>
