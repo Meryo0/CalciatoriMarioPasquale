@@ -26,7 +26,6 @@
       </Text>
       <Button layoutX="447.0" layoutY="11.0" mnemonicParsing="false" onAction="#switchToSceneModificaMilitanza" text="Modifica" />
       <Button layoutX="24.0" layoutY="425.0" mnemonicParsing="false" onAction="#switchToSceneModificaGiocatore" text="Inidietro" />
-      <Button layoutX="372.0" layoutY="11.0" mnemonicParsing="false" text="Aggiungi" />
       <Text fx:id="notselectedtext" layoutX="160.0" layoutY="441.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Si prega di selezionare una militanza." visible="false" wrappingWidth="330.13671875">
          <font>
             <Font name="Century Gothic" size="12.0" />

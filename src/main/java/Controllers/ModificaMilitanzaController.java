@@ -104,7 +104,6 @@ public class ModificaMilitanzaController {
 
     public void modificaMilitanza(ActionEvent event) throws IOException {
         LocalDate di = DataInizio.getValue();
-        System.out.println(di);
         displayMilitanza.setDatafine(DataFine.getValue());
         displayMilitanza.setDatainizio(DataInizio.getValue());
         displayMilitanza.setGoalfatti(gfspinner.getValue());
@@ -113,5 +112,6 @@ public class ModificaMilitanzaController {
         dao.modificaMilitanza(displayMilitanza,di);
         switchToSceneVisionaAmministratore(event);
     }
+
 
 }

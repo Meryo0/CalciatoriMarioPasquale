@@ -19,8 +19,8 @@ import util.UserSession;
 import java.sql.*;
 import java.time.LocalDate;
 
-public class CalciatoriDAOimpl implements CalciatoriDAO {
 
+public class CalciatoriDAOimpl implements CalciatoriDAO {
 
     @Override
     public void inseriscicalciatore(Calciatore calciatore) {
@@ -31,7 +31,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
 
             connection = ConnessioneDatabase.getInstance().getConnection();
             String query = "INSERT INTO calciatore (nome, cognome, piede, datan, sesso, data_ritiro, nazionalità)" +
-                    " VALUES (?, ?, ?, ?, ?, ?, ?)";
+                    " VALUES (?, ?, ?, ?, ?,null,?)";
             pstmt = connection.prepareStatement(query);
 
             pstmt.setString(1, calciatore.getNome());
@@ -39,15 +39,8 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             pstmt.setObject(3, calciatore.getPiede(), Types.OTHER);
             pstmt.setDate(4, Date.valueOf(calciatore.getDataNascita()));
             pstmt.setObject(5, calciatore.getSesso(), Types.OTHER);
-
-            if (calciatore.getDataRitiro() == null) {
-                pstmt.setDate(6, null);
-            } else {
-                pstmt.setDate(6, Date.valueOf(calciatore.getDataRitiro()));
-            }
-            pstmt.setString(7, calciatore.getNazionalita());
+            pstmt.setString(6, calciatore.getNazionalita());
             pstmt.executeUpdate();
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -155,7 +148,6 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
     public int ottienicodicesquadra(String nomes, Genere genere) {
         Connection connection = null;
         PreparedStatement pstmt = null;
-        System.out.println(String.valueOf(genere));
         int codices = -1;
         try {
             connection = ConnessioneDatabase.getInstance().getConnection();
@@ -711,8 +703,8 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
 
 
             String s1 = "data_inizio = '" + di + "'";
-
-            String query = "UPDATE militanza_portiere" +
+            if(displayMilitanza.getGoalsubiti()!=null){
+                String query = "UPDATE militanza_portiere" +
                         " SET data_inizio = ?, data_fine = ?, goal_fatti = ?, partite_giocate = ?, goal_subiti = ?" +
                         " WHERE codicec  = ? AND codices = ? AND "+s1;
                 pstmt = connection.prepareStatement(query);
@@ -727,7 +719,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
                 pstmt.setInt(6, displayMilitanza.getCodicec());
                 pstmt.setInt(7, displayMilitanza.getCodices());
                 pstmt.executeUpdate();
-
+            }else {
                 String query2 = "UPDATE militanza_calciatore" +
                         " SET data_inizio = ?, data_fine = ?, goal_fatti = ?, partite_giocate = ?" +
                         " WHERE codicec  = ? AND codices = ? AND "+s1;
@@ -742,6 +734,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
                 pstmt2.setInt(5, displayMilitanza.getCodicec());
                 pstmt2.setInt(6, displayMilitanza.getCodices());
                 pstmt2.executeUpdate();
+            }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

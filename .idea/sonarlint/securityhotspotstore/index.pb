@@ -71,3 +71,7 @@ i
 9src/main/java/Controllers/MilitanzaVisionaController.java,f\1\f1c07314b7bc52eb0eed29b5db8b2d467d52517a
 j
 :src/main/java/Controllers/ModificaMilitanzaController.java,f\b\fb1af183dbc2580f23090c6c2a6aaed2c29842b1
+j
+:src/main/java/Controllers/AggiungiMilitanzaController.java,9\d\9d9c244f1c642b0b10609ffdc02fddc70b1addcc
+Y
+)src/main/java/Controllers/Controller.java,8\9\8988e66b20c9345add0bcd778a4cbca7d5f6616c

@@ -29,18 +29,10 @@ public class MilitanzaCalciatoreAggiungiController {
 
     public void prendicalciatore(Calciatore calciatore, Ruolo ruolo) {
         calciatoreattuale = calciatore.clone();
-        System.out.println(calciatoreattuale.getNome());
         ruoloattuale = ruolo.clone();
     }
 
-    public void switchToSceneAggiungiGiocatore(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/gui/AggiungiGiocatore.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        //AGGIUNGI CHE SI PORTA IL GIOCATORE E LO SALVA.
-    }
+
 
     @FXML
     private TextField textFieldSquadra;
@@ -145,6 +137,7 @@ public class MilitanzaCalciatoreAggiungiController {
                 partitegiocatemanca.setVisible(partitegiocate == -1);
                 golfattimanca.setVisible(golfatti == -1);
             } else {
+                calciatoreattuale.setDataRitiro(DataFine.getValue());
                 dao.inseriscicalciatore(calciatoreattuale);
                 String generes;
                 String sessocalc = String.valueOf(calciatoreattuale.getSesso());

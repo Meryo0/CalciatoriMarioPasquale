@@ -103,7 +103,6 @@ public class AggiungiGiocatoreController implements Initializable {
         sesso = choiceBoxSesso.getValue();
         datanascita = DataNascita.getValue();
         piede = choiceBoxPiede.getValue();
-        dataritiro = DataRitiro.getValue();
         nazionalita = textFieldNazionalità.getText();
         ruolo = choiceBoxRuolo.getValue();
             if (nome.isEmpty() || cognome.isEmpty() || sesso.isEmpty() || datanascita == null || piede.isEmpty() || ruolo.isEmpty() || nazionalita.isEmpty()) {
@@ -138,11 +137,6 @@ public class AggiungiGiocatoreController implements Initializable {
                     piedemanca.setVisible(false);
                 }
 
-                if (dataritiro == null) {
-                    dataritiromanca.setVisible(false);
-                } else {
-                    dataritiromanca.setVisible(false);
-                }
                 if (choiceBoxRuolo.getValue() == null) {
                     ruolomanca.setVisible(true);
                 } else {
@@ -154,7 +148,7 @@ public class AggiungiGiocatoreController implements Initializable {
                     nazionalitàmanca.setVisible(false);
                 }
             } else {
-                Calciatore calciatore = new Calciatore(nome, cognome, Piede.valueOf(piede), Sesso.valueOf(sesso), datanascita, dataritiro, nazionalita);
+                Calciatore calciatore = new Calciatore(nome, cognome, Piede.valueOf(piede), Sesso.valueOf(sesso), datanascita, null, nazionalita);
                 if(ruolo.equals("portiere")){
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/MilitanzaPortiereAggiungi.fxml"));
                     Parent root = loader.load();
@@ -176,7 +170,6 @@ public class AggiungiGiocatoreController implements Initializable {
                     stage.show();
                     militanzaCalciatoreAggiungiController.prendicalciatore(calciatore,ruoloinit);
                 }
-
             }
         }
     }

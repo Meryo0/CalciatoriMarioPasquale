@@ -19,7 +19,7 @@
       <Text fx:id="textPartiteGiocate" layoutX="49.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Partite Giocate" wrappingWidth="305.0" />
       <Text fx:id="textgolfatti" layoutX="49.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gol Fatti" wrappingWidth="305.0" />
       <Text fx:id="textgolsubiti" fill="#070707" layoutX="49.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gol Subiti" wrappingWidth="305.0" />
-      <Button layoutX="49.0" layoutY="388.0" mnemonicParsing="false" onAction="#switchToSceneAggiungiGiocatore" prefHeight="25.0" prefWidth="128.0" text="Annulla" />
+      <Button layoutX="49.0" layoutY="388.0" mnemonicParsing="false" onAction="#switchToSceneVisualizzaAmministratore" prefHeight="25.0" prefWidth="128.0" text="Annulla" />
       <Button layoutX="226.0" layoutY="388.0" mnemonicParsing="false" onAction="#AggiungiMilitanzaGiocatore" prefHeight="25.0" prefWidth="128.0" text="Aggiungi" />
       <Text fx:id="textdatainizio" layoutX="49.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Inizio" wrappingWidth="305.0" />
       <TextField fx:id="textFieldSquadra" layoutX="49.0" layoutY="74.0" prefHeight="25.0" prefWidth="305.0" />

@@ -171,9 +171,6 @@ public class ModificaGiocatoreController implements Initializable {
         switchToSceneVisionaAmministratore(event);
     }
 
-
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
             sessobox.getItems().addAll(CBSesso);

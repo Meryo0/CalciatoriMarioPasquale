@@ -25,22 +25,6 @@ public class MilitanzaPortiereAggiungiController {
     private Parent root;
     Calciatore calciatoreattuale;
     Ruolo ruoloattuale;
-
-
-    public void prendicalciatore(Calciatore calciatore, Ruolo ruolo) {
-        calciatoreattuale = calciatore.clone();
-        ruoloattuale = ruolo.clone();
-    }
-
-    public void switchToSceneAggiungiGiocatore(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/gui/AggiungiGiocatore.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        //AGGIUNGI CHE SI PORTA IL GIOCATORE E LO SALVA.
-    }
-
     @FXML
     private TextField textFieldSquadra;
     @FXML
@@ -65,7 +49,6 @@ public class MilitanzaPortiereAggiungiController {
     private Text textPartiteGiocate;
     @FXML
     private Text textgolfatti;
-
     @FXML
     private Text textgolsubiti;
 
@@ -86,8 +69,15 @@ public class MilitanzaPortiereAggiungiController {
 
     @FXML
     private Label squadramanca;
+
     @FXML
     private Label campovuoto1;
+    String nomes;
+    LocalDate datainizio;
+    LocalDate datafine;
+    int partitegiocate;
+    int golfatti;
+    int golsubiti;
 
     public void initialize() {
         SpinnerValueFactory<Integer> vfpg = new SpinnerValueFactory.IntegerSpinnerValueFactory(0,10000);
@@ -135,12 +125,10 @@ public class MilitanzaPortiereAggiungiController {
         });
     }
 
-    String nomes;
-    LocalDate datainizio;
-    LocalDate datafine;
-    int partitegiocate;
-    int golfatti;
-    int golsubiti;
+    public void prendicalciatore(Calciatore calciatore, Ruolo ruolo) {
+        calciatoreattuale = calciatore.clone();
+        ruoloattuale = ruolo.clone();
+    }
 
     public void AggiungiMilitanzaGiocatore(ActionEvent event) throws IOException {
         CalciatoriDAO dao = new CalciatoriDAOimpl();
@@ -191,7 +179,7 @@ public class MilitanzaPortiereAggiungiController {
     }
 
 
-    }
+}
 
 
 

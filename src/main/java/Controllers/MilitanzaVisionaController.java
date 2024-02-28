@@ -79,9 +79,7 @@ public class MilitanzaVisionaController implements Initializable {
         this.centrocampista = centrocampista;
         this.attaccante = attaccante;
     }
-    public void setListView (ObservableList<DisplayMilitanza> list){
-        tableview.setItems(list);
-    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
