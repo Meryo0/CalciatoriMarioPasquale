@@ -1,8 +1,6 @@
 package Controllers;
 
 
-import DAO.CalciatoriDAO;
-import DAO.CalciatoriDAOimpl;
 import Types.Piede;
 import Types.Sesso;
 import javafx.scene.control.TableColumn;
@@ -21,18 +19,18 @@ import model.Calciatore;
 import util.Constant;
 import util.DisplayInfo;
 import util.UserSession;
-
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-public class VisionaAmministratoreController implements Initializable {
+public class VisionaAmministratoreController  implements Initializable  {
+
+    Controller controller = new Controller();
     @FXML
     private Button aggiungibutton;
     @FXML
     private Button eliminabutton;
-
     @FXML
     private Button modificabutton;
     @FXML
@@ -68,7 +66,6 @@ public class VisionaAmministratoreController implements Initializable {
     private TableColumn<DisplayInfo, String> colruolo;
     @FXML
     private TableView<DisplayInfo> tableview;
-    CalciatoriDAO dao = new CalciatoriDAOimpl();
     UserSession userSession = null;
     ObservableList<DisplayInfo> list = null;
 
@@ -101,7 +98,8 @@ public class VisionaAmministratoreController implements Initializable {
         spinnergs.setValueFactory(vfgs);
         spinnereta.setValueFactory(vfeta);
         userSession = UserSession.getInstance("admin", "admin");
-        list = dao.displayCalciatori(userSession);
+
+        list = controller.displayCalciatori(userSession);
         colnome.setCellValueFactory(new PropertyValueFactory<DisplayInfo, String>("nome"));
         colcognome.setCellValueFactory(new PropertyValueFactory<DisplayInfo, String>("cognome"));
         coldn.setCellValueFactory(new PropertyValueFactory<DisplayInfo, LocalDate>("dataNascita"));
@@ -164,13 +162,13 @@ public class VisionaAmministratoreController implements Initializable {
             DisplayInfo selectedinfo = tableview.getSelectionModel().getSelectedItem();
             Calciatore calciatoreeliminare = new Calciatore(selectedinfo.getNome(), selectedinfo.getCognome(), selectedinfo.getPiede(),
                     selectedinfo.getSesso(), selectedinfo.getDataNascita(), selectedinfo.getDataRitiro(), selectedinfo.getNazionalita());
-            int codiceceliminare = dao.ottienicodicecalciatore(calciatoreeliminare);
-            dao.eliminafeature(codiceceliminare);
-            dao.eliminamilitanzacalciatore(codiceceliminare);
-            dao.eliminamilitanzaportiere(codiceceliminare);
-            dao.eliminavincetrofeo(codiceceliminare);
-            dao.eliminaruolo(codiceceliminare);
-            dao.eliminacalciatore(codiceceliminare);
+            int codiceceliminare = controller.ottienicodicecalciatore(calciatoreeliminare);
+            controller.eliminafeature(codiceceliminare);
+            controller.eliminamilitanzacalciatore(codiceceliminare);
+            controller.eliminamilitanzaportiere(codiceceliminare);
+            controller.eliminavincetrofeo(codiceceliminare);
+            controller.eliminaruolo(codiceceliminare);
+            controller.eliminacalciatore(codiceceliminare);
             updateView();
         } else {
             System.out.println("Seleziona un giocatore");
@@ -181,13 +179,13 @@ public class VisionaAmministratoreController implements Initializable {
     public void updateView(boolean clearFilters) {
         if (clearFilters)
             userSession.getFilters().clear();
-        list = dao.displayCalciatori(userSession);
+        list = controller.displayCalciatori(userSession);
         tableview.setItems(list);
     }
 
     public void updateView() {
         userSession.getFilters().clear();
-        list = dao.displayCalciatori(userSession);
+        list = controller.displayCalciatori(userSession);
         tableview.setItems(list);
     }
 

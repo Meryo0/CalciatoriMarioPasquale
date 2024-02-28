@@ -7,21 +7,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-
-import javafx.event.ActionEvent;
-import java.io.IOException;
 
 public class LoginAmministratoreController {
 
@@ -42,7 +32,6 @@ public class LoginAmministratoreController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
     }
     public void login (ActionEvent event) throws IOException {
         String email = emailfield.getText() ;
@@ -54,7 +43,6 @@ public class LoginAmministratoreController {
         }
 
     }
-
 
     public void switchToSceneVisionaUtente(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/VisionaAmministratore.fxml"));

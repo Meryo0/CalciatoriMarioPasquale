@@ -9,7 +9,7 @@ public class UserSession {
     private String username;
     private String password;
 
-    private Map<String, String> filters = new HashMap<>();
+    private Map<String, String> filters = new HashMap<>(); // mappa per i filtri
 
     public UserSession(String username, String password) {
         this.username = username;

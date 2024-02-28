@@ -1,7 +1,6 @@
 package Controllers;
 
-import DAO.CalciatoriDAO;
-import DAO.CalciatoriDAOimpl;
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +18,7 @@ import java.time.LocalDate;
 import java.util.Date;
 
 public class ModificaMilitanzaController {
+    Controller controller = new Controller();
     @FXML
     private DatePicker DataFine;
 
@@ -75,7 +75,7 @@ public class ModificaMilitanzaController {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    CalciatoriDAO dao = new CalciatoriDAOimpl();
+
     DisplayMilitanza displayMilitanza;
 
     public void SetInfoMilitanza(DisplayMilitanza displayMilitanza, boolean bollean){
@@ -109,7 +109,7 @@ public class ModificaMilitanzaController {
         displayMilitanza.setGoalfatti(gfspinner.getValue());
         displayMilitanza.setGoalsubiti(gsspinner.getValue());
         displayMilitanza.setPartitegiocate(pgspinner.getValue());
-        dao.modificaMilitanza(displayMilitanza,di);
+        controller.modificaMilitanza(displayMilitanza,di);
         switchToSceneVisionaAmministratore(event);
     }
 

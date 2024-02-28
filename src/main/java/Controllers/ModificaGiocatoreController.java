@@ -1,7 +1,5 @@
 package Controllers;
 
-import DAO.CalciatoriDAO;
-import DAO.CalciatoriDAOimpl;
 import Types.Piede;
 import Types.Posizione;
 import Types.Sesso;
@@ -25,31 +23,25 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ModificaGiocatoreController implements Initializable {
+    Controller controller = new Controller();
     @FXML
     private TextField cognometext;
-
     @FXML
     private DatePicker datanpicker;
-
     @FXML
     private DatePicker datarpicker;
-
     @FXML
     private TextField nazionalitatext;
-
     @FXML
     private TextField nometext;
-
     @FXML
     private ChoiceBox<String> piedebox;
     final String[] CBPiede = {"Destro","Sinistro","Ambidestro"};
-
     @FXML
     private ChoiceBox<String> sessobox;
     final String[] CBSesso = {"Maschio","Femmina"};
     @FXML
     private CheckBox attaccantechec;
-
     @FXML
     private CheckBox centrocheck;
     @FXML
@@ -65,6 +57,8 @@ public class ModificaGiocatoreController implements Initializable {
     boolean difensore;
     boolean centrocampista;
     boolean attaccante;
+
+
     public void switchToSceneVisionaAmministratore(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/gui/VisionaAmministratore.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -72,6 +66,7 @@ public class ModificaGiocatoreController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
     public void switchToSceneVIsualizzaMilitanza(ActionEvent event) throws IOException {
         selectedinfo.setCognome(cognometext.getText());
         selectedinfo.setNome(nometext.getText());
@@ -93,6 +88,7 @@ public class ModificaGiocatoreController implements Initializable {
         stage.show();
         militanzaModificaController.prendicodice(selectedinfo,portiere,difensore,centrocampista,attaccante);
     }
+
     public void prendicurrentinfo(DisplayInfo displayInfo){
         selectedinfo = displayInfo.clone();
         nometext.setText(displayInfo.getNome());
@@ -139,34 +135,34 @@ public class ModificaGiocatoreController implements Initializable {
     }
 
     public void modificagiocatore(ActionEvent event) throws IOException {
-        CalciatoriDAO dao = new CalciatoriDAOimpl();
+
         Calciatore calciatore = new Calciatore(nometext.getText(),cognometext.getText(), Piede.valueOf(piedebox.getValue()),
                 Sesso.valueOf(sessobox.getValue()),datanpicker.getValue(),datarpicker.getValue(),nazionalitatext.getText());
-        dao.modificacalciatore(calciatore,selectedinfo.getIdCalciatore());
+        controller.modificacalciatore(calciatore,selectedinfo.getIdCalciatore());
 
         if(portierecheck.isSelected()){
             System.out.println("portiere selezionato");
-            dao.aggiungiruolo(Posizione.valueOf("portiere"),selectedinfo.getIdCalciatore());
+            controller.aggiungiruolo(Posizione.valueOf("portiere"),selectedinfo.getIdCalciatore());
         }else {
-            dao.eliminaRicopre(selectedinfo.getIdCalciatore(),Posizione.valueOf("portiere"));
+            controller.eliminaRicopre(selectedinfo.getIdCalciatore(),Posizione.valueOf("portiere"));
         }
         if(difensorecheck.isSelected()){
             System.out.println("difensore selezionato");
-            dao.aggiungiruolo(Posizione.valueOf("difensore"),selectedinfo.getIdCalciatore());
+            controller.aggiungiruolo(Posizione.valueOf("difensore"),selectedinfo.getIdCalciatore());
         }else {
-            dao.eliminaRicopre(selectedinfo.getIdCalciatore(),Posizione.valueOf("difensore"));
+            controller.eliminaRicopre(selectedinfo.getIdCalciatore(),Posizione.valueOf("difensore"));
         }
         if(centrocheck.isSelected()){
             System.out.println("centro selezionato");
-            dao.aggiungiruolo(Posizione.valueOf("centrocampista"),selectedinfo.getIdCalciatore());
+            controller.aggiungiruolo(Posizione.valueOf("centrocampista"),selectedinfo.getIdCalciatore());
         }else {
-            dao.eliminaRicopre(selectedinfo.getIdCalciatore(),Posizione.valueOf("centrocampista"));
+            controller.eliminaRicopre(selectedinfo.getIdCalciatore(),Posizione.valueOf("centrocampista"));
         }
         if(attaccantechec.isSelected()){
             System.out.println("attaccante selezionato");
-            dao.aggiungiruolo(Posizione.valueOf("attaccante"),selectedinfo.getIdCalciatore());
+            controller.aggiungiruolo(Posizione.valueOf("attaccante"),selectedinfo.getIdCalciatore());
         }else {
-            dao.eliminaRicopre(selectedinfo.getIdCalciatore(),Posizione.valueOf("attaccante"));
+            controller.eliminaRicopre(selectedinfo.getIdCalciatore(),Posizione.valueOf("attaccante"));
         }
         switchToSceneVisionaAmministratore(event);
     }

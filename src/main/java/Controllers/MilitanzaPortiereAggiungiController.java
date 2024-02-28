@@ -1,7 +1,6 @@
 package Controllers;
 
-import DAO.CalciatoriDAO;
-import DAO.CalciatoriDAOimpl;
+
 import Types.Genere;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +19,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 public class MilitanzaPortiereAggiungiController {
+    Controller controller = new Controller();
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -131,7 +131,6 @@ public class MilitanzaPortiereAggiungiController {
     }
 
     public void AggiungiMilitanzaGiocatore(ActionEvent event) throws IOException {
-        CalciatoriDAO dao = new CalciatoriDAOimpl();
         if(visionacampi.isSelected()) {
             nomes = textFieldSquadra.getText();
             datainizio = DataInizio.getValue();
@@ -147,7 +146,7 @@ public class MilitanzaPortiereAggiungiController {
                 golfattimanca.setVisible(golfatti == -1);
                 golsubitimanca.setVisible(golsubiti == -1);
             } else {
-                dao.inseriscicalciatore(calciatoreattuale);
+                controller.inseriscicalciatore(calciatoreattuale);
                 String generes;
                 String sessocalc = String.valueOf(calciatoreattuale.getSesso());
                 if (sessocalc.equals("Maschio")) {
@@ -155,18 +154,18 @@ public class MilitanzaPortiereAggiungiController {
                 } else {
                     generes = "Femminile";
                 }
-                int codices = dao.ottienicodicesquadra(nomes, Genere.valueOf(generes));
-                int codicec = dao.ottienicodicecalciatore(calciatoreattuale);
-                dao.aggiungiruolo(ruoloattuale.getPosizione(),codicec);
-                MilitanzaPortiere militanzaPortieree = new MilitanzaPortiere(datainizio, datafine, golfatti,
+                int codices = controller.ottienicodicesquadra(nomes, Genere.valueOf(generes));
+                int codicec = controller.ottienicodicecalciatore(calciatoreattuale);
+                controller.aggiungiruolo(ruoloattuale.getPosizione(),codicec);
+                MilitanzaPortiere militanzaPortiere = new MilitanzaPortiere(datainizio, datafine, golfatti,
                         partitegiocate, golsubiti, codicec, codices);
-                dao.aggiungiMilitanzaPortiere(militanzaPortieree);
+                controller.aggiungiMilitanzaPortiere(militanzaPortiere);
                 switchToSceneVisualizzaAmministratore(event);
             }
         }else {
-            dao.inseriscicalciatore(calciatoreattuale);
-            int codicec = dao.ottienicodicecalciatore(calciatoreattuale);
-            dao.aggiungiruolo(ruoloattuale.getPosizione(),codicec);
+            controller.inseriscicalciatore(calciatoreattuale);
+            int codicec = controller.ottienicodicecalciatore(calciatoreattuale);
+            controller.aggiungiruolo(ruoloattuale.getPosizione(),codicec);
             switchToSceneVisualizzaAmministratore(event);
         }
     }

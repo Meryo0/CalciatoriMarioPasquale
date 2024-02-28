@@ -1,7 +1,5 @@
 package Controllers;
 
-import DAO.CalciatoriDAO;
-import DAO.CalciatoriDAOimpl;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,6 +22,7 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class MilitanzaVisionaController implements Initializable {
+    Controller controller = new Controller();
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -53,9 +52,7 @@ public class MilitanzaVisionaController implements Initializable {
     boolean difensore;
     boolean centrocampista;
     boolean attaccante;
-
     DisplayInfo displayInfo;
-    CalciatoriDAO dao = new CalciatoriDAOimpl();
     int codicec;
     ObservableList<DisplayMilitanza> list;
 
@@ -72,7 +69,7 @@ public class MilitanzaVisionaController implements Initializable {
     public void prendicodice(DisplayInfo displayInfo,boolean portiere, boolean difensore, boolean centrocampista, boolean attaccante){
         this.displayInfo = displayInfo.clone();
         codicec = displayInfo.getIdCalciatore();
-        list = dao.displaymilitanze(codicec);
+        list = controller.displaymilitanze(codicec);
         tableview.setItems(list);
         this.portiere = portiere;
         this.difensore = difensore;

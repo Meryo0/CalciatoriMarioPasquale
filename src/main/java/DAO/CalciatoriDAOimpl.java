@@ -23,23 +23,21 @@ import java.time.LocalDate;
 public class CalciatoriDAOimpl implements CalciatoriDAO {
 
     @Override
-    public void inseriscicalciatore(Calciatore calciatore) {
+    public void inseriscicalciatore(String nome, String cognome, Piede piede, Sesso sesso, LocalDate dataNascita, LocalDate dataRitiro, String nazionalita) {
         Connection connection = null;
         PreparedStatement pstmt = null;
 
         try {
-
             connection = ConnessioneDatabase.getInstance().getConnection();
             String query = "INSERT INTO calciatore (nome, cognome, piede, datan, sesso, data_ritiro, nazionalità)" +
                     " VALUES (?, ?, ?, ?, ?,null,?)";
             pstmt = connection.prepareStatement(query);
-
-            pstmt.setString(1, calciatore.getNome());
-            pstmt.setString(2, calciatore.getCognome());
-            pstmt.setObject(3, calciatore.getPiede(), Types.OTHER);
-            pstmt.setDate(4, Date.valueOf(calciatore.getDataNascita()));
-            pstmt.setObject(5, calciatore.getSesso(), Types.OTHER);
-            pstmt.setString(6, calciatore.getNazionalita());
+            pstmt.setString(1, nome);
+            pstmt.setString(2, cognome);
+            pstmt.setObject(3, piede, Types.OTHER);
+            pstmt.setDate(4, Date.valueOf(dataNascita));
+            pstmt.setObject(5, sesso, Types.OTHER);
+            pstmt.setString(6, nazionalita);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -61,26 +59,25 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
         }
     }
 
-    public void aggiungiMilitanzaCalciatore(MilitanzaCalciatore militanzaCalciatore) {
+    public void aggiungiMilitanzaCalciatore(LocalDate datainizio, LocalDate datafine, int goalfatti, int partitegiocate, int codicec, int codices) {
         Connection connection = null;
         PreparedStatement pstmt = null;
 
         try {
-
             connection = ConnessioneDatabase.getInstance().getConnection();
             String query = "insert into militanza_calciatore (data_inizio,data_fine,goal_fatti,partite_giocate,codicec,codices)\n" +
                     "values (?,?,?,?,?,?)";
             pstmt = connection.prepareStatement(query);
-            pstmt.setDate(1, Date.valueOf(militanzaCalciatore.getDatainizio()));
-            if (militanzaCalciatore.getDatafine() == null) {
+            pstmt.setDate(1, Date.valueOf(datainizio));
+            if (datafine == null) {
                 pstmt.setDate(2, null);
             } else {
-                pstmt.setDate(2, Date.valueOf(militanzaCalciatore.getDatafine()));
+                pstmt.setDate(2, Date.valueOf(datafine));
             }
-            pstmt.setInt(3, militanzaCalciatore.getGoalfatti());
-            pstmt.setInt(4, militanzaCalciatore.getPartitegiocate());
-            pstmt.setInt(5, militanzaCalciatore.getCodicec());
-            pstmt.setInt(6, militanzaCalciatore.getCodices());
+            pstmt.setInt(3, goalfatti);
+            pstmt.setInt(4, partitegiocate);
+            pstmt.setInt(5, codicec);
+            pstmt.setInt(6, codices);
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -103,7 +100,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
         }
     }
 
-    public void aggiungiMilitanzaPortiere(MilitanzaPortiere militanzaPortiere) {
+    public void aggiungiMilitanzaPortiere(LocalDate datainizio, LocalDate datafine, int goalfatti, int partitegiocate, int goalsubiti, int codicec, int codices) {
         Connection connection = null;
         PreparedStatement pstmt = null;
 
@@ -112,17 +109,17 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             String query = "insert into militanza_portiere (data_inizio,data_fine,goal_fatti,partite_giocate,goal_subiti,codicec,codices)\n" +
                     "values (?,?,?,?,?,?,?)";
             pstmt = connection.prepareStatement(query);
-            pstmt.setDate(1, Date.valueOf(militanzaPortiere.getDatainizio()));
-            if (militanzaPortiere.getDatafine() == null) {
+            pstmt.setDate(1, Date.valueOf(datainizio));
+            if (datafine == null) {
                 pstmt.setDate(2, null);
             } else {
-                pstmt.setDate(2, Date.valueOf(militanzaPortiere.getDatafine()));
+                pstmt.setDate(2, Date.valueOf(datafine));
             }
-            pstmt.setInt(3, militanzaPortiere.getGoalfatti());
-            pstmt.setInt(4, militanzaPortiere.getPartitegiocate());
-            pstmt.setInt(5, militanzaPortiere.getGoalsubiti());
-            pstmt.setInt(6, militanzaPortiere.getCodicec());
-            pstmt.setInt(7, militanzaPortiere.getCodices());
+            pstmt.setInt(3, goalfatti);
+            pstmt.setInt(4, partitegiocate);
+            pstmt.setInt(5, goalsubiti);
+            pstmt.setInt(6, codicec);
+            pstmt.setInt(7, codices);
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -183,7 +180,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
         return codices;
     }
 
-    public int ottienicodicecalciatore(Calciatore calciatore) {
+    public int ottienicodicecalciatore(String nome ,String cognome) {
         Connection connection = null;
         PreparedStatement pstmt = null;
         int codicec = -1;
@@ -192,8 +189,8 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             connection = ConnessioneDatabase.getInstance().getConnection();
             String query = "SELECT codicec FROM calciatore WHERE nome = ? and cognome = ?";
             pstmt = connection.prepareStatement(query);
-            pstmt.setString(1, calciatore.getNome());
-            pstmt.setString(2, calciatore.getCognome());
+            pstmt.setString(1, nome);
+            pstmt.setString(2, cognome);
             ResultSet res = pstmt.executeQuery();
             if (res.next()) {
                 codicec = res.getInt("codicec");
@@ -225,7 +222,7 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
 
 
     @Override
-    public void modificacalciatore(Calciatore calciatore, int idModificare) {
+    public void modificacalciatore(String nome, String cognome, Piede piede, Sesso sesso, LocalDate dataNascita, LocalDate dataRitiro, String nazionalita, int idModificare) {
         Connection connection = null;
         PreparedStatement pstmt = null;
         try {
@@ -233,13 +230,13 @@ public class CalciatoriDAOimpl implements CalciatoriDAO {
             String query = "UPDATE calciatore SET nome = ?, cognome = ?, piede = ?, datan = ?, sesso = ?, data_ritiro = ?, nazionalità = ? WHERE codicec = " + idModificare;
             pstmt = connection.prepareStatement(query);
 
-            pstmt.setString(1, calciatore.getNome());
-            pstmt.setString(2, calciatore.getCognome());
-            pstmt.setObject(3, calciatore.getPiede(), Types.OTHER);
-            pstmt.setDate(4, Date.valueOf(calciatore.getDataNascita()));
-            pstmt.setObject(5, calciatore.getSesso(), Types.OTHER);
-            pstmt.setDate(6, calciatore.getDataRitiro() != null ? Date.valueOf(calciatore.getDataRitiro()) : null);
-            pstmt.setString(7, calciatore.getNazionalita());
+            pstmt.setString(1, nome);
+            pstmt.setString(2, cognome);
+            pstmt.setObject(3, piede, Types.OTHER);
+            pstmt.setDate(4, Date.valueOf(dataNascita));
+            pstmt.setObject(5, sesso, Types.OTHER);
+            pstmt.setDate(6,dataRitiro != null ? Date.valueOf(dataRitiro) : null);
+            pstmt.setString(7, nazionalita);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

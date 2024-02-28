@@ -1,7 +1,5 @@
 package Controllers;
 
-import DAO.CalciatoriDAO;
-import DAO.CalciatoriDAOimpl;
 import Types.Piede;
 import Types.Posizione;
 import Types.Sesso;
@@ -29,13 +27,6 @@ public class AggiungiGiocatoreController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    public void switchToSceneVisionaAmministratore(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("/gui/VisionaAmministratore.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
    @FXML
     private TextField textFieldNome;
     @FXML
@@ -49,8 +40,6 @@ public class AggiungiGiocatoreController implements Initializable {
     private ChoiceBox<String> choiceBoxPiede;
     private String[] CBPiede = {"Destro","Sinistro","Ambidestro"};
     @FXML
-    private DatePicker DataRitiro;
-    @FXML
     private ChoiceBox<String> choiceBoxRuolo;
     private String[] CBRuolo = {"portiere","difensore","centrocampista","attaccante"};
     @FXML
@@ -61,24 +50,24 @@ public class AggiungiGiocatoreController implements Initializable {
     private Label nomemanca;
     @FXML
     private Label cognomemanca;
-
     @FXML
     private Label datanascitamanca;
-
-    @FXML
-    private Label dataritiromanca;
-
     @FXML
     private Label nazionalitàmanca;
-
     @FXML
     private Label piedemanca;
-
     @FXML
     private Label ruolomanca;
-
     @FXML
     private Label sessomanca;
+    String nome;
+    String cognome;
+    String sesso;
+    LocalDate datanascita;
+    String piede;
+    String ruolo;
+    String nazionalita;
+
 
 
     @Override
@@ -87,16 +76,13 @@ public class AggiungiGiocatoreController implements Initializable {
         choiceBoxPiede.getItems().addAll(CBPiede);
         choiceBoxRuolo.getItems().addAll(CBRuolo);
     }
-
-    String nome;
-    String cognome;
-    String sesso;
-    LocalDate datanascita;
-    String piede;
-    LocalDate dataritiro;
-    String ruolo;
-    String nazionalita;
-    CalciatoriDAO dao = new CalciatoriDAOimpl();
+    public void switchToSceneVisionaAmministratore(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("/gui/VisionaAmministratore.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
     public void switchToMilitanzaAggiungi (ActionEvent event) throws IOException {
         nome = textFieldNome.getText();
         cognome = textFieldCognome.getText();
