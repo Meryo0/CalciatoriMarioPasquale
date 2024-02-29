@@ -1,7 +1,7 @@
 package Controllers;
 
 import DAO.CalciatoriDAO;
-import DAO.CalciatoriDAOimpl;
+import DAOImplementazione.CalciatoriDAOimpl;
 import Types.Genere;
 import Types.Posizione;
 import javafx.collections.ObservableList;

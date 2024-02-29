@@ -1,20 +1,12 @@
 package model;
 
 import DAO.CalciatoriDAO;
-import DAO.CalciatoriDAOimpl;
-import DatabaseConnection.ConnessioneDatabase;
-import Types.Piede;
+import DAOImplementazione.CalciatoriDAOimpl;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class Main extends Application{
 

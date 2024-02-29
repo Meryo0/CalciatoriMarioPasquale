@@ -141,25 +141,21 @@ public class ModificaGiocatoreController implements Initializable {
         controller.modificacalciatore(calciatore,selectedinfo.getIdCalciatore());
 
         if(portierecheck.isSelected()){
-            System.out.println("portiere selezionato");
             controller.aggiungiruolo(Posizione.valueOf("portiere"),selectedinfo.getIdCalciatore());
         }else {
             controller.eliminaRicopre(selectedinfo.getIdCalciatore(),Posizione.valueOf("portiere"));
         }
         if(difensorecheck.isSelected()){
-            System.out.println("difensore selezionato");
             controller.aggiungiruolo(Posizione.valueOf("difensore"),selectedinfo.getIdCalciatore());
         }else {
             controller.eliminaRicopre(selectedinfo.getIdCalciatore(),Posizione.valueOf("difensore"));
         }
         if(centrocheck.isSelected()){
-            System.out.println("centro selezionato");
             controller.aggiungiruolo(Posizione.valueOf("centrocampista"),selectedinfo.getIdCalciatore());
         }else {
             controller.eliminaRicopre(selectedinfo.getIdCalciatore(),Posizione.valueOf("centrocampista"));
         }
         if(attaccantechec.isSelected()){
-            System.out.println("attaccante selezionato");
             controller.aggiungiruolo(Posizione.valueOf("attaccante"),selectedinfo.getIdCalciatore());
         }else {
             controller.eliminaRicopre(selectedinfo.getIdCalciatore(),Posizione.valueOf("attaccante"));

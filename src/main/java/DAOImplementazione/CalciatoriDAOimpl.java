@@ -1,5 +1,6 @@
-package DAO;
+package DAOImplementazione;
 
+import DAO.CalciatoriDAO;
 import DatabaseConnection.ConnessioneDatabase;
 import Types.Genere;
 import Types.Piede;
@@ -7,9 +8,6 @@ import Types.Posizione;
 import Types.Sesso;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Calciatore;
-import model.MilitanzaCalciatore;
-import model.MilitanzaPortiere;
 import org.apache.commons.lang3.StringUtils;
 import util.Constant;
 import util.DisplayInfo;

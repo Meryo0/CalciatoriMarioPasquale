@@ -19,8 +19,6 @@ U
 %src/main/java/model/Competizione.java,f\d\fde134ffafcb542da886eb3bb2234f0b985c0bdc
 T
 $src/main/java/DAO/CalciatoriDAO.java,6\3\6323cb152ff5987e03f220973aeca6dee9709fdc
-X
-(src/main/java/DAO/CalciatoriDAOimpl.java,2\7\27b8cce808fd6029464d89daa7727295dfeaae0d
 T
 $src/main/java/model/Nazionalita.java,5\a\5a10473e7a00600bbf3f43db002b25b10012d061
 N
@@ -33,8 +31,6 @@ l
 <src/main/java/Controllers/LoginAmministratoreController.java,3\0\30b362a06943f89f99ebb35def0cbd3bbf9e479c
 n
 >src/main/java/Controllers/VisionaAmministratoreController.java,9\b\9ba71c1657bc23eed0fbf6ae2c4e190e41fa1020
-f
-6src/main/java/Controllers/VisionaUtenteController.java,1\c\1c08f7e642c77f6bb1c202dca5c9eed0541482cd
 S
 #src/main/java/util/DisplayInfo.java,6\e\6e45d49526adcccdd63428e8880470ccf7c9f28f
 P
@@ -47,8 +43,6 @@ j
 :src/main/java/Controllers/ModificaGiocatoreController.java,6\d\6d8ddd6c6563608f394c5117a15445eef0cbd1f5
 j
 :src/main/java/Controllers/AggiungiGiocatoreController.java,1\6\169fffac2183483867870f265d8cb14fbe2ed37e
-j
-:src/main/java/Controllers/MilitanzaModificaController.java,2\1\21f06e7449131595032ee09065fa329b5ea71a3f
 N
 src/main/java/model/Ruolo.java,d\e\de26e996e243a34cf7574a8bbb63f73207e2bd20
 R
@@ -71,7 +65,13 @@ i
 9src/main/java/Controllers/MilitanzaVisionaController.java,f\1\f1c07314b7bc52eb0eed29b5db8b2d467d52517a
 j
 :src/main/java/Controllers/ModificaMilitanzaController.java,f\b\fb1af183dbc2580f23090c6c2a6aaed2c29842b1
-j
-:src/main/java/Controllers/AggiungiMilitanzaController.java,9\d\9d9c244f1c642b0b10609ffdc02fddc70b1addcc
 Y
 )src/main/java/Controllers/Controller.java,8\9\8988e66b20c9345add0bcd778a4cbca7d5f6616c
+g
+7src/main/java/DaoImplementazione/CalciatoriDAOimpl.java,3\b\3b79341b3ef7e99630b6679e61c8d3d7d91c4fb9
+g
+7src/main/java/DAOImplementazione/CalciatoriDAOimpl.java,1\c\1cb6d0dfec48f7e8280e686ad62f0ed822fb2988
+D
+Sequence_Diagram.mdj,e\9\e96bbc7d1ca465d49cf970779a8e006e9564b099
+7
+UML.mdj,9\0\90f38c31fe96b75c1d7dbd2dbf9febefb1c2a2c6
